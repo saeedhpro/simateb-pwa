@@ -2,13 +2,10 @@ module.exports = {
   apps: [
     {
       name: 'SimatebPWA',
-      exec_name: 'cluster',
+      port: '6000',
+      exec_mode: 'cluster',
       instances: 'max',
-      script: './node_modules/nuxt/bin/nuxt.js',
-      args: 'start'
+      script: './.output/server/index.mjs'
     }
   ]
 }
-
-
-
