@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   modules: [
+    '@vite-pwa/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
@@ -20,4 +21,49 @@ export default defineNuxtConfig({
       },
     },
   },
+  pwa: {
+    "name": "صبااپ",
+    "short_name": "صبااپ",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#EBF4FB",
+    "icons": [
+      {
+        "src": "images/logo.png",
+        "sizes": "48x48",
+        "type": "image/png"
+      },
+      {
+        "src": "images/logo.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "images/logo.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "images/logo.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src": "images/logo.png",
+        "sizes": "168x168",
+        "type": "image/png"
+      },
+      {
+        "src": "images/logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    manifest: {
+      name: 'My Awesome App',
+      lang: 'fa',
+      dir: 'rtl',
+      useWebmanifestExtension: false
+    }
+  }
 })
