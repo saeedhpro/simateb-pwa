@@ -4,6 +4,7 @@
       link
       variant="text"
       href="/account/profile"
+      icon
     >
       <svg width="22" height="34" viewBox="0 0 22 34" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="11.5" cy="6.55553" rx="6.44737" ry="6.33333" fill="#6C6666"/>

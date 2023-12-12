@@ -3,7 +3,7 @@
     <div class="image-box">
       <img alt="" :src="category.icon" />
     </div>
-    <div class="mt-3 text-center full-width">{{ category.title }}</div>
+    <div class="mt-1 text-center full-width">{{ category.title }}</div>
   </nuxt-link>
 </template>
 

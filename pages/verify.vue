@@ -1,12 +1,9 @@
 <template>
   <div class="login-page relative">
     <div class="intro-image">
-      <p>کد فعالسازی به شماره زیر پیامک شد.</p>
-      <div class="login-form d-flex flex-column justify-center">
-        <div class="phone-box">{{ form.tel }}</div>
-      </div>
-      <div class="intro-image code-box mt-16">
-        <p class="text-right code-title">کد فعالسازی:</p>
+      <ImagesVerifyImage />
+      <p class="text-center">لطفا کد 5 رقمی ارسال شده از طریق پیامک را در قسمت زیر وارد کنید.</p>
+      <div class="intro-image code-box">
         <v-otp-input
             v-model="form.code"
             class="ltr mt-2"
@@ -18,20 +15,25 @@
             variant="outlined"
             height="93px"
         ></v-otp-input>
-        <p class="text-right code-title mt-2">
-          {{ timer }} ثانیه تا دریافت مجدد کد فعالسازی
+        <p class="text-center code-title mt-2">
+           ارسال مجدد کد
+        </p>
+        <p class="text-center code-title mt-2">
+          {{ timer }}
         </p>
       </div>
       <MainActionButton
           v-if="timer === 0"
-          class="login-button"
+          class="login-button mt-2"
           title="ارسال دوباره کد"
           @click="sendCode"
+          :width="'100%'"
       />
       <MainActionButton
           v-else
-          class="login-button"
+          class="login-button mt-2"
           title="ورود"
+          :width="'100%'"
           :disabled="form.code.length != 5"
           @click="doLogin"
       />
@@ -73,36 +75,11 @@ const doLogin = () => {
 }
 </script>
 <style scoped lang="scss">
-.phone-box {
-  max-width: 180px;
-  width: 100%;
-  height: 44px;
-  border: 1px solid #ADABFF;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  margin: 20px auto 0;
-}
 .login-button {
-  position: absolute;
-  bottom: 50px;
-  right: 10%;
-  left: 10%;
-}
-.code-box {
-  max-width: 300px;
-  margin: 0 auto;
-}
-.code-title {
-  font-family: IRANYekanRegular;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 22px;
-  letter-spacing: 0;
-  text-align: right;
-  color: #206EE7;
+  width: 100%;
+  //position: absolute;
+  //bottom: 20px;
+  //right: 10%;
+  //left: 10%;
 }
 </style>

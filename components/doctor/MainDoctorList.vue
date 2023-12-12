@@ -5,7 +5,7 @@
         معرفی پزشکان
       </div>
       <nuxt-link
-        to="/account/search"
+        to="/account/doctors"
         class="more-link"
       >
         مشاهده بیشتر

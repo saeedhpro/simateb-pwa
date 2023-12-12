@@ -13,6 +13,7 @@
     "@nuxt/devtools": "latest",
     "@vite-pwa/nuxt": "^0.3.4",
     "nuxt": "^3.8.2",
+    "nuxt-icon": "^0.6.7",
     "sass": "^1.69.5",
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.3.8",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.3.67",
-    "@splidejs/vue-splide": "^0.6.12"
+    "@splidejs/vue-splide": "^0.6.12",
+    "vue-spinner": "^1.0.4"
   }
 }

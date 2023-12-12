@@ -11,6 +11,18 @@
         <div class="doctor-profession-name mt-2">
           {{ doctor.profession?.name }}
         </div>
+        <div class="doctor-starts mt-3 ltr">
+          <v-rating
+              half-increments
+              :hover="true"
+              :length="5"
+              :size="20"
+              :readonly="true"
+              :model-value="doctor?.stars"
+              color="warning"
+              active-color="warning"
+          />
+        </div>
       </div>
       <div @click="goToPage" class="more-button">معرفی</div>
     </div>

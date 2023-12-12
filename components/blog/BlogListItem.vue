@@ -3,7 +3,7 @@
     <div class="image-box">
       <img alt="" :src="blog.thumbnail" />
     </div>
-    <div class="mr-3 text-right full-width blog-content d-flex flex-column justify-space-between align-center">
+    <div class="mr-3 text-right full-width blog-content d-flex flex-column justify-space-between align-start">
       <div class="title">
         {{ blog.title }}
       </div>

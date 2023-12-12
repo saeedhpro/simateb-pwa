@@ -11,27 +11,32 @@
         مشاهده بیشتر
       </nuxt-link>
     </div>
-    <div class="main-blog-list-content d-flex flex-row align-center justify-space-between full-width py-2 mt-6 px-1 px-sm-2 px-md-8 px-lg-16">
-      <v-slide-group>
-        <v-slide-group-item
-            v-for="(b, i) in list"
-            :key="i"
-            v-slot="{ isSelected, toggle }"
+    <div class="main-blog-list-content full-width py-2 mt-6 px-1 px-sm-2 px-md-8 px-lg-16">
+      <v-row>
+        <v-col
+          cols="12"
+          v-for="(b, i) in list"
+          :key="i"
         >
           <BlogListItem
-            :blog="b"
-        />
-        </v-slide-group-item>
-      </v-slide-group>
+              :blog="b"
+          />
+        </v-col>
+      </v-row>
     </div>
+    <div @click="goToPage" class="more-button mb-4">مشاهده بیشتر</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import BlogListItem from "~/components/blog/BlogListItem.vue";
 
+const router = useRouter()
 const {data: articles} = await useFetch('/api/articles')
 const list = articles.value?.data ?? []
+const goToPage = () => {
+  router.push('/account/blog')
+}
 </script>
 
 <style scoped lang="scss">

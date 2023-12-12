@@ -1,42 +1,52 @@
 <template>
-  <div class="login-page">
-    <div class="intro-image">
-      <IntroImage />
-      <p>لطفا شماره موبایل خود را وارد کنید تا کد فعالسازی برای شما ارسال شود.</p>
-      <div class="login-form d-flex flex-column justify-center">
-        <v-text-field
-            label="شماره تماس"
-            v-model="form.tel"
-            variant="outlined"
-            rounded
-            class="mt-8 text-left"
-            bg-color="#fff"
-        ></v-text-field>
-        <MainActionButton
-            title="ارسال کد ورود"
-            :disabled="form.tel.length != 11"
-            @click="sendCode"
-        />
-      </div>
-    </div>
+  <div class="login-page relative py-0 px-0">
+    <BgGreen class="absolute top right"/>
+    <BgBlue class="absolute top left"/>
+    <BgBottomGreen class="absolute bottom right"/>
+    <BgBottomBlue class="absolute bottom left"/>
+    <IntroImage />
+    <p class="mt-8">هرآنچه از <span class="hero">سلامتی</span>  میخواهید!</p>
+    <LoadingSpinnerComponent class="mt-16"/>
   </div>
 </template>
 
 <script setup lang="ts">
+import {definePageMeta} from "#imports";
 
-import IntroImage from "~/components/images/IntroImage.vue";
-import MainActionButton from "~/components/buttons/MainActionButton.vue";
-const router = useRouter()
-
-const form = ref({
-  tel: ''
+definePageMeta({
+  pageTransition: {
+    name: 'page',
+    mode: 'out-in'
+  }
 })
 
-const sendCode = () => {
-  router.push('/verify')
-  // console.log(form.value)
-}
-</script>
-<style scoped>
+import IntroImage from "~/components/images/IntroImage.vue";
+import BgGreen from "~/components/intro/BgGreen.vue";
+import BgBlue from "~/components/intro/BgBlue.vue";
+import BgBottomGreen from "~/components/intro/BgBottomGreen.vue";
+import BgBottomBlue from "~/components/intro/BgBottomBlue.vue";
 
+const router = useRouter()
+
+const goToLogin = () => {
+  router.replace('/login')
+}
+setInterval(function () {
+  goToLogin()
+}, 3000);
+
+</script>
+<style scoped lang="scss">
+p {
+  font-family: IRANYekanRegular;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #3E5466 !important;
+}
+.hero {
+  color: #7CA6E7 !important;
+}
 </style>

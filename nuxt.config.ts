@@ -1,11 +1,18 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
+    }
+  },
   devtools: { enabled: true },
   css: ["@/assets/style.scss"],
   build: {
     transpile: ['vuetify'],
   },
   modules: [
+    'nuxt-icon',
     '@vite-pwa/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
@@ -60,7 +67,7 @@ export default defineNuxtConfig({
       }
     ],
     manifest: {
-      name: 'My Awesome App',
+      name: 'Saba App',
       lang: 'fa',
       dir: 'rtl',
       useWebmanifestExtension: false
