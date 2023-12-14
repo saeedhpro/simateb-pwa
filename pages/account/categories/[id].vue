@@ -6,12 +6,12 @@
     <BackButton
         @click="onBackClicked"
     />
-    <CategoryLogo logo="/images/categories/logo.png" />
-    <div class="category-list-content py-8 px-4 full-height full-width">
+    <CategoryLogo :has-child="category.has_child" :logo="category.has_child ? '/images/categories/logo.png' : '/images/categories/single.png'" />
+    <div class="category-list-content py-8 px-4 full-height full-width" :class="{'has-child': category.has_child}">
       <v-container :fluid="true" v-if="category.has_child">
         <v-row>
           <v-col
-              cols="6"
+              cols="4"
               sm="3"
               md="2"
               v-for="(c, i) in list"

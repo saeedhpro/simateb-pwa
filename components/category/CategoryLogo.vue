@@ -1,5 +1,5 @@
 <template>
-  <div class="category-logo">
+  <div class="category-logo" :class="{'has-child': hasChild}">
     <img alt="" :src="logo">
   </div>
 </template>
@@ -9,6 +9,10 @@ const props = defineProps({
   logo: {
     type: String,
     default: ''
+  },
+  hasChild: {
+    type: Boolean,
+    default: false
   }
 })
 </script>

@@ -12,17 +12,19 @@
       </nuxt-link>
     </div>
     <div class="main-blog-list-content full-width py-2 mt-6 px-1 px-sm-2 px-md-8 px-lg-16">
-      <v-row>
-        <v-col
-          cols="12"
-          v-for="(b, i) in list"
-          :key="i"
-        >
-          <BlogListItem
-              :blog="b"
-          />
-        </v-col>
-      </v-row>
+      <v-container :fluid="true">
+        <v-row>
+          <v-col
+              cols="12"
+              v-for="(b, i) in list"
+              :key="i"
+          >
+            <BlogListItem
+                :blog="b"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
     <div @click="goToPage" class="more-button mb-4">مشاهده بیشتر</div>
   </div>

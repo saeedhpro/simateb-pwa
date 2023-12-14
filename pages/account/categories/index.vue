@@ -11,7 +11,7 @@
       <v-container :fluid="true">
         <v-row>
           <v-col
-            cols="6"
+            cols="4"
             sm="3"
             md="2"
             v-for="(c, i) in list"
