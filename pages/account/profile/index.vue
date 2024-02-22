@@ -28,8 +28,14 @@ import ExitButton from "~/components/action/ExitButton.vue";
 import BgGreen from "~/components/intro/BgGreen.vue";
 import BgBlue from "~/components/intro/BgBlue.vue";
 const router = useRouter()
+
+definePageMeta({
+  middleware: 'auth'
+})
+
 const onBackClicked = () => {
   router.go(-1)
+  // router.push('/account')
 }
 
 const onExitClicked = () => {

@@ -19,6 +19,7 @@
           />
         </v-col>
       </v-row>
+      <div v-if="last_page > page" @click="paginate" class="more-button mt-6">مشاهده بیشتر</div>
     </div>
   </div>
 </template>
@@ -27,21 +28,43 @@
 
 import BackButton from "~/components/action/BackButton.vue";
 import CustomAutocomplete from "~/components/input/CustomAutocomplete.vue";
-
-const {data: doctors} = await useFetch('/api/doctors')
-const list = doctors.value?.data ?? []
-
-const {data: professions} = await useFetch('/api/professions')
-const professionList = professions.value?.data ?? []
+const page = ref(1)
+const last_page = ref(1)
+const limit = ref(12)
+const list = ref([])
+const professionList = ref([])
 
 const router = useRouter()
 const onBackClicked = () => {
   router.go(-1)
 }
 
+const getDoctors = async() => {
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: categories, meta: meta} = await getRequest(`/doctors?page=${page.value}&limit=${limit.value}`)
+  list.value = categories ?? []
+  page.value = meta.current_page
+  last_page.value = meta.last_page
+}
+
+const getProfessionList = async() => {
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: categories, meta: meta} = await getRequest(`/professions`)
+  professionList.value = categories ?? []
+}
+
 const onProfessionSelect = (p) => {
   console.log(p, "p")
 }
+
+
+const paginate = () => {
+  page.value += 1
+  getDoctors()
+}
+
+getDoctors()
+getProfessionList()
 </script>
 
 <style scoped lang="scss">

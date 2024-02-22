@@ -1,7 +1,7 @@
 <template>
   <div class="login-page relative">
-    <div class="intro-image">
-      <ImagesVerifyImage />
+    <div class="intro-image d-flex flex-column justify-center align-center">
+      <ImagesVerifyImage class="login-image"/>
       <p class="text-center">لطفا کد 5 رقمی ارسال شده از طریق پیامک را در قسمت زیر وارد کنید.</p>
       <div class="intro-image code-box">
         <v-otp-input
@@ -23,7 +23,7 @@
         </p>
       </div>
       <MainActionButton
-          v-if="timer === 0"
+          v-if="timer == 0"
           class="login-button mt-2"
           title="ارسال دوباره کد"
           @click="sendCode"
@@ -44,19 +44,32 @@
 <script setup lang="ts">
 
 import MainActionButton from "~/components/buttons/MainActionButton.vue";
+import {useToast} from "vue-toastification";
+definePageMeta({
+  middleware: 'guest',
+})
 const router = useRouter()
+const route = useRoute()
+const toast = useToast()
 
+const authStore = useAuthStore()
+// if (!route.query.tel) {
+//   setTimeout(() => {
+//     router.replace('/login')
+//   }, 200)
+// }
+const token = useCookie("token")
 const form = ref({
-  tel: '09381412419',
+  tel: route.query.tel,
   code: ''
 })
 
 let timer = ref(60)
 let interval = ref('')
 
-const startTimer = () => {
-  setInterval(() => {
-    if (timer.value === 0) {
+const startTimer = (t = false) => {
+  interval.value = setInterval(() => {
+    if (timer.value == 0) {
       clearInterval(interval.value)
     } else {
       timer.value--
@@ -66,20 +79,44 @@ const startTimer = () => {
 
 startTimer()
 const sendCode = () => {
-  startTimer()
+  const {$postRequest: postRequest}=useNuxtApp()
+  postRequest('/login', {
+    phone_number: form.value.tel,
+  })
+      .then(res => {
+        timer.value = 60
+        form.value.code = ''
+        toast.success('کد با موفقیت ارسال شد')
+        startTimer(true)
+      })
+      .catch(err => {
+        toast.error('متاسفانه خطایی رخ داده است')
+      })
   // console.log(form.value)
 }
 const doLogin = () => {
-  router.push('/account')
-  // console.log(form.value)
+  const {$postRequest: postRequest}=useNuxtApp()
+  postRequest('/verify', {
+    phone_number: form.value.tel,
+    code: form.value.code,
+  })
+      .then(res => {
+        toast.success('با موفقیت وارد شدید')
+        token.value = res?.data.token ?? ''
+        authStore.user = res?.data.user
+        authStore.token = res?.data.token
+        router.push('/account')
+      })
+      .catch(err => {
+        toast.error('کد وارد شده صحیح نمی باشد')
+      })
 }
 </script>
 <style scoped lang="scss">
 .login-button {
   width: 100%;
-  //position: absolute;
-  //bottom: 20px;
-  //right: 10%;
-  //left: 10%;
+}
+.login-image {
+  max-width: 360px;
 }
 </style>

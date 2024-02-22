@@ -11,8 +11,13 @@
 
 <script setup lang="ts">
 import MainBlogList from "~/components/blog/MainBlogList.vue";
+import {definePageMeta} from "#imports";
 
 const router = useRouter()
+
+definePageMeta({
+  middleware: 'auth'
+})
 
 </script>
 <style scoped>

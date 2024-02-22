@@ -6,7 +6,7 @@
     <BackButton
         @click="onBackClicked"
     />
-    <CategoryLogo :has-child="category.has_child" :logo="category.has_child ? '/images/categories/logo.png' : '/images/categories/single.png'" />
+    <CategoryLogo :has-child="category.has_child" :logo="category.has_child ? category.logo : category.icon" />
     <div class="category-list-content py-8 px-4 full-height full-width" :class="{'has-child': category.has_child}">
       <v-container :fluid="true" v-if="category.has_child">
         <v-row>
@@ -19,7 +19,7 @@
           >
             <CategoryListItem
                 :category="c"
-                class="mb-4"
+                class="mb-4 circular"
             />
           </v-col>
         </v-row>
@@ -63,32 +63,31 @@ const category = ref({
 const getCategory = async () => {
   loading.value = true
   const id = route.params.id
-  const {data: categories} = await useFetch('/api/categories')
-  const c = categories.value.data.find(i => i.id == id)
-  if (!c) {
-    await router.push(`/account/categories`)
-  }
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: c} = await getRequest(`/categories/${id}`)
   category.value = c
   loading.value = false
   if (category.value.has_child) {
-    getCategories()
+    getCategories(id)
   } else {
-    getArticles()
+    getArticles(id)
   }
 }
 getCategory()
 const list = ref([])
-const getCategories = async () => {
+const getCategories = async (id: string | string[]) => {
   loading.value = true
-  const {data: categories} = await useFetch('/api/categories')
-  list.value = categories.value?.data ?? []
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: categories} = await getRequest(`/categories/${id}/children`)
+  list.value = categories
   loading.value = false
 }
 const articles = ref([])
-const getArticles = async () => {
+const getArticles = async (id: string | string[]) => {
   loading.value = true
-  const {data: blog} = await useFetch('/api/articles')
-  articles.value = blog.value?.data ?? []
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: lst} = await getRequest(`/categories/${id}/articles`)
+  articles.value = lst
   loading.value = false
 }
 </script>

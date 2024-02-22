@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="onClick" :disabled="disabled" variant="flat" text="#fff" color="#7CA6E7" rounded :height="height" :width="width" class="mx-auto">
+  <v-btn class="main-action-button mx-auto" @click="onClick" :disabled="disabled" variant="flat" text="#fff" color="#7CA6E7" rounded :height="height" :width="width">
     {{ title }}
   </v-btn>
 </template>

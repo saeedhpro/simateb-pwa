@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   modules: [
+    '@pinia/nuxt',
     'nuxt-icon',
     '@vite-pwa/nuxt',
     (_options, nuxt) => {

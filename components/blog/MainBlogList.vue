@@ -11,7 +11,7 @@
         مشاهده بیشتر
       </nuxt-link>
     </div>
-    <div class="main-blog-list-content full-width py-2 mt-6 px-1 px-sm-2 px-md-8 px-lg-16">
+    <div class="main-blog-list-content full-width py-2 mt-6">
       <v-container :fluid="true">
         <v-row>
           <v-col
@@ -34,8 +34,9 @@
 import BlogListItem from "~/components/blog/BlogListItem.vue";
 
 const router = useRouter()
-const {data: articles} = await useFetch('/api/articles')
-const list = articles.value?.data ?? []
+const {$getRequest: getRequest}=useNuxtApp()
+const {data: articles} = await getRequest('/articles?type=blog&page=1&limit=4')
+const list = articles ?? []
 const goToPage = () => {
   router.push('/account/blog')
 }

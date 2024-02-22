@@ -11,8 +11,8 @@
         مشاهده بیشتر
       </nuxt-link>
     </div>
-    <div class="main-category-list-content d-flex flex-row align-center justify-space-between full-width py-2 mt-6 px-1 px-sm-2 px-md-8 px-lg-16">
-      <v-slide-group>
+    <div class="main-category-list-content d-flex flex-row align-center justify-space-between full-width py-2 mt-6 px-1 px-sm-2">
+      <v-slide-group :show-arrows="!onMobile" >
         <v-slide-group-item
             v-for="(c, i) in list"
             :key="i"
@@ -20,6 +20,7 @@
         >
           <CategoryListItem
             :category="c"
+            :class="{'desktop': !onMobile}"
           />
         </v-slide-group-item>
       </v-slide-group>
@@ -28,8 +29,13 @@
 </template>
 
 <script setup lang="ts">
-const {data: categories} = await useFetch('/api/categories')
-const list = categories.value?.data ?? []
+const {$getRequest: getRequest}=useNuxtApp()
+const {data: categories} = await getRequest('/categories?type=page&page=1&limit=6')
+const list = categories ?? []
+
+const {$isMobile: isMobile} = useNuxtApp()
+const onMobile = computed(() => isMobile())
+
 </script>
 
 <style scoped lang="scss">

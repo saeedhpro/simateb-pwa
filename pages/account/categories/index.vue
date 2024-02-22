@@ -19,7 +19,7 @@
           >
             <CategoryListItem
                 :category="c"
-                class="mb-4"
+                class="mb-4 circular"
             />
           </v-col>
         </v-row>
@@ -41,8 +41,9 @@ const loading = ref(false)
 const list = ref([])
 const getCategories = async () => {
   loading.value = true
-  const {data: categories} = await useFetch('/api/categories')
-  list.value = categories.value?.data ?? []
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: categories} = await getRequest('/categories?type=page')
+  list.value = categories ?? []
   loading.value = false
 }
 getCategories()

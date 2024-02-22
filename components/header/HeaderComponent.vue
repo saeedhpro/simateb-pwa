@@ -1,16 +1,19 @@
 <template>
   <div class="header-component d-flex flex-row align-center justify-space-between full-width">
-    <v-btn
-      link
-      variant="text"
-      href="/account/profile"
-      icon
+    <router-link
+        to="/account/profile"
     >
-      <svg width="22" height="34" viewBox="0 0 22 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="11.5" cy="6.55553" rx="6.44737" ry="6.33333" fill="#6C6666"/>
-        <path d="M0.753709 23.5405C0.824109 20.9736 1.92592 18.5333 3.82787 16.7317C5.72981 14.9301 8.284 13.9074 10.9543 13.8782C13.6245 13.849 16.2033 14.8156 18.1492 16.5752C20.095 18.3347 21.2567 20.7503 21.3905 23.315L11.0768 23.8072L0.753709 23.5405Z" fill="#616161"/>
-      </svg>
-    </v-btn>
+      <v-btn
+          link
+          variant="text"
+          icon
+      >
+        <svg width="22" height="34" viewBox="0 0 22 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="11.5" cy="6.55553" rx="6.44737" ry="6.33333" fill="#6C6666"/>
+          <path d="M0.753709 23.5405C0.824109 20.9736 1.92592 18.5333 3.82787 16.7317C5.72981 14.9301 8.284 13.9074 10.9543 13.8782C13.6245 13.849 16.2033 14.8156 18.1492 16.5752C20.095 18.3347 21.2567 20.7503 21.3905 23.315L11.0768 23.8072L0.753709 23.5405Z" fill="#616161"/>
+        </svg>
+      </v-btn>
+    </router-link>
     <v-btn
       icon
       variant="text"

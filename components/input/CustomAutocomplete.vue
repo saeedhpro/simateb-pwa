@@ -28,6 +28,10 @@ import {uniqueId} from "@splidejs/splide/src/js/utils";
 const emits = defineEmits(['select'])
 
 const props = defineProps({
+  selected: {
+    type: Object,
+    default: null
+  },
   items: {
     type: Array,
     default: []
@@ -45,6 +49,7 @@ const props = defineProps({
 const onFocus = ref(false)
 const openMenu = ref(false)
 const searchTerm = ref('')
+const selectedItem = ref({})
 
 const inputRef = ref(null)
 const onInputFocusIn = () => {
@@ -67,10 +72,19 @@ const onInputFocusClicked = () => {
 
 const selectItem = (item: any) => {
   onInputFocusOut()
+  searchTerm.value = item.name
+  selectedItem.value = item
   emits('select', item)
 }
 
+const setSelectedValue = () => {
+  if (props.selected) {
+    searchTerm.value = props.selected.name
+    selectedItem.value = props.selected
+  }
+}
 
+setSelectedValue()
 </script>
 
 <style scoped lang="scss">

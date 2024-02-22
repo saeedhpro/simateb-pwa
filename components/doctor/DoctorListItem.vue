@@ -9,7 +9,7 @@
           {{ doctor.full_name }}
         </div>
         <div class="doctor-profession-name mt-2">
-          {{ doctor.profession?.name }}
+          {{ doctor.organization?.profession?.name }}
         </div>
         <div class="doctor-starts mt-3 ltr">
           <v-rating
