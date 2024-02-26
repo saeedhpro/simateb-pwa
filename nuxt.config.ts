@@ -71,7 +71,6 @@ export default defineNuxtConfig({
       name: 'Saba App',
       lang: 'fa',
       dir: 'rtl',
-      useWebmanifestExtension: false
     }
   }
 })

@@ -254,10 +254,10 @@
 
 <script setup lang="ts">
 
-import {useToast} from "vue-toastification";
+// import {useToast} from "vue-toastification";
 const router = useRouter()
 const route = useRoute()
-const toast = useToast()
+// const toast = useToast()
 
 const id = route.params.id
 

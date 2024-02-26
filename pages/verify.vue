@@ -44,13 +44,13 @@
 <script setup lang="ts">
 
 import MainActionButton from "~/components/buttons/MainActionButton.vue";
-import {useToast} from "vue-toastification";
+// import {useToast} from "vue-toastification";
 definePageMeta({
   middleware: 'guest',
 })
 const router = useRouter()
 const route = useRoute()
-const toast = useToast()
+// const toast = useToast()
 
 const authStore = useAuthStore()
 // if (!route.query.tel) {
@@ -86,11 +86,11 @@ const sendCode = () => {
       .then(res => {
         timer.value = 60
         form.value.code = ''
-        toast.success('کد با موفقیت ارسال شد')
+        // toast.success('کد با موفقیت ارسال شد')
         startTimer(true)
       })
       .catch(err => {
-        toast.error('متاسفانه خطایی رخ داده است')
+        // toast.error('متاسفانه خطایی رخ داده است')
       })
   // console.log(form.value)
 }
@@ -101,14 +101,14 @@ const doLogin = () => {
     code: form.value.code,
   })
       .then(res => {
-        toast.success('با موفقیت وارد شدید')
+        // toast.success('با موفقیت وارد شدید')
         token.value = res?.data.token ?? ''
         authStore.user = res?.data.user
         authStore.token = res?.data.token
         router.push('/account')
       })
       .catch(err => {
-        toast.error('کد وارد شده صحیح نمی باشد')
+        // toast.error('کد وارد شده صحیح نمی باشد')
       })
 }
 </script>

@@ -125,10 +125,10 @@ import DoctorProfileLinkReservesImage from "~/components/doctor/DoctorProfileLin
 import DoctorProfileLinkSurgeriesImage from "~/components/doctor/DoctorProfileLinkSurgeriesImage.vue";
 import DoctorProfileLinkCommentsImage from "~/components/doctor/DoctorProfileLinkCommentsImage.vue";
 import DoctorProfileLinkQuestionsImage from "~/components/doctor/DoctorProfileLinkQuestionsImage.vue";
-import {useToast} from "vue-toastification";
+// import {useToast} from "vue-toastification";
 const router = useRouter()
 const route = useRoute()
-const toast = useToast()
+// const toast = useToast()
 
 const id = route.params.id
 
@@ -221,11 +221,11 @@ const shareTel = async () => {
     console.error(e);
   }
   // copyText(doctor.value.tel)
-  toast.success('با موفقیت کپی شد')
+  // toast.success('با موفقیت کپی شد')
 }
 const shareAddress = () => {
   copyText(doctor.value.address)
-  toast.success('با موفقیت کپی شد')
+  // toast.success('با موفقیت کپی شد')
 }
 
 getDoctor()
