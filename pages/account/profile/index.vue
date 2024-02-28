@@ -28,6 +28,7 @@ import ExitButton from "~/components/action/ExitButton.vue";
 import BgGreen from "~/components/intro/BgGreen.vue";
 import BgBlue from "~/components/intro/BgBlue.vue";
 const router = useRouter()
+const token = useCookie("token")
 
 definePageMeta({
   middleware: 'auth'
@@ -39,6 +40,7 @@ const onBackClicked = () => {
 }
 
 const onExitClicked = () => {
+  token.value = ''
   router.replace('/')
 }
 

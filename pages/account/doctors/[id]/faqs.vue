@@ -50,7 +50,6 @@ const getFaqs = async () => {
   const {data: list} = await getRequest(`/doctors/${id}/faqs`)
   faqs.value = list
   loading.value = false
-  console.log(faqs.value)
 }
 getFaqs()
 </script>
