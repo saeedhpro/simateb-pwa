@@ -56,7 +56,8 @@ const sendCode = () => {
       .then(res => {
         toast.success('کد با موفقیت ارسال شد')
         setTimeout(() => {
-          router.push(`/verify?tel=${form.value.tel}`)
+          // router.push(`/verify?tel=${form.value.tel}`)
+          window.location.href = `/verify?tel=${form.value.tel}`
         }, 500)
       })
       .catch(err => {
