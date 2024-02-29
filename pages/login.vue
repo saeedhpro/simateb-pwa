@@ -40,9 +40,9 @@ import MainActionButton from "~/components/buttons/MainActionButton.vue";
 definePageMeta({
   middleware: 'guest',
 })
-import {useToast} from "vue-toastification";
+// import {useToast} from "vue-toastification";
 const router = useRouter()
-const toast = useToast()
+// const toast = useToast()
 
 const form = ref({
   tel: ''
@@ -54,14 +54,14 @@ const sendCode = () => {
     phone_number: form.value.tel,
   })
       .then(res => {
-        toast.success('کد با موفقیت ارسال شد')
+        // toast.success('کد با موفقیت ارسال شد')
         setTimeout(() => {
           // router.push(`/verify?tel=${form.value.tel}`)
           window.location.href = `/verify?tel=${form.value.tel}`
         }, 500)
       })
       .catch(err => {
-        toast.error('متاسفانه خطایی رخ داده است')
+        // toast.error('متاسفانه خطایی رخ داده است')
         console.log(err, "err")
       })
 }
