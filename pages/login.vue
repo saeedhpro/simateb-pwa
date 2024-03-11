@@ -39,6 +39,7 @@
 import MainActionButton from "~/components/buttons/MainActionButton.vue";
 definePageMeta({
   middleware: 'guest',
+  layout: 'login'
 })
 // import {useToast} from "vue-toastification";
 const router = useRouter()

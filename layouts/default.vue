@@ -1,7 +1,10 @@
 <template>
-  <div class="wrapper">
-    <NuxtPage />
-  </div>
+  <v-app>
+    <div class="wrapper mb-8">
+      <NuxtPage />
+    </div>
+    <FooterComponent />
+  </v-app>
 </template>
 <script setup lang="ts">
 </script>

@@ -11,13 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import {definePageMeta} from "#imports";
-
 definePageMeta({
-  pageTransition: {
-    name: 'page',
-    mode: 'out-in'
-  }
+  layout: 'login'
 })
 
 import IntroImage from "~/components/images/IntroImage.vue";
