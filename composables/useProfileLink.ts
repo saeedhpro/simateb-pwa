@@ -15,10 +15,5 @@ export default () => {
             icon: '/images/links/2.png',
             title: 'نظرات من',
         },
-        {
-            link: '/account/profile/referral',
-            icon: '/images/links/4.png',
-            title: 'دعوت از دوستان',
-        },
     ])
 }

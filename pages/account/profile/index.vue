@@ -16,6 +16,12 @@
         :icon="l.icon"
         :title="l.title"
       />
+      <ProfileLink
+          :icon="'/images/links/4.png'"
+          :title="'دعوت از دوستان'"
+          @click.native="referral"
+          class="pointer"
+      />
     </div>
     <ExitButton @click="onExitClicked" />
   </div>
@@ -48,6 +54,19 @@ const user = ref({
   full_name: 'سعید حیدری',
   phone_number: '09381412419'
 })
+
+const referral = async ($event) => {
+  $event.preventDefault()
+  await shareText('https://pwa.sabaapp.ir')
+}
+const shareText = async (text: string) => {
+  try {
+    await navigator.share({
+      text: text
+    });
+  } catch (error) {
+  }
+}
 
 const links = useProfileLink()
 </script>

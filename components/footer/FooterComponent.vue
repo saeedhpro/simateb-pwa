@@ -12,7 +12,7 @@
 
     <v-btn to="/account/doctors">
       <v-icon>mdi-magnify</v-icon>
-      جستجو
+      پزشکان
     </v-btn>
 
     <v-btn to="/account/blog">
