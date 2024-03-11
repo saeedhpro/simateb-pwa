@@ -11,9 +11,9 @@ export default () => {
             title: 'نوبت های من',
         },
         {
-            link: '/account/profile/settings',
-            icon: '/images/links/3.png',
-            title: 'تنظیمات',
+            link: '/account/profile/comments',
+            icon: '/images/links/2.png',
+            title: 'نظرات من',
         },
         {
             link: '/account/profile/referral',

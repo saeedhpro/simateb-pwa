@@ -12,19 +12,11 @@
             interval="3000"
         >
           <v-carousel-item
-              v-for="(slide, i) in slides"
+              v-for="(s, i) in sliders"
               :key="i"
+              :src="s"
+              cover
           >
-            <v-sheet
-                :color="colors[i]"
-                height="100%"
-            >
-              <div class="d-flex fill-height justify-center align-center">
-                <div class="text-h2">
-                  {{ slide }} Slide
-                </div>
-              </div>
-            </v-sheet>
           </v-carousel-item>
         </v-carousel>
     </div>
@@ -116,7 +108,14 @@
               <div class="doctor-reserve-form-title mb-4">
                 انتخاب زمان نوبت
               </div>
-              <v-row>
+              <v-row v-if="schedules.length == 0">
+                <v-col
+                    cols="12"
+                >
+                  <div>پزشک زمان خالی برای دریافت نوبت ندارد!</div>
+                </v-col>
+              </v-row>
+              <v-row v-else>
                 <v-col cols="12">
                   <div class="form-select"
                        :class="{'selected': reserveForm.reserve_time_type == 'first'}"
@@ -126,8 +125,11 @@
                       <div class="form-select-sub-title">
                         زودترین زمان نوبت خالی:
                       </div>
-                      <div class="mt-2">
-                        امروز (شنبه) - ساعت 15
+                      <div class="mt-2" v-if="getFirstTime">
+                        {{convertStartAt(getFirstTime.start_at)}}
+                      </div>
+                      <div class="mt-2" v-else>
+                        پزشک زمان خالی برای دریافت نوبت ندارد!
                       </div>
                     </div>
                   </div>
@@ -144,23 +146,14 @@
                 </v-col>
                 <v-col cols="12" v-if="reserveForm.reserve_time_type == 'other'">
                   <v-row>
-                    <v-col cols="12">
+                    <v-col cols="12" v-for="(d,i) in getOtherTimes()" :key="i">
                       <div class="form-select"
-                           :class="{'selected': reserveForm.reserve_time_type == ''}"
-                           >
+                        :class="{'selected': isSelected(d)}"
+                        @click="selectTime(d)"
+                      >
                         <div class="form-select-icon-not"></div>
                         <div class="form-select-title">
-                          امروز (شنبه) - ساعت 15
-                        </div>
-                      </div>
-                    </v-col>
-                    <v-col cols="12">
-                      <div class="form-select"
-                           :class="{'selected': reserveForm.reserve_time_type == ''}"
-                           >
-                        <div class="form-select-icon-not"></div>
-                        <div class="form-select-title">
-                          امروز (شنبه) - ساعت 15
+                          {{convertStartAt(d.start_at)}}
                         </div>
                       </div>
                     </v-col>
@@ -254,10 +247,16 @@
 
 <script setup lang="ts">
 
-// import {useToast} from "vue-toastification";
 const router = useRouter()
 const route = useRoute()
-// const toast = useToast()
+import { useDayjs } from '#dayjs' // not need if you are using auto import
+const dayjs = useDayjs()
+import 'dayjs/locale/fa'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import jalaliday from 'jalaliday'
+dayjs.locale('fa')
+dayjs.extend(localizedFormat)
+dayjs.extend(jalaliday)
 
 const id = route.params.id
 
@@ -271,11 +270,14 @@ const step = ref(1)
 const reserveForm = ref({
   selected_user: 'own',
   reserve_time_type: 'first',
+  selected_time: null,
   case_type: '',
   tel: ''
 })
 
 const caseTypes = ref([])
+const sliders = ref([])
+const schedules = ref([])
 
 const doctor = ref({
   id: 0,
@@ -303,20 +305,7 @@ const doctor = ref({
     }
   },
 })
-const colors = [
-  'indigo',
-  'warning',
-  'pink darken-2',
-  'red lighten-1',
-  'deep-purple accent-4',
-]
-const slides = [
-  'First',
-  'Second',
-  'Third',
-  'Fourth',
-  'Fifth',
-]
+
 const onBackClicked = () => {
   router.go(-1)
 }
@@ -337,8 +326,51 @@ const getCaseTypes = async () => {
   const {data: cases} = await getRequest(`/doctors/${id}/cases`)
   caseTypes.value = cases
 }
+
+const getSliders = async () => {
+  const {$getRequest: getRequest}=useNuxtApp()
+  sliders.value = await getRequest(`/doctors/${id}/sliders`)
+}
+
+const getSchedules = async () => {
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: data} = await getRequest(`/doctors/${id}/schedules`)
+  schedules.value = data
+}
+
+const getFirstTime = () => {
+  if (schedules.value.length > 0) {
+    return schedules.value[0]
+  }
+  return null;
+}
+
+const getOtherTimes = () => {
+  if (schedules.value.length > 1) {
+    return schedules.value.slice(1)
+  }
+  return [];
+}
+
+const convertStartAt = (startAt: string) => {
+  let start = dayjs(startAt).calendar('jalali').locale('fa')
+  let isToday = start.isSame(dayjs().calendar('jalali').locale('fa'), 'day')
+  return (isToday ? 'امروز ' : '') + start.format('dddd D MMMM YYYY - ساعت: HH:mm').toString()
+}
+
+const selectTime = (time: Object) => {
+  reserveForm.value.selected_time = time
+}
+
+const isSelected = (time: Object) => {
+  let selected = reserveForm.value.selected_time
+  return selected ? selected.id == time.id : false
+}
+
 getDoctor()
 getCaseTypes()
+getSliders()
+getSchedules()
 </script>
 
 <style scoped lang="scss">

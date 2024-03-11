@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-icon',
     '@vite-pwa/nuxt',
+    'dayjs-nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
@@ -22,6 +23,12 @@ export default defineNuxtConfig({
       })
     },
   ],
+  dayjs: {
+    locales: ['en', 'fa'],
+    plugins: ['relativeTime', 'utc', 'timezone'],
+    defaultLocale: 'fa',
+    defaultTimezone: 'Asia/Tehran',
+  },
   vite: {
     vue: {
       template: {

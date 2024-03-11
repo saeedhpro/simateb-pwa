@@ -8,7 +8,7 @@ export default defineNuxtPlugin(async(nuxtApp) => {
 
         if (token.value) {
             const auth = useAuthStore()
-            const res = await ofetch('/me',
+            await ofetch('/me',
                 {
                     // baseURL: 'http://127.0.0.1:8000/api/app',
                     baseURL: 'https://api.sabaapp.ir/api/app',
@@ -20,17 +20,17 @@ export default defineNuxtPlugin(async(nuxtApp) => {
                         "Authorization": `Bearer ${token.value ?? ''}`
                     }
                 })
-                // .then(res => {
-                //     auth.user = res?.data
-                //     auth.token = token.value?.toString() ?? ''
-                // })
-                // .catch(err => {
-                //     auth.user = null
-                //     auth.token = ''
-                //     token.value = ''
-                // })
-            auth.user = res.data
-            auth.token = token.value?.toString() ?? ''
+                .then(res => {
+                    auth.user = res?.data
+                    auth.token = token.value?.toString() ?? ''
+                })
+                .catch(err => {
+                    auth.user = null
+                    auth.token = ''
+                    token.value = ''
+                })
+            // auth.user = res.data
+            // auth.token = token.value?.toString() ?? ''
         }
     }
     return {

@@ -165,7 +165,6 @@ const doctor = ref({
   },
 })
 
-
 const onBackClicked = () => {
   router.go(-1)
 }
