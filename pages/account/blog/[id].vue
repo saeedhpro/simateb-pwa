@@ -5,10 +5,10 @@
   <div v-else class="profile-page blog-single-page relative d-flex flex-column align-center justify-start">
     <BlogThumbnail :thumbnail="article.thumbnail" />
     <div class="blog-content-box py-8 px-4 px-sm-8 px-md-16 full-height full-width">
-      <div class="blog-title-box d-flex flex-row flex-wrap align-center justify-space-between">
+      <div class="blog-title-box d-flex flex-row flex-wrap align-center justify-space-between mb-4">
         <h1 class="blog-title mb-4 text-right">{{ article.title }}</h1>
         <h3 class="blog-sub-title mb-4 text-right">{{ article.sub_title }}</h3>
-        <div class="blog-details mb-4 d-flex flex-row flex-wrap align-center justify-start">
+        <div class="blog-details d-flex flex-row flex-wrap align-center justify-start">
           <span class="ml-8">
             {{ article.created_at_fa }}
           </span>
@@ -18,10 +18,9 @@
             دقیقه
           </span>
         </div>
+        <hr class="full-width ">
       </div>
-      <div class="blog-content" v-html="article.body">
-
-      </div>
+      <div class="blog-content" v-html="article.body"></div>
     </div>
   </div>
 </template>

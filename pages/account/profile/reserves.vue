@@ -1,8 +1,5 @@
 <template>
-  <div v-if="loading" class="profile-page h-100vh relative d-flex flex-column align-center justify-center">
-    <LoadingComponent color="#9AC8EA"/>
-  </div>
-  <div v-else class="reserve-page own relative d-flex flex-column align-center justify-start">
+  <div class="reserve-page own relative d-flex flex-column align-center justify-start">
     <BackButton
         @click="onBackClicked"
     />
@@ -33,8 +30,8 @@
             <div class="reserve-detail">
               نوبت :
             </div>
-            <div class="reserve-detail">
-              {{ a.start_at_time_fa }}
+            <div class="reserve-detail ltr">
+              {{ convertStartAt(a.start_at) }}
             </div>
             <div class="reserve-detail">
               مراجعه کننده :
@@ -53,8 +50,11 @@
             {{ a.organization.address }}
           </div>
         </div>
+        <div v-if="loading" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
+          <LoadingComponent color="#9AC8EA"/>
+        </div>
+        <div v-if="!loading && list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
       </div>
-      <div v-if="list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
     </div>
   </div>
 </template>
@@ -66,6 +66,14 @@ import BackButton from "~/components/action/BackButton.vue";
 definePageMeta({
   middleware: 'auth'
 })
+import { useDayjs } from '#dayjs' // not need if you are using auto import
+const dayjs = useDayjs()
+import 'dayjs/locale/fa'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import jalaliday from 'jalaliday'
+dayjs.locale('fa')
+dayjs.extend(localizedFormat)
+dayjs.extend(jalaliday)
 const auth = useAuthStore();
 const user = ref(auth.user)
 const router = useRouter()
@@ -127,6 +135,11 @@ const getStatusFa = (app) => {
 
 const getDoctorProfession = (app) => {
   return app.organization.profession?.name ?? '-'
+}
+const convertStartAt = (startAt: string) => {
+  let start = dayjs(startAt).calendar('jalali').locale('fa')
+  let isToday = start.isSame(dayjs().calendar('jalali').locale('fa'), 'day')
+  return (isToday ? 'امروز ' : '') + start.format('dddd D MMMM YYYY - ساعت: HH:mm').toString()
 }
 paginate()
 </script>

@@ -24,10 +24,10 @@ const {$getRequest: getRequest}=useNuxtApp()
 const list = ref([])
 const {data: tags} = await getRequest('/tags')
 list.value = tags ?? []
+console.log(tags, "tags")
 
 const selectTag = (tag: String) => {
   emits('select', tag)
-
 }
 
 const unSelectTag = (tag: String) => {

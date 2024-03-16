@@ -7,7 +7,7 @@
       <div class="title">
         {{ blog.title }}
       </div>
-      <div class="d-flex flex-row align-center justify-space-between full-width">
+      <div class="d-flex flex-row align-center justify-space-between full-width mt-2">
         <div class="created-at-fa">{{ blog.created_at_fa }}</div>
       </div>
     </div>
