@@ -26,7 +26,7 @@
       </div>
       <div class="comment-share-box mt-8 px-4 full-width d-flex flex-row align-center justify-space-between">
         <div class="comment-share-title">نظر خود را به اشتراک بگذارید:</div>
-        <nuxt-link to="#" class="comment-share-link">
+        <nuxt-link :to="`/account/doctors/${id}/comments/create`" class="comment-share-link">
           ثبت نظر
         </nuxt-link>
       </div>

@@ -235,6 +235,9 @@ a {
   border: 1px solid #4930E3;
   background: #7CA6E7;
   cursor: pointer;
+  max-width: 200px;
+  font-size: .875rem !important;
+  margin: 0 auto;
 }
 .blog-list-item {
   background: #FAFAFA;
@@ -555,12 +558,13 @@ a {
   }
   .doctor-profile-link-title {
     font-family: IRANYekanRegular;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 2rem;
     letter-spacing: 0;
     text-align: center;
     width: 100%;
+    color: #000;
   }
 }
 .doctor-profile.comments-page {

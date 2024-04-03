@@ -6,18 +6,16 @@
     <BackButton
         @click="onBackClicked"
     />
-    <CategoryLogo :has-child="category.has_child" :logo="category.has_child ? category.logo : category.icon" />
+    <CategoryLogo :has-child="category.has_child" :logo="category.has_child ? category.icon : category.logo" />
     <div class="category-list-content py-8 px-4 full-height full-width" :class="{'has-child': category.has_child}">
       <v-container :fluid="true" v-if="category.has_child">
         <v-row>
           <v-col
-              cols="4"
-              sm="3"
-              md="2"
+              cols="12"
               v-for="(c, i) in list"
               :key="i"
           >
-            <CategoryListItem
+            <BannerCategoryListItem
                 :category="c"
                 class="mb-4 circular"
             />
@@ -45,6 +43,7 @@
 
 import BackButton from "~/components/action/BackButton.vue";
 import CategoryLogo from "~/components/category/CategoryLogo.vue";
+import BannerCategoryListItem from "~/components/category/BannerCategoryListItem.vue";
 const router = useRouter()
 const route = useRoute()
 const onBackClicked = () => {

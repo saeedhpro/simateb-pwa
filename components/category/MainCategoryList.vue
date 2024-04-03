@@ -18,7 +18,7 @@
             :key="i"
             v-slot="{ isSelected, toggle }"
         >
-          <CategoryListItem
+          <MainCategoryListItem
             :category="c"
             :class="{'desktop': !onMobile}"
           />
@@ -29,6 +29,8 @@
 </template>
 
 <script setup lang="ts">
+import MainCategoryListItem from "~/components/category/MainCategoryListItem.vue";
+
 const {$getRequest: getRequest}=useNuxtApp()
 const {data: categories} = await getRequest('/categories?type=page&page=1&limit=6')
 const list = categories ?? []
