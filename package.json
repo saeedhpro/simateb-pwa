@@ -16,6 +16,7 @@
     "dayjs-nuxt": "^2.1.9",
     "nuxt": "^3.8.2",
     "nuxt-icon": "^0.6.7",
+    "nuxt-lodash": "^2.5.3",
     "sass": "^1.69.5",
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.3.8",

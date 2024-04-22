@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vite-pwa/nuxt',
     'dayjs-nuxt',
+    "nuxt-lodash",
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error

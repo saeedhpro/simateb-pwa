@@ -54,6 +54,9 @@
           <LoadingComponent color="#9AC8EA"/>
         </div>
         <div v-if="!loading && list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
+        <div v-if="!loading && list.data.length == 0">
+          <v-img src="/images/not_found.png" alt="" width="100%"/>
+        </div>
       </div>
     </div>
   </div>
@@ -87,7 +90,7 @@ const statusList = {
 }
 
 const page = ref(1)
-const limit = ref(2)
+const limit = ref(6)
 const loading = ref(true)
 const list = ref({
   data: [],

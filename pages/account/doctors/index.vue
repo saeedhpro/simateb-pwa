@@ -3,9 +3,12 @@
     <BackButton
         @click="onBackClicked"
     />
-    <SearchBox class="mt-16"/>
+    <SearchBox :term="term" @search="doSearch" class="mt-16"/>
     <CustomAutocomplete :items="professionList" @select="onProfessionSelect" class="mt-6" />
-    <div class="mt-4 full-width">
+    <div v-if="loading" class="mt-8 full-width relative d-flex flex-column align-center justify-start">
+      <LoadingComponent />
+    </div>
+    <div v-else class="mt-4 full-width">
       <v-row>
         <v-col
           cols="12"
@@ -20,6 +23,9 @@
         </v-col>
       </v-row>
       <div v-if="last_page > page" @click="paginate" class="more-button mt-6">مشاهده بیشتر</div>
+      <div v-if="list.length == 0">
+        <v-img src="/images/not_found.png" alt="" width="100%"/>
+      </div>
     </div>
   </div>
 </template>
@@ -32,19 +38,31 @@ const page = ref(1)
 const last_page = ref(1)
 const limit = ref(12)
 const list = ref([])
+const professions = ref<Array<Number>>([])
 const professionList = ref([])
+const loading = ref(false)
+const q = ref<string>('')
+const term = ref<string>('')
 
 const router = useRouter()
+const route = useRoute()
 const onBackClicked = () => {
   router.go(-1)
 }
 
+if (route.query.term) {
+  term.value = route.query.term.toString()
+}
 const getDoctors = async() => {
+  loading.value = true
   const {$getRequest: getRequest}=useNuxtApp()
-  const {data: categories, meta: meta} = await getRequest(`/doctors?page=${page.value}&limit=${limit.value}`)
+  const {data: categories, meta: meta} = await getRequest(`/doctors?professions=${professions.value.join(',')}&page=${page.value}&limit=${limit.value}&q=${q.value}`)
   list.value = categories ?? []
   page.value = meta.current_page
   last_page.value = meta.last_page
+  setTimeout(() => {
+    loading.value = false
+  }, 200)
 }
 
 const getProfessionList = async() => {
@@ -54,7 +72,14 @@ const getProfessionList = async() => {
 }
 
 const onProfessionSelect = (p) => {
-  console.log(p, "p")
+  if (p) {
+    professions.value = [
+      p.id,
+    ]
+  } else {
+    professions.value = []
+  }
+  getDoctors()
 }
 
 
@@ -63,6 +88,10 @@ const paginate = () => {
   getDoctors()
 }
 
+const doSearch = (term: string) => {
+  q.value = term
+  getDoctors()
+}
 getDoctors()
 getProfessionList()
 </script>

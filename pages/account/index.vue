@@ -1,7 +1,7 @@
 <template>
   <div class="account-page">
     <HeaderComponent />
-    <SearchBox class="mt-6" />
+    <SearchBox @search="doSearch"  class="mt-6" />
     <SliderMainSlider class="mt-6" />
     <CategoryMainCategoryList class="mt-6" />
     <DoctorMainDoctorList class="mt-6" />
@@ -18,6 +18,15 @@ const router = useRouter()
 definePageMeta({
   middleware: 'auth'
 })
+
+const doSearch = (term: string) => {
+  router.push({
+    path: '/account/doctors',
+    query: {
+      term: term,
+    }
+  })
+}
 
 </script>
 <style scoped>

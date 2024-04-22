@@ -1,6 +1,13 @@
 <template>
   <div class="custom-autocomplete-box">
-    <input ref="inputRef" :id="uniqueID" class="custom-autocomplete-input" @focusin="onInputFocusIn" @focusout="onInputFocusOut" :placeholder="placeholder" v-model="searchTerm">
+    <input ref="inputRef"
+           :id="uniqueID"
+           class="custom-autocomplete-input"
+           @focusin="onInputFocusIn"
+           @focusout="onInputFocusOut"
+           :placeholder="placeholder"
+           v-model="searchTerm"
+    >
     <span @click="onInputFocusClicked" class="custom-autocomplete-icon" ref="iconref">
       <Icon size="32px" :name="onFocus ? 'mdi:chevron-up' : 'mdi:chevron-down'"/>
     </span>
@@ -48,7 +55,7 @@ const props = defineProps({
 
 const onFocus = ref(false)
 const openMenu = ref(false)
-const searchTerm = ref('')
+const searchTerm = ref<string>('')
 const selectedItem = ref({})
 
 const inputRef = ref(null)
@@ -72,9 +79,15 @@ const onInputFocusClicked = () => {
 
 const selectItem = (item: any) => {
   onInputFocusOut()
-  searchTerm.value = item.name
-  selectedItem.value = item
-  emits('select', item)
+  if (selectedItem.value && selectedItem.value.id == item.id) {
+    searchTerm.value = ''
+    selectedItem.value = {}
+    emits('select', null)
+  } else {
+    searchTerm.value = item.name
+    selectedItem.value = item
+    emits('select', item)
+  }
 }
 
 const setSelectedValue = () => {

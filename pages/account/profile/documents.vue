@@ -1,8 +1,5 @@
 <template>
-  <div v-if="loading" class="profile-page h-100vh relative d-flex flex-column align-center justify-center">
-    <LoadingComponent color="#9AC8EA"/>
-  </div>
-  <div v-else class="document-page own relative d-flex flex-column align-center justify-start">
+  <div class="document-page own relative d-flex flex-column align-center justify-start">
     <BackButton
         @click="onBackClicked"
     />
@@ -36,7 +33,13 @@
           </div>
         </div>
       </div>
-      <div v-if="list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
+      <div v-if="loading" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
+        <LoadingComponent color="#9AC8EA"/>
+      </div>
+      <div v-if="!loading && list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
+      <div v-if="!loading && list.data.length == 0">
+        <v-img src="/images/not_found.png" alt="" width="100%"/>
+      </div>
     </div>
   </div>
 </template>
@@ -50,7 +53,6 @@ definePageMeta({
 })
 const auth = useAuthStore();
 const user = ref(auth.user)
-console.log(user.value.id, "user")
 const router = useRouter()
 const route = useRoute()
 

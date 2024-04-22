@@ -253,6 +253,8 @@ a {
     height: 100%;
     img {
       height: 100%;
+      width: 100%;
+      max-width: 150px;
       border-radius: 15px;
     }
   }
@@ -372,6 +374,7 @@ a {
 }
 .blog-content {
   min-height: 350px;
+  word-wrap: break-word !important;
   p {
     line-height: 34px;
   }
@@ -450,7 +453,7 @@ a {
   align-items: center;
   justify-content: flex-end;
   .doctor-image-box {
-    min-height: 600px;
+    //min-height: 600px;
     width: 100%;
     position: relative;
     .bg {
@@ -478,7 +481,7 @@ a {
     background: #DEEEFA;
     border-radius: 50px;
     min-height: 250px;
-    margin-top: -150px;
+    margin-top: -30px;
     z-index: 99999;
     opacity: 1;
     display: flex;
@@ -790,6 +793,7 @@ a {
 }
 .document-page {
   &.own {
+    padding-bottom: 40px;
     min-height: 100vh;
     .user-full-name {
       color: #717374;

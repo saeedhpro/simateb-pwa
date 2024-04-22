@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
-    <input class="search-input" placeholder="نام بیماری ، تخصص ، پزشک و..." v-model="form.q">
-    <v-btn size="small" variant="flat" icon class="search-icon">
+    <input class="search-input" placeholder="نام بیماری ، تخصص ، پزشک و..." v-model="form.q" @input="doSearchDebounce">
+    <v-btn size="small" variant="flat" icon class="search-icon" @click="onSearchClicked">
       <Icon size="32px" name="mdi:magnify"/>
 <!--      <v-icon icon="magnify"></v-icon>-->
     </v-btn>
@@ -9,10 +9,27 @@
 </template>
 
 <script setup lang="ts">
-const form = ref({
-  q: ''
+const emit = defineEmits(['search'])
+const props = defineProps({
+  term: {
+    type: String,
+    default: '',
+  }
 })
+const form = ref({
+  q: props.term
+})
+const onSearchClicked = () => {
+  emit('search', form.value.q)
+}
+const onSearchInput = () => {
+  emit('search', form.value.q)
+}
+const doSearchDebounce = useDebounce(onSearchInput, 500)
 
+if (props.term) {
+  doSearchDebounce()
+}
 </script>
 
 <style scoped lang="scss">

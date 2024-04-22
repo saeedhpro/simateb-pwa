@@ -42,7 +42,10 @@
         <div class="d-flex justify-center align-center py-16 full-width" v-if="commentsLoading">
           <LoadingComponent color="#9AC8EA"/>
         </div>
-        <div v-if="lastPage > page" @click="loadMoreComments" class="more-button mb-4">مشاهده بیشتر</div>
+        <div v-if="!commentsLoading && lastPage > page" @click="loadMoreComments" class="more-button mb-4">مشاهده بیشتر</div>
+        <div v-if="!commentsLoading && comments.length == 0">
+          <v-img src="/images/not_found.png" alt="" width="100%"/>
+        </div>
       </div>
     </div>
   </div>

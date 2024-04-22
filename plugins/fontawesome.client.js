@@ -1,5 +1,5 @@
-import '/assets/all.min.css'
-import '/assets/all.min.js'
+import '/assets/font-awesome/all.min.css'
+import '/assets/font-awesome/all.min.js'
 export default defineNuxtPlugin((app) => {
 
 })

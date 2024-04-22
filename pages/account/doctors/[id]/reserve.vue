@@ -3,7 +3,7 @@
     <LoadingComponent color="#9AC8EA"/>
   </div>
   <div v-else class="reserve-page relative d-flex flex-column align-center justify-start">
-    <div class="reserve-page-top full-width">
+    <div class="reserve-page-top full-width" v-if="sliders.length > 0">
       <v-carousel
             :cycle="true"
             height="320"
@@ -15,7 +15,7 @@
               v-for="(s, i) in sliders"
               :key="i"
               :src="s"
-              cover
+              :cover="true"
           >
           </v-carousel-item>
         </v-carousel>
