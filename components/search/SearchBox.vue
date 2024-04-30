@@ -14,6 +14,10 @@ const props = defineProps({
   term: {
     type: String,
     default: '',
+  },
+  time: {
+    type: Number,
+    default: 500,
   }
 })
 const form = ref({
@@ -25,7 +29,7 @@ const onSearchClicked = () => {
 const onSearchInput = () => {
   emit('search', form.value.q)
 }
-const doSearchDebounce = useDebounce(onSearchInput, 500)
+const doSearchDebounce = useDebounce(onSearchInput, props.time)
 
 if (props.term) {
   doSearchDebounce()

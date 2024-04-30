@@ -11,16 +11,14 @@
     <span @click="onInputFocusClicked" class="custom-autocomplete-icon" ref="iconref">
       <Icon size="32px" :name="onFocus ? 'mdi:chevron-up' : 'mdi:chevron-down'"/>
     </span>
-    <div class="custom-autocomplete-items-box">
+    <div class="custom-autocomplete-items-box" :class="{'show': onFocus}">
       <v-virtual-scroll
           :items="items"
           height="120"
-          item-height="32"
+          item-height="36"
       >
         <template v-slot:default="{ item }">
-          <v-list-item @click="selectItem(item)">
-            {{item.name}}
-          </v-list-item>
+          <v-list-item @click="selectItem(item)" :title="item.name" />
         </template>
       </v-virtual-scroll>
     </div>
@@ -65,8 +63,10 @@ const onInputFocusIn = () => {
 }
 
 const onInputFocusOut = () => {
-  onFocus.value = false
-  openMenu.value = false
+  setTimeout(() => {
+    onFocus.value = false
+    openMenu.value = false
+  }, 200)
 }
 
 const uniqueID = computed(() => uniqueId('custom-autocomplete-'));
@@ -78,7 +78,6 @@ const onInputFocusClicked = () => {
 }
 
 const selectItem = (item: any) => {
-  onInputFocusOut()
   if (selectedItem.value && selectedItem.value.id == item.id) {
     searchTerm.value = ''
     selectedItem.value = {}
@@ -88,6 +87,7 @@ const selectItem = (item: any) => {
     selectedItem.value = item
     emits('select', item)
   }
+  onInputFocusOut()
 }
 
 const setSelectedValue = () => {
@@ -131,14 +131,18 @@ setSelectedValue()
   width: 100%;
   height: 120px;
   background-color: #FFF;
-  transition: transform 0.3s;
+  transition: transform 0.5s;
   transform: scaleY(0);
   transform-origin: top;
   z-index: 999999999;
   border-bottom: 20px;
+  padding-bottom: 10px;
 }
 
-input.custom-autocomplete-input:focus ~ .custom-autocomplete-items-box {
+//input.custom-autocomplete-input:focus ~ .custom-autocomplete-items-box {
+//  transform: scaleY(1);
+//}
+.custom-autocomplete-items-box.show {
   transform: scaleY(1);
 }
 </style>

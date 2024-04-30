@@ -106,7 +106,7 @@ a {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 20px 30px;
+  padding: 10px 30px 20px;
 }
 .main-category-list-header, .main-doctor-list-header, .main-blog-list-header {
   .title {
@@ -376,7 +376,7 @@ a {
   min-height: 350px;
   word-wrap: break-word !important;
   p {
-    line-height: 34px;
+    line-height: 40px;
   }
 }
 .blog-categories {
@@ -388,7 +388,6 @@ a {
 }
 .blog-thumbnail {
   width: 100%;
-  min-height: 300px;
   display: flex;
   background: none;
   flex-direction: row;
@@ -402,7 +401,7 @@ a {
 }
 .category-logo {
   width: 100%;
-  min-height: 300px;
+  min-height: 230px;
   display: flex;
   background: none;
   flex-direction: row;
@@ -415,7 +414,7 @@ a {
 
   img {
     width: 65%;
-    max-width: 280px;
+    max-width: 150px;
     border-radius: 15px;
   }
 }
@@ -471,7 +470,7 @@ a {
     }
     img {
       height: 100%;
-      width: 60%;
+      max-width: 60%;
       z-index: 9999;
       position: relative;
     }
@@ -810,6 +809,8 @@ a {
       letter-spacing: 0;
       text-align: right;
       color: #1E27FF;
+      border-bottom: 1px solid;
+      padding-bottom: 10px;
     }
   }
   .own-document-item {
@@ -937,7 +938,7 @@ a {
 .blog-header {
   box-shadow: 0 2px 12px 0 #C3D6F3;
   border-bottom: 1px solid #543C9659;
-  height: 100px;
+  height: 60px;
 }
 .tag-small-item {
   color: #FFFFFF;

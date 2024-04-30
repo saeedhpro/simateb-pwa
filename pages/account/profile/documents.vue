@@ -5,8 +5,8 @@
     />
     <div class="document-page-content px-8 pt-4 full-width">
       <div class="d-flex flex-row align-center justify-start">
-        <v-avatar :image="user.logo" size="52"></v-avatar>
-        <div class="mr-4 user-full-name">{{ user.full_name }}</div>
+        <v-avatar :image="user.logo ? user.logo : '/user_profile.png'" size="52"></v-avatar>
+        <div class="mr-4 user-full-name">{{ user.full_name ? user.full_name : user.tel }}</div>
       </div>
       <div class="full-width my-8">
         <div class="document-header mb-8">اسناد من</div>
@@ -38,7 +38,7 @@
       </div>
       <div v-if="!loading && list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
       <div v-if="!loading && list.data.length == 0">
-        <v-img src="/images/not_found.png" alt="" width="100%"/>
+        <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ const router = useRouter()
 const route = useRoute()
 
 const page = ref(1)
-const limit = ref(2)
+const limit = ref(6)
 const loading = ref(true)
 const list = ref({
   data: [],
@@ -71,10 +71,10 @@ const getDocuments = async () => {
   loading.value = true
   const {$getRequest: getRequest}=useNuxtApp()
   const {data: data, meta: meta} = await getRequest(`/documents?page=${page.value}&limit=${limit.value}`)
-  list.value.data = [
-      ...list.value.data,
-      ...data,
-  ]
+  // list.value.data = [
+  //     ...list.value.data,
+  //     ...data,
+  // ]
   list.value.meta = {
     ...meta
   }

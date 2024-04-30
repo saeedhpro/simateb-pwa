@@ -2,11 +2,12 @@ import {ofetch} from "ofetch";
 
 export default defineNuxtPlugin((app) => {
     const token = useCookie("token")
+    const baseUrl = 'https://api.sabaapp.ir/api/app'
+    // const baseUrl = 'http://127.0.0.1:8000/api/app'
 
     const get = async (url: RequestInfo) => await ofetch(url,
         {
-            // baseURL: `http://127.0.0.1:8000/api/app`,
-            baseURL: 'https://api.sabaapp.ir/api/app',
+            baseURL: baseUrl,
             method: "GET",
             parseResponse: JSON.parse,
             headers: {
@@ -17,8 +18,7 @@ export default defineNuxtPlugin((app) => {
         })
     const post = async (url: RequestInfo, body: Object | null) => await ofetch(url,
         {
-            // baseURL: 'http://127.0.0.1:8000/api/app',
-            baseURL: 'https://api.sabaapp.ir/api/app',
+            baseURL: baseUrl,
             method: "POST",
             body: body,
             parseResponse: JSON.parse,
@@ -30,8 +30,7 @@ export default defineNuxtPlugin((app) => {
         },)
     const put = async (url: RequestInfo, body: Object | null) => await ofetch(url,
         {
-            // baseURL: 'http://127.0.0.1:8000/api/app',
-            baseURL: 'https://api.sabaapp.ir/api/app',
+            baseURL: baseUrl,
             method: "PUT",
             body: body,
             parseResponse: JSON.parse,
@@ -43,8 +42,7 @@ export default defineNuxtPlugin((app) => {
         },)
     const destroy = async (url: RequestInfo, body: Object | null) => await ofetch(url,
         {
-            // baseURL: 'http://127.0.0.1:8000/api/app',
-            baseURL: 'https://api.sabaapp.ir/api/app',
+            baseURL: baseUrl,
             method: "DELETE",
             body: body,
             parseResponse: JSON.parse,

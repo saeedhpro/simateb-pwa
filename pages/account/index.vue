@@ -1,7 +1,7 @@
 <template>
   <div class="account-page">
     <HeaderComponent />
-    <SearchBox @search="doSearch"  class="mt-6" />
+    <SearchBox :time="1000" @search="doSearch"  class="mt-2" />
     <SliderMainSlider class="mt-6" />
     <CategoryMainCategoryList class="mt-6" />
     <DoctorMainDoctorList class="mt-6" />

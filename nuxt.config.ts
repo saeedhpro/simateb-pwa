@@ -80,5 +80,5 @@ export default defineNuxtConfig({
       lang: 'fa',
       dir: 'rtl',
     }
-  }
+  },
 })

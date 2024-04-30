@@ -11,6 +11,7 @@
   font-family: IRANYekanRegular;
   font-style: normal;
   font-weight: bold;
+  font-display: swap;
   src: url('font/Woff/IRANYekanXFaNum-Bold.woff') format('woff'),
   url('font/Woff2/IRANYekanXFaNum-Bold.woff2') format('woff2');
 }
@@ -19,6 +20,7 @@
   font-family: IRANYekanRegular;
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: url('font/Woff/IRANYekanXFaNum-Regular.woff') format('woff'),
   url('font/Woff2/IRANYekanXFaNum-Regular.woff2') format('woff2');
 }

@@ -12,7 +12,7 @@
     <div v-if="!loading && articles.data.length == 0" class="relative d-flex flex-column align-center justify-center" style="width: 100%">
       <v-img src="/images/not_found.png" alt="" width="100%"/>
     </div>
-    <div v-if="!loading && articles.meta.current_page <= articles.meta.last_page" @click="paginate(articles.meta.current_page + 1)" class="more-button my-4">مشاهده بیشتر</div>
+    <div v-if="!loading && articles.meta.current_page < articles.meta.last_page" @click="paginate(articles.meta.current_page + 1)" class="more-button my-4">مشاهده بیشتر</div>
   </div>
 </template>
 

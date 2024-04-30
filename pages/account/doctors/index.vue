@@ -24,7 +24,7 @@
       </v-row>
       <div v-if="last_page > page" @click="paginate" class="more-button mt-6">مشاهده بیشتر</div>
       <div v-if="list.length == 0">
-        <v-img src="/images/not_found.png" alt="" width="100%"/>
+        <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto"/>
       </div>
     </div>
   </div>
