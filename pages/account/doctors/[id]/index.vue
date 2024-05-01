@@ -11,7 +11,7 @@
         @click="onLikeClicked"
     />
     <div class="doctor-profile-top">
-      <div class="doctor-image-box mt-16">
+      <div class="doctor-image-box">
         <div class="bg"></div>
         <img :src="doctor.logo" alt="" >
       </div>
@@ -19,23 +19,54 @@
         <div class="doctor-details-top-box">
           <div class="container full-width">
             <v-row>
-              <v-col cols="12" sm="6">
+              <v-col cols="6">
                 <div class="d-flex flex-row align-center justify-space-between justify-sm-start">
                   <div @click="shareAddress" class="doctor-detail-icon-box me-4">
-                    <i class="fa-light fa-location-dot fa-2xl" style="color: #504f4f;"></i>
+                    <i class="fa-light fa-location-dot fa-xl" style="color: #504f4f;"></i>
                   </div>
                   <div @click="shareLink" class="doctor-detail-icon-box me-4">
-                    <i class="fa-light fa-share-nodes fa-2xl" style="color: #504f4f;"></i>
+                    <i class="fa-light fa-share-nodes fa-xl" style="color: #504f4f;"></i>
                   </div>
-                  <a class="doctor-detail-icon-box me-4" :href="`tel:${doctor.tel}`">
-                    <i class="fa-light fa-phone fa-2xl" style="color: #504f4f;"></i>
-                  </a>
+                  <div class="doctor-detail-icon-box me-4" @click="shareTel">
+                    <i class="fa-light fa-phone fa-xl" style="color: #504f4f;"></i>
+                  </div>
                 </div>
               </v-col>
-              <v-col cols="12" sm="6">
+              <v-col cols="6">
                 <ButtonsMainActionButton
+                    :height="'45px'"
                     @click="goToReservePage"
-                    title="دریافت نوبت" class="full-width big" height="65px"/>
+                    title="دریافت نوبت" class="full-width small"
+                />
+              </v-col>
+              <v-col cols="12" v-if="showTel">
+                <a :href="`tel:${doctor.tel}`" v-if="doctor.tel" class="text-right show-doctor-location-box">
+                  <span>
+                    <i class="fa-light fa-phone fa-xl" style="color: #504f4f;"></i>
+                    <span>{{ doctor.tel }}</span>
+                  </span>
+                  <span class="call-btn">تماس</span>
+                </a>
+                <p v-else class="text-right show-doctor-location-box">
+                  <span>
+                    <i class="fa-light fa-phone fa-xl" style="color: #504f4f;"></i>
+                    <span>شماره تماس ثبت نشده است</span>
+                  </span>
+                </p>
+              </v-col>
+              <v-col cols="12" v-if="showLocation">
+                <a v-if="doctor.address" class="text-right show-doctor-location-box">
+                  <span>
+                    <i class="fa-light fa-location-dot fa-xl" style="color: #504f4f;"></i>
+                    <span>{{ doctor.address }}</span>
+                  </span>
+                </a>
+                <a v-else class="text-right show-doctor-location-box">
+                  <span>
+                    <i class="fa-light fa-location-dot fa-xl" style="color: #504f4f;"></i>
+                    <span>آدرس ثبت نشده است</span>
+                  </span>
+                </a>
               </v-col>
             </v-row>
           </div>
@@ -46,7 +77,7 @@
             <div class="d-flex flex-row align-center justify-space-between">
               <div class="doctor-details-bottom-item d-flex flex-row align-center justify-center">
                 <div class="icon-box">
-                  <i class="fa-light fa-clock-rotate-left fa-2xl" style="color: #000000;"></i>
+                  <i class="fa-light fa-clock-rotate-left fa-xl" style="color: #000000;"></i>
                 </div>
                 <div class="details-box">
                   <div class="detail-top">
@@ -59,7 +90,7 @@
               </div>
               <div class="doctor-details-bottom-item d-flex flex-row align-center justify-center">
                 <div class="icon-box">
-                  <i class="fa-light fa-users-medical fa-2xl" style="color: #000000;"></i>
+                  <i class="fa-light fa-users-medical fa-xl" style="color: #000000;"></i>
                 </div>
                 <div class="details-box">
                   <div class="detail-top">
@@ -72,7 +103,7 @@
               </div>
               <div class="doctor-details-bottom-item d-flex flex-row align-center justify-center">
                 <div class="icon-box">
-                  <i class="fa-regular fa-comment-dots fa-2xl" style="color: #000000;"></i>
+                  <i class="fa-regular fa-comment-dots fa-xl" style="color: #000000;"></i>
                 </div>
                 <div class="details-box">
                   <div class="detail-top">
@@ -137,6 +168,8 @@ definePageMeta({
 })
 
 const loading = ref(true)
+const showLocation = ref(false)
+const showTel = ref(false)
 
 const doctor = ref({
   id: 0,
@@ -204,27 +237,16 @@ const shareLink = async () => {
   };
   try {
     await navigator.share(shareData);
+    alert('با موفقیت کپی شد')
   } catch (e) {
     console.error(e);
   }
 }
 const shareTel = async () => {
-  const shareData = {
-    title: doctor.value.full_name,
-    text: 'اشتراک گذاری با دوستان',
-    url: doctor.value.tel,
-  };
-  try {
-    await navigator.share(shareData);
-  } catch (e) {
-    console.error(e);
-  }
-  // copyText(doctor.value.tel)
-  // toast.success('با موفقیت کپی شد')
+  showTel.value = !showTel.value
 }
 const shareAddress = () => {
-  copyText(doctor.value.address)
-  // toast.success('با موفقیت کپی شد')
+  showLocation.value = !showLocation.value
 }
 
 getDoctor()
