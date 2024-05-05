@@ -1,6 +1,7 @@
 <template>
   <div class="category-logo" :class="{'has-child': hasChild}">
-    <img alt="" :src="logo" :style="{borderRadius: hasChild ? '50% !important': '15px'}">
+    <img alt="" :src="logo">
+    <div class="sub-title" v-if="subTitle">{{subTitle}}</div>
   </div>
 </template>
 
@@ -13,6 +14,10 @@ const props = defineProps({
   hasChild: {
     type: Boolean,
     default: false
+  },
+  subTitle: {
+    type: String,
+    default: ''
   }
 })
 </script>

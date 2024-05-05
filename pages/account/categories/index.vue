@@ -19,7 +19,7 @@
           >
             <CategoryListItem
                 :category="c"
-                class="mb-4 circular"
+                class="mb-4 circular small"
             />
           </v-col>
         </v-row>

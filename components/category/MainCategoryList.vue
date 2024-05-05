@@ -11,7 +11,7 @@
         مشاهده بیشتر
       </nuxt-link>
     </div>
-    <div class="main-category-list-content d-flex flex-row align-center justify-space-between full-width py-2 mt-6 px-1 px-sm-2">
+    <div class="main-category-list-content d-flex flex-row align-center justify-space-between full-width py-2 px-1 px-sm-2">
       <v-slide-group :show-arrows="!onMobile" >
         <v-slide-group-item
             v-for="(c, i) in list"

@@ -6,34 +6,23 @@
     <BackButton
         @click="onBackClicked"
     />
-    <CategoryLogo :has-child="category.has_child" :logo="category.has_child ? category.icon : category.logo" />
-    <div class="category-list-content py-8 px-4 full-height full-width" :class="{'has-child': category.has_child}">
+    <CategoryLogo :has-child="category.has_child" :sub-title="category.sub_title" :logo="category.has_child ? category.icon : category.logo" />
+    <div class="category-list-content py-2 px-2 full-height full-width" :class="{'has-child': category.has_child}">
       <v-container :fluid="true" v-if="category.has_child">
-        <v-row>
-          <v-col
-              cols="12"
-              v-for="(c, i) in list"
-              :key="i"
-          >
-            <BannerCategoryListItem
-                :category="c"
-                class="mb-4 circular"
-            />
-          </v-col>
-        </v-row>
+        <BannerCategoryListItem
+            :category="c"
+            class=" circular"
+            v-for="(c, i) in list"
+            :key="i"
+        />
       </v-container>
       <v-container :fluid="true" v-else>
-        <v-row>
-          <v-col
-            cols="12"
+        <BlogSingleBlogItem
             v-for="(a,i) in articles"
+            class="mb-1"
             :key="i"
-          >
-            <BlogSingleBlogItem
-              :article="a"
-            />
-          </v-col>
-        </v-row>
+            :article="a"
+        />
       </v-container>
     </div>
   </div>
