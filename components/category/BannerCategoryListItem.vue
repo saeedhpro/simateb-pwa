@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/account/categories/${category.id}`" :style="{backgroundColor: category.banner}" class="d-flex flex-column align-center justify-start mx-2 mx-sm-2 mx-md-1 mx-lg-0">
+  <nuxt-link :to="`/account/categories/${category.id}`" :style="{backgroundColor: category.banner}" class="d-flex flex-column align-center justify-start mx-md-1 mx-lg-0">
     <img :src="category.banner" alt="" class="w-100"/>
   </nuxt-link>
 </template>
