@@ -1,0 +1,8 @@
+{
+  "platform": "node",
+  "platformConfig": {
+    "version": "22"
+  },
+  "app": "appdoctor",
+  "port": 3000
+}

@@ -36,6 +36,9 @@ export default defineNuxtConfig({
         transformAssetUrls,
       },
     },
+    build: {
+      chunkSize: 1000
+    }
   },
   pwa: {
     "name": "صبااپ",
