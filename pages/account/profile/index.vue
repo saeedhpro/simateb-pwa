@@ -1,7 +1,5 @@
 <template>
   <div class="account-page profile-page relative d-flex flex-column align-center justify-start">
-    <BgGreen class="absolute top right"/>
-    <BgBlue class="absolute top left"/>
     <BackButton
       @click="onBackClicked"
     />
@@ -31,8 +29,7 @@
 
 import BackButton from "~/components/action/BackButton.vue";
 import ExitButton from "~/components/action/ExitButton.vue";
-import BgGreen from "~/components/intro/BgGreen.vue";
-import BgBlue from "~/components/intro/BgBlue.vue";
+
 const router = useRouter()
 const token = useCookie("token")
 

@@ -7,10 +7,10 @@
         @click="onBackClicked"
     />
     <div class="faqs-page-top full-width">
-      <h2 class="text-center mt-8">سوالات متداول</h2>
+      <h3 class="text-center mt-8">پرسش های متداول</h3>
     </div>
     <div class="fags-list full-width d-flex flex-column align-center justify-start px-4 mt-8">
-      <v-expansion-panels>
+      <v-expansion-panels v-if="faqs.length > 0">
         <v-expansion-panel
             v-for="(f,i) in faqs"
             :key="i"
@@ -21,6 +21,9 @@
             :text="f.answer"
         ></v-expansion-panel>
       </v-expansion-panels>
+    </div>
+    <div class="full-width" v-if="faqs.length == 0">
+      <v-img src="/images/not_found.png" alt="" width="70%" class="mx-auto"/>
     </div>
   </div>
 </template>

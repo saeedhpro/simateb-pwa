@@ -2,10 +2,10 @@
   <div v-if="loading" class="profile-page h-100vh relative d-flex flex-column align-center justify-center">
     <LoadingComponent color="#9AC8EA"/>
   </div>
-  <div v-else class="samples-page relative d-flex flex-column align-center justify-start">
-    <BgGreen class="absolute top right"/>
-    <BgBlue class="absolute top left"/>
-
+  <div v-else class="samples-page pb-8 relative d-flex flex-column align-center justify-start">
+    <BackButton
+        @click="onBackClicked"
+    />
     <div class="pt-8 px-4 md:px-8 full-width d-flex flex-column align-center justify-start" style="z-index: 99">
       <SampleHeroBoxImage />
       <div class="d-flex flex-column align-start justify-start full-width mt-8">
@@ -33,8 +33,7 @@
 <script setup lang="ts">
 
 import SampleHeroBoxImage from "~/components/doctor/SampleHeroBoxImage.vue";
-import BgBlue from "~/components/intro/BgBlue.vue";
-import BgGreen from "~/components/intro/BgGreen.vue";
+import BackButton from "~/components/action/BackButton.vue";
 
 const router = useRouter()
 const route = useRoute()

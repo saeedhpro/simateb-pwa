@@ -5,7 +5,7 @@
     />
     <div class="document-page-content px-8 pt-4 full-width">
       <div class="d-flex flex-row align-center justify-start">
-        <v-avatar :image="user.logo ? user.logo : '/user_profile.png'" size="52"></v-avatar>
+        <v-avatar :image="user.logo ? user.logo : '/user_profile.png'" size="40"></v-avatar>
         <div class="mr-4 user-full-name">{{ user.full_name ? user.full_name : user.tel }}</div>
       </div>
       <div class="full-width my-8">

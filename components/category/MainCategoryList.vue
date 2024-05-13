@@ -12,7 +12,7 @@
       </nuxt-link>
     </div>
     <div class="main-category-list-content d-flex flex-row align-center justify-space-between full-width py-2 px-1 px-sm-2">
-      <v-slide-group :show-arrows="!onMobile" >
+      <v-slide-group :show-arrows="true" >
         <v-slide-group-item
             v-for="(c, i) in list"
             :key="i"

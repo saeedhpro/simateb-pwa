@@ -26,9 +26,7 @@ const router = useRouter()
 const goToLogin = () => {
   router.replace('/login')
 }
-setInterval(function () {
-  goToLogin()
-}, 3000);
+goToLogin()
 
 </script>
 <style scoped lang="scss">
