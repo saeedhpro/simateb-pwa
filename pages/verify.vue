@@ -3,16 +3,16 @@
     <div class="intro-image d-flex flex-column justify-center align-center">
       <ImagesVerifyImage class="login-image"/>
       <p class="text-center">لطفا کد 5 رقمی ارسال شده از طریق پیامک را در قسمت زیر وارد کنید.</p>
-      <div class="intro-image code-box">
+      <div class="intro-image verify-form code-box">
         <v-otp-input
             v-model="form.code"
             class="ltr mt-2"
-            bg-color="#fff"
+            bg-color="#7966FE"
             color="#fff"
             rounded-xl
             :length="5"
             placeholder="*"
-            variant="outlined"
+            variant="underlined"
             height="93px"
         ></v-otp-input>
         <p class="text-center code-title mt-2">
@@ -21,22 +21,24 @@
         <p class="text-center code-title mt-2">
           {{ timer }}
         </p>
+        <MainActionButton
+            v-if="timer == 0"
+            class="login-button mt-2"
+            title="ارسال دوباره کد"
+            @click="sendCode"
+            color="#7966FE"
+            :width="'100%'"
+        />
+        <MainActionButton
+            v-else
+            class="login-button mt-2"
+            title="ورود"
+            :width="'100%'"
+            :disabled="form.code.length != 5"
+            color="#7966FE"
+            @click="doLogin"
+        />
       </div>
-      <MainActionButton
-          v-if="timer == 0"
-          class="login-button mt-2"
-          title="ارسال دوباره کد"
-          @click="sendCode"
-          :width="'100%'"
-      />
-      <MainActionButton
-          v-else
-          class="login-button mt-2"
-          title="ورود"
-          :width="'100%'"
-          :disabled="form.code.length != 5"
-          @click="doLogin"
-      />
     </div>
   </div>
 </template>
@@ -114,10 +116,11 @@ const doLogin = () => {
 }
 </script>
 <style scoped lang="scss">
-.login-button {
-  width: 100%;
-}
 .login-image {
   max-width: 360px;
+}
+.login-button {
+  width: 100% !important;
+  border-radius: 10px !important;
 }
 </style>

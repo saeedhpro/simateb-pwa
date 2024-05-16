@@ -77,13 +77,40 @@ a {
   background: #FDFDFD;
   min-height: 100vh;
 }
+.main-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 45px;
+  &>img {
+    width: 100%;
+  }
+  p {
+    font-family: IRANYekanRegular;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 19.36px !important;
+    text-align: center !important;
+    color: #3E5466 !important;
+    span {
+      font-family: IRANYekanRegular;
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      line-height: 19.36px !important;
+      text-align: center !important;
+      color: #7966FE !important;
+    }
+  }
+}
 .login-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 45px;
+  padding: 20px 38px;
   .intro-image {
     width: 100%;
     svg {
@@ -92,15 +119,31 @@ a {
   }
   p {
     margin-top: 32px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 22px;
     letter-spacing: 0;
     color: #575353;
+    font-family: IRANYekanRegular;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: center;
+
+  }
+  .login-form {
+    box-shadow: 0 4px 7.8px 0 #C2C2C240;
+    padding: 35px 26px 14px;
+    margin-top: 10px;
+    border-radius: 23px;
+    .login-phone {
+
+    }
   }
 }
-
+.verify-form {
+  box-shadow: 0 4px 7.8px 0 #C2C2C240;
+  padding: 35px 26px 14px;
+  margin-top: 10px;
+  border-radius: 23px;
+}
 .account-page {
   display: flex;
   flex-direction: column;
@@ -1130,4 +1173,149 @@ figure {
 
 .faqs-page-top, .insurances-page-top {
   color: #0A1E88;
+}
+
+.comment-create-page {
+  background: #EBF4FB;
+  .comment-create-page-top {
+    width: 100%;
+    padding: 10px;
+    margin-top: 100px;
+    margin-bottom: 60px;
+    .comment-create-page-doctor-box {
+      box-shadow: 0 2px 12px 0 #BCDFFF;
+      padding: 5px 8px;
+      border-radius: 24px;
+      width: 100%;
+      height: 48px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      background: #fff;
+      .doctor-full-name {
+        text-overflow: ellipsis;
+        margin-right: 13px;
+        font-family: IRANYekanRegular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.94px;
+        text-align: right;
+        color: #303F8F;
+      }
+    }
+  }
+  .comment-form {
+    border: 1px solid #91D5FB;
+    padding: 20px 20px;
+    box-shadow: 0 2px 12px 0 #BCDFFF;
+    background: #FAFAFA;
+    width: 100%;
+    height: 100%;
+    border-radius: 45px 45px 0 0;
+    //min-height: 200px;
+    margin-top: 20px;
+    .v-stepper-header {
+      display: none !important;
+    }
+    .v-stepper-window {
+      margin: 10px 10px 30px !important;
+    }
+    .question-box {
+      p {
+        font-family: IRANYekanRegular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.94px;
+        text-align: right;
+        color: #0B2E73;
+        margin-bottom: 15px;
+      }
+      &>span {
+        font-family: IRANYekanRegular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.94px;
+        text-align: right;
+        color: #FF5555;
+        margin-bottom: 15px;
+        display: flex;
+      }
+    }
+    .like-question {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .like-box {
+      border: 1px solid #C8EFFF;
+      box-shadow: 1px 2px 12px 0px #BCDFFF;
+      padding: 7px 15px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px;
+      min-width: 120px;
+      height: 37px;
+      &.selected {
+        background: lightskyblue;
+        span {
+          color: #fff;
+        }
+      }
+      span {
+        font-family: IRANYekanRegular;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.36px;
+        text-align: right;
+      }
+    }
+    .result-box {
+      box-shadow: 0px 4px 12px 0px #BCDFFF;
+      border: 1px solid #9ED1E7;
+      height: 35px;
+      border-radius: 15px;
+      padding: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 10px 4px;
+      span {
+        font-family: IRANYekanRegular;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16.94px;
+        text-align: right;
+        color: #454242;
+        margin-right: 5px;
+        &.circle {
+          border: 1px solid #888181;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          margin-right: unset;
+        }
+      }
+      &.selected {
+        border: 1px solid #0A1E88;
+        span.circle {
+          background: lightskyblue;
+          border: 1px solid #0A1E88;
+        }
+      }
+    }
+    .doctor-form-autocomplete {
+      &.v-autocomplete {
+        .v-field.v-field {
+          border: 1px solid #9ED1E7;
+        }
+      }
+    }
+  }
 }

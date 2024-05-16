@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="main-action-button mx-auto" @click="onClick" :disabled="disabled" variant="flat" text="#fff" color="#7CA6E7" rounded :height="height" :width="width">
+  <v-btn class="main-action-button mx-auto" @click="onClick" :disabled="disabled" variant="flat" text="#fff" :color="color" :rounded="rounded" :height="height" :width="width">
     {{ title }}
   </v-btn>
 </template>
@@ -18,9 +18,17 @@ const props = defineProps({
     type: String,
     default: '48px'
   },
+  color: {
+    type: String,
+    default: '#7CA6E7'
+  },
   disabled: {
     type: Boolean,
     default: false
+  },
+  rounded: {
+    type: String,
+    default: 'sm'
   }
 })
 const onClickEmit = defineEmits(['click'])

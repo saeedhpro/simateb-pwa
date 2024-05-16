@@ -88,14 +88,14 @@
             <i class="pointer fa-light fa-heart fa-2xl" style="color: #968B8B;"></i>
             </span>
           </div>
-          <div class="comment-reply mt-4 full-width">
-            <div class="comment-reply-box">
-              <input type="text" maxlength="100" v-model="comment.description" class="comment-reply-input" placeholder="نظر خود را بنویسید . . .">
-              <v-btn variant="text" color="#0F69F6">
-                ارسال
-              </v-btn>
-            </div>
-          </div>
+<!--          <div class="comment-reply mt-4 full-width">-->
+<!--            <div class="comment-reply-box">-->
+<!--              <input type="text" maxlength="100" v-model="comment[i].description" class="comment-reply-input" placeholder="نظر خود را بنویسید . . .">-->
+<!--              <v-btn @click="sendComment(c.id, i)" variant="text" color="#0F69F6">-->
+<!--                ارسال-->
+<!--              </v-btn>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
         <div class="d-flex justify-center align-center py-16 full-width" v-if="commentsLoading">
           <LoadingComponent color="#9AC8EA"/>
@@ -120,9 +120,7 @@ const router = useRouter()
 const route = useRoute()
 const id = route.params.id
 
-const comment = ref({
-  description: ''
-})
+const comment = ref([])
 const commentFilterList = ref(
     [
       {
@@ -172,9 +170,9 @@ const doctor = ref({
   },
 })
 const rates = ref({
-  behavior: 4.2,
-  explanation: 3.2,
-  skill: 4.7
+  behavior: 0,
+  explanation: 0,
+  skill: 0
 })
 
 const loading = ref(true)
@@ -189,10 +187,22 @@ const getDoctorComments = async () => {
   const {$getRequest: getRequest}=useNuxtApp()
   const res = await getRequest(`/doctors/${id}/comments?page=${page.value}&limit=${limit.value}`)
   lastPage.value = res.meta.last_page
+  const data = res.data
+  comment.value = Array(data.length).fill({
+    description: ''
+  }) as never[]
   comments.value.push(
-      ...res.data,
+      ...data,
   )
   commentsLoading.value = false
+}
+
+const getDoctorCommentRates = async () => {
+  const {$getRequest: getRequest}=useNuxtApp()
+  const res = await getRequest(`/doctors/${id}/comments/rates`)
+  rates.value.explanation = res.explanation_rate
+  rates.value.behavior = res.treat_rate
+  rates.value.skill = res.skill_rate
 }
 
 const getDoctor = async () => {
@@ -221,8 +231,33 @@ const loadMoreComments = () => {
   getDoctorComments()
 }
 
+const sendComment = (parentID: number, index: number) => {
+  const {$postRequest: postRequest}=useNuxtApp()
+  postRequest(`/doctors/${id}/comments`, {
+    do_yo_share: false,
+    case_type: '',
+    result: false,
+    result_index: 1,
+    result_desc: '',
+    description: comment.value[index].description,
+    skill_rate: 0,
+    treat_rate: 0,
+    parent_id: parentID,
+    explanation_rate: 0,
+  })
+      .then(res => {
+        alert('نظر شما با موفقیت ثبت شد')
+        comment.value.description = ''
+        // toast.success('با موفقیت وارد شدید')
+      })
+      .catch(err => {
+        // toast.error('کد وارد شده صحیح نمی باشد')
+      })
+}
+
 getDoctor()
 getDoctorComments()
+getDoctorCommentRates()
 loading.value = false
 </script>
 

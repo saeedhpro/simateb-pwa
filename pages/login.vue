@@ -2,7 +2,7 @@
   <div class="login-page">
     <div class="intro-image d-flex flex-column justify-center align-center">
       <ImagesLoginImage class="login-image"/>
-      <p>لطفا شماره موبایل خود را وارد کنید تا کد فعالسازی برای شما ارسال شود.</p>
+      <p>لطفا شماره موبایل خود را وارد کنید تا کد فعالسازی برای شما ارسال شود</p>
       <div class="login-form d-flex flex-column justify-center full-width">
         <v-row>
           <v-col
@@ -12,10 +12,10 @@
                 label="شماره همراه"
                 v-model="form.tel"
                 variant="outlined"
-                rounded
-                class="mt-8 text-left"
+                class="mt-8 text-left login-phone"
                 bg-color="#fff"
                 type="tel"
+                density="compact"
             ></v-text-field>
           </v-col>
           <v-col
@@ -23,9 +23,12 @@
             >
             <div class="full-width d-flex flex-column justify-center align-center">
               <MainActionButton
-                  title="ارسال کد ورود"
+                  title="ارسال کد"
                   :disabled="form.tel.length != 11"
                   @click="sendCode"
+                  class="login-button"
+                  color="#7966FE"
+                  rounded="sm"
               />
             </div>
           </v-col>
@@ -76,5 +79,9 @@ const sendCode = () => {
 }
 .login-image {
   max-width: 360px;
+}
+.login-button {
+  width: 100% !important;
+  border-radius: 10px !important;
 }
 </style>

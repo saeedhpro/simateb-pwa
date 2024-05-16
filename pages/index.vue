@@ -1,25 +1,22 @@
 <template>
-  <div class="login-page relative py-0 px-0">
-    <BgGreen class="absolute top right"/>
-    <BgBlue class="absolute top left"/>
-    <BgBottomGreen class="absolute bottom right"/>
-    <BgBottomBlue class="absolute bottom left"/>
-    <IntroImage />
-    <p class="mt-8">هرآنچه از <span class="hero">سلامتی</span>  میخواهید!</p>
-    <LoadingSpinnerComponent class="mt-16"/>
+  <div class="main-page relative py-0 px-0">
+    <img src="/images/main_bg.svg" alt=""/>
+    <div class="mt-8">
+      <LogoIcon />
+    </div>
+    <p class="mt-8">
+      هرآنچه از <span>سلامتی</span> میخواهید ...
+    </p>
+    <LoadingSpinnerComponent color="#7966FE" class="mt-16"/>
   </div>
 </template>
 
 <script setup lang="ts">
+import LogoIcon from "~/components/logo/LogoIcon.vue";
+
 definePageMeta({
   layout: 'login'
 })
-
-import IntroImage from "~/components/images/IntroImage.vue";
-import BgGreen from "~/components/intro/BgGreen.vue";
-import BgBlue from "~/components/intro/BgBlue.vue";
-import BgBottomGreen from "~/components/intro/BgBottomGreen.vue";
-import BgBottomBlue from "~/components/intro/BgBottomBlue.vue";
 
 const router = useRouter()
 
