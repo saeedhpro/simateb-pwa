@@ -3,6 +3,7 @@
       class="mx-auto"
       max-width="344"
       rounded="lg"
+      width="100%"
   >
     <v-card-item>
     </v-card-item>
@@ -14,7 +15,7 @@
           v-for="(item,i) in sample.images"
           :key="i"
           :src="item"
-          :cover="true"
+          :cover="false"
       ></v-carousel-item>
     </v-carousel>
     <v-card-text>

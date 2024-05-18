@@ -4,7 +4,7 @@
   </div>
   <div v-else class="sample-page relative d-flex flex-column align-center justify-start">
     <div class="pt-8 px-4 md:px-8 full-width d-flex flex-column align-center justify-start">
-      <div class="doctor-detail d-flex flex-row align-center justify-start mt-8">
+      <div class="full-width doctor-detail d-flex flex-row align-center justify-start mt-8">
         <img class="doctor-logo" :src="doctor.logo" alt="">
         <div class="doctor-name">
           {{ doctor.full_name }}

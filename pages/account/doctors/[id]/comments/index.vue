@@ -52,51 +52,11 @@
     </div>
     <div class="comments-page-bottom full-width">
       <div class="comments-list-box full-width">
-        <div
+        <CommentItem
             v-for="(c, i) in comments"
             :key="i"
-            class="comment-item mb-8 full-width d-flex flex-column align-start justify-start">
-          <div class="d-flex flex-row align-center justify-start">
-            <v-avatar v-if="c.user && c.user.logo" size="x-large">
-              <v-img
-                  :src="c.user.logo"
-              ></v-img>
-            </v-avatar>
-
-            <v-avatar v-else color="blue" size="x-large">
-              <span class="text-h5">{{ `${c.user.fname?.charAt(0)} ${c.user.lname?.charAt(0)}` }}</span>
-            </v-avatar>
-
-            <div class="comment-user-name mr-4">{{ c.user?.full_name }}</div>
-          </div>
-          <div class="comment-do-share-box mt-4 full-width d-flex flex-row align-center justify-start"  v-if="c.do_yo_share">
-            <span class="green">پزشک را توصیه می کنم</span>
-            <LikeUpComponent class="mr-2" />
-          </div>
-          <div class="comment-do-share-box mt-4 full-width d-flex flex-row align-center justify-start"  v-else>
-            <span class="red">پزشک را توصیه نمی کنم</span>
-            <LikeDownComponent class="mr-2" />
-          </div>
-          <div class="comment-body mt-4 full-width">
-            <p>{{ c.description }}</p>
-          </div>
-          <div class="comment-like-box mt-4 full-width d-flex flex-row align-center justify-end">
-            <span @click="likeComment(c.id)" v-if="c.liked">
-              <i  class="pointer fa-solid fa-heart fa-2xl" style="color: #fa0000;"></i>
-            </span>
-            <span @click="likeComment(c.id)" v-else>
-            <i class="pointer fa-light fa-heart fa-2xl" style="color: #968B8B;"></i>
-            </span>
-          </div>
-<!--          <div class="comment-reply mt-4 full-width">-->
-<!--            <div class="comment-reply-box">-->
-<!--              <input type="text" maxlength="100" v-model="comment[i].description" class="comment-reply-input" placeholder="نظر خود را بنویسید . . .">-->
-<!--              <v-btn @click="sendComment(c.id, i)" variant="text" color="#0F69F6">-->
-<!--                ارسال-->
-<!--              </v-btn>-->
-<!--            </div>-->
-<!--          </div>-->
-        </div>
+            :comment="c"
+        />
         <div class="d-flex justify-center align-center py-16 full-width" v-if="commentsLoading">
           <LoadingComponent color="#9AC8EA"/>
         </div>
@@ -107,6 +67,8 @@
 </template>
 
 <script setup lang="ts">
+
+import CommentItem from "~/components/doctor/CommentItem.vue";
 
 definePageMeta({
   middleware: 'auth'
@@ -120,7 +82,6 @@ const router = useRouter()
 const route = useRoute()
 const id = route.params.id
 
-const comment = ref([])
 const commentFilterList = ref(
     [
       {
@@ -188,9 +149,6 @@ const getDoctorComments = async () => {
   const res = await getRequest(`/doctors/${id}/comments?page=${page.value}&limit=${limit.value}`)
   lastPage.value = res.meta.last_page
   const data = res.data
-  comment.value = Array(data.length).fill({
-    description: ''
-  }) as never[]
   comments.value.push(
       ...data,
   )
@@ -218,41 +176,9 @@ const onCommentFilter = (filter) => {
   commentFilter.value = filter
 }
 
-const likeComment = (id: Number) => {
-  console.log(id, "liked")
-  const index = comments.value.findIndex(i => i.id == id)
-  if (index > -1) {
-    comments.value[index].liked = !comments.value[index].liked
-  }
-}
-
 const loadMoreComments = () => {
   page.value += 1
   getDoctorComments()
-}
-
-const sendComment = (parentID: number, index: number) => {
-  const {$postRequest: postRequest}=useNuxtApp()
-  postRequest(`/doctors/${id}/comments`, {
-    do_yo_share: false,
-    case_type: '',
-    result: false,
-    result_index: 1,
-    result_desc: '',
-    description: comment.value[index].description,
-    skill_rate: 0,
-    treat_rate: 0,
-    parent_id: parentID,
-    explanation_rate: 0,
-  })
-      .then(res => {
-        alert('نظر شما با موفقیت ثبت شد')
-        comment.value.description = ''
-        // toast.success('با موفقیت وارد شدید')
-      })
-      .catch(err => {
-        // toast.error('کد وارد شده صحیح نمی باشد')
-      })
 }
 
 getDoctor()
