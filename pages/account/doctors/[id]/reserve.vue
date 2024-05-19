@@ -275,8 +275,7 @@ import jalaliday from 'jalaliday'
 dayjs.locale('fa')
 dayjs.extend(localizedFormat)
 dayjs.extend(jalaliday)
-import {useToast} from "vue-toastification";
-const toast = useToast()
+const app = useNuxtApp()
 const id = route.params.id
 
 const auth = useAuthStore()
@@ -338,7 +337,7 @@ const onBackClicked = () => {
 
 const getDoctor = async () => {
   loading.value = true
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   const {data: d} = await getRequest(`/doctors/${id}`)
   doctor.value = {
     ...d,
@@ -348,18 +347,18 @@ const getDoctor = async () => {
 }
 
 const getCaseTypes = async () => {
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   const {data: cases} = await getRequest(`/doctors/${id}/cases`)
   caseTypes.value = cases
 }
 
 const getSliders = async () => {
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   sliders.value = await getRequest(`/doctors/${id}/sliders`)
 }
 
 const getSchedules = async (c) => {
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   const {data: data} = await getRequest(`/doctors/${id}/schedules?case=${c}`)
   schedules.value = data
   if (schedules.value.length > 0) {
@@ -479,9 +478,11 @@ const reserve = async () => {
     national_code: reserveForm.value.national_code,
     organization_id: doctor.value.organization_id,
   }
-  const {$postRequest: postRequest}=useNuxtApp()
+  const {$postRequest: postRequest}=app
   const res = await postRequest(`/reserve`, form)
-  toast.success('درخواست رزرو وقت با موفقیت برای دکتر ارسال شد. درصورت تایید توسط دکتر از طریق پیامک اطلاع رسانی خواهید شد!')
+  app.$toast.error('درخواست رزرو وقت با موفقیت برای دکتر ارسال شد. درصورت تایید توسط دکتر از طریق پیامک اطلاع رسانی خواهید شد!', {
+    autoClose: 2000,
+  });
   setTimeout(() => {
     router.back()
   }, 500)

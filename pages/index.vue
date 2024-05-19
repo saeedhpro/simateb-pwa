@@ -21,7 +21,9 @@ definePageMeta({
 const router = useRouter()
 
 const goToLogin = () => {
-  router.replace('/login')
+  setTimeout(() => {
+    router.replace('/login')
+  }, 2000)
 }
 goToLogin()
 

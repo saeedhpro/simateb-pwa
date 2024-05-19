@@ -46,14 +46,13 @@
 <script setup lang="ts">
 
 import MainActionButton from "~/components/buttons/MainActionButton.vue";
-// import {useToast} from "vue-toastification";
 definePageMeta({
   middleware: 'guest',
   layout: 'login'
 })
 const router = useRouter()
 const route = useRoute()
-// const toast = useToast()
+const app = useNuxtApp()
 
 const authStore = useAuthStore()
 // if (!route.query.tel) {
@@ -82,36 +81,44 @@ const startTimer = (t = false) => {
 
 startTimer()
 const sendCode = () => {
-  const {$postRequest: postRequest}=useNuxtApp()
+  const {$postRequest: postRequest}=app
   postRequest('/login', {
     phone_number: form.value.tel,
   })
       .then(res => {
         timer.value = 60
         form.value.code = ''
-        // toast.success('کد با موفقیت ارسال شد')
+        app.$toast.info('کد با موفقیت ارسال شد', {
+          autoClose: 2000,
+        });
         startTimer(true)
       })
       .catch(err => {
-        // toast.error('متاسفانه خطایی رخ داده است')
+        app.$toast.error('متاسفانه خطایی رخ داده است', {
+          autoClose: 2000,
+        });
       })
   // console.log(form.value)
 }
 const doLogin = () => {
-  const {$postRequest: postRequest}=useNuxtApp()
+  const {$postRequest: postRequest}=app
   postRequest('/verify', {
     phone_number: form.value.tel,
     code: form.value.code,
   })
       .then(res => {
-        // toast.success('با موفقیت وارد شدید')
+        app.$toast.info('با موفقیت وارد شد', {
+          autoClose: 2000,
+        });
         token.value = res?.data.token ?? ''
         authStore.user = res?.data.user
         authStore.token = res?.data.token
         router.push('/account')
       })
       .catch(err => {
-        // toast.error('کد وارد شده صحیح نمی باشد')
+        app.$toast.error('کد وارد شده صحیح نمی باشد', {
+          autoClose: 2000,
+        });
       })
 }
 </script>

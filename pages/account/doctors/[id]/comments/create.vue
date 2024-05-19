@@ -168,7 +168,7 @@ import LikeDownComponent from "~/components/images/LikeDownComponent.vue";
 import CustomAutocomplete from "~/components/input/CustomAutocomplete.vue";
 import CommentRateItem from "~/components/doctor/CommentRateItem.vue";
 import CommentRateSelectItem from "~/components/doctor/CommentRateSelectItem.vue";
-
+const app = useNuxtApp()
 const route = useRoute()
 const router = useRouter()
 const id = route.params.id
@@ -197,7 +197,7 @@ const form = ref({
 })
 
 const getDoctor = async () => {
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   const {data: d} = await getRequest(`/doctors/${id}`)
   doctor.value.id = d.id
   doctor.value.full_name = d.full_name
@@ -206,7 +206,7 @@ const getDoctor = async () => {
 }
 
 const getDoctorCaseTypes = async () => {
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   const {data: cases} = await getRequest(`/doctors/${id}/cases`)
   caseTypes.value = cases
 }
@@ -217,7 +217,9 @@ const onBackClicked = () => {
 
 const goNext = () => {
   if (index.value == 2 && !form.value.case_type) {
-    alert('علت مراجعه را انتخاب کنید')
+    app.$toast.error('علت مراجعه را انتخاب کنید', {
+      autoClose: 2000,
+    });
     return
   }
   if (index.value < 5) {
@@ -245,7 +247,7 @@ const setResult = (index, result) => {
 }
 
 const saveComment = () => {
-  const {$postRequest: postRequest}=useNuxtApp()
+  const {$postRequest: postRequest}=app
   postRequest(`/doctors/${id}/comments`, {
     do_yo_share: form.value.do_yo_share,
     case_type: form.value.case_type,
@@ -258,12 +260,15 @@ const saveComment = () => {
     explanation_rate: form.value.explanation_rate,
   })
       .then(res => {
-        alert('نظر شما با موفقیت ثبت شد')
+        app.$toast.info('نظر شما با موفقیت ثبت شد', {
+          autoClose: 2000,
+        });
         router.push(`/account/doctors/${id}`)
-        // toast.success('با موفقیت وارد شدید')
       })
       .catch(err => {
-        // toast.error('کد وارد شده صحیح نمی باشد')
+        app.$toast.error('متاسفانه خطایی رخ داده است', {
+          autoClose: 2000,
+        });
       })
 }
 

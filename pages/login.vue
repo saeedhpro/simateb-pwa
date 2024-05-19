@@ -44,28 +44,31 @@ definePageMeta({
   middleware: 'guest',
   layout: 'login'
 })
-// import {useToast} from "vue-toastification";
+const app = useNuxtApp()
+
 const router = useRouter()
-// const toast = useToast()
 
 const form = ref({
   tel: ''
 })
 
 const sendCode = () => {
-  const {$postRequest: postRequest}=useNuxtApp()
+  const {$postRequest: postRequest}=app
   postRequest('/login', {
     phone_number: form.value.tel,
   })
       .then(res => {
-        // toast.success('کد با موفقیت ارسال شد')
+        app.$toast.info('کد با موفقیت ارسال شد', {
+          autoClose: 2000,
+        });
         setTimeout(() => {
-          // router.push(`/verify?tel=${form.value.tel}`)
           window.location.href = `/verify?tel=${form.value.tel}`
         }, 500)
       })
       .catch(err => {
-        // toast.error('متاسفانه خطایی رخ داده است')
+        app.$toast.error('متاسفانه خطایی رخ داده است', {
+          autoClose: 2000,
+        });
         console.log(err, "err")
       })
 }

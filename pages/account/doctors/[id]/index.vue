@@ -272,11 +272,9 @@ import DoctorProfileLinkReservesImage from "~/components/doctor/DoctorProfileLin
 import DoctorProfileLinkSurgeriesImage from "~/components/doctor/DoctorProfileLinkSurgeriesImage.vue";
 import DoctorProfileLinkCommentsImage from "~/components/doctor/DoctorProfileLinkCommentsImage.vue";
 import DoctorProfileLinkQuestionsImage from "~/components/doctor/DoctorProfileLinkQuestionsImage.vue";
-// import {useToast} from "vue-toastification";
 const router = useRouter()
 const route = useRoute()
-// const toast = useToast()
-
+const app = useNuxtApp()
 const id = route.params.id
 
 definePageMeta({
@@ -319,7 +317,7 @@ const onBackClicked = () => {
 }
 
 const onLikeClicked = async() => {
-  const {$postRequest: postRequest}=useNuxtApp()
+  const {$postRequest: postRequest}=app
   await postRequest(`/doctors/${id}/like`)
   doctor.value.liked = !doctor.value.liked
 }
@@ -330,7 +328,7 @@ const goToReservePage = async() => {
 
 const getDoctor = async () => {
   loading.value = true
-  const {$getRequest: getRequest}=useNuxtApp()
+  const {$getRequest: getRequest}=app
   const {data: d} = await getRequest(`/doctors/${id}`)
   doctor.value = {
     ...d,
@@ -353,7 +351,9 @@ const shareLink = async () => {
   };
   try {
     await navigator.share(shareData);
-    alert('با موفقیت کپی شد')
+    app.$toast.info('با موفقیت کپی شد', {
+      autoClose: 2000,
+    });
   } catch (e) {
     console.error(e);
   }
