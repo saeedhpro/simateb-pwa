@@ -1,6 +1,6 @@
 <template>
   <div v-if="loading"></div>
-  <Splide class="ltr" :options="options" aria-label="" v-else>
+  <Splide :options="options" aria-label="" v-else>
     <SplideSlide v-for="(s, i) in slides" :key="i">
       <img alt="" class="main-slider-img" style="max-height: 161px !important;" :src="s.image" @click="goTo(s.link)"/>
     </SplideSlide>
@@ -14,9 +14,10 @@ import '@splidejs/vue-splide/css';
 
 const options = ref({
   rewind: true,
-  type    : 'loop',
+  type    : 'fade',
   autoplay: 'pause',
   perPage : 1,
+  direction: "rtl"
 })
 
 const slides = ref([])

@@ -11,10 +11,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  buildModules: [
+    '@vite-pwa/nuxt',
+  ],
   modules: [
     '@pinia/nuxt',
     'nuxt-icon',
-    '@vite-pwa/nuxt',
     'dayjs-nuxt',
     "nuxt-lodash",
     (_options, nuxt) => {
@@ -41,47 +43,49 @@ export default defineNuxtConfig({
     }
   },
   pwa: {
-    "name": "صبااپ",
-    "short_name": "صبااپ",
-    "start_url": ".",
-    "display": "standalone",
-    "background_color": "#EBF4FB",
-    "icons": [
-      {
-        "src": "images/logo.png",
-        "sizes": "48x48",
-        "type": "image/png"
-      },
-      {
-        "src": "images/logo.png",
-        "sizes": "72x72",
-        "type": "image/png"
-      },
-      {
-        "src": "images/logo.png",
-        "sizes": "96x96",
-        "type": "image/png"
-      },
-      {
-        "src": "images/logo.png",
-        "sizes": "144x144",
-        "type": "image/png"
-      },
-      {
-        "src": "images/logo.png",
-        "sizes": "168x168",
-        "type": "image/png"
-      },
-      {
-        "src": "images/logo.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      }
-    ],
-    manifest: {
-      name: 'Saba App',
-      lang: 'fa',
-      dir: 'rtl',
-    }
+    meta: {
+      "lang": 'fa',
+      "dir": 'rtl',
+      "name": "صبااپ",
+      "short_name": "صبااپ",
+      "start_url": ".",
+      "display": "standalone",
+      "background_color": "#EBF4FB",
+      "mobileApp": true,
+      mobileAppIOS: true,
+      "icons": [
+        {
+          "src": "images/logo.png",
+          "sizes": "48x48",
+          "type": "image/png"
+        },
+        {
+          "src": "images/logo.png",
+          "sizes": "72x72",
+          "type": "image/png"
+        },
+        {
+          "src": "images/logo.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        },
+        {
+          "src": "images/logo.png",
+          "sizes": "144x144",
+          "type": "image/png"
+        },
+        {
+          "src": "images/logo.png",
+          "sizes": "168x168",
+          "type": "image/png"
+        },
+        {
+          "src": "images/logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ],
+      "useWebmanifestExtension": true
+    },
   },
 })
