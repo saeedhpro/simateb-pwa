@@ -4,6 +4,13 @@ export default defineNuxtConfig({
     pageTransition: {
       name: 'page',
       mode: 'out-in'
+    },
+    head: {
+      charset: "utf-8",
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+      link: [
+        {rel: 'manifest', href: '/manifest.webmanifest'}
+      ]
     }
   },
   devtools: { enabled: true },
@@ -11,10 +18,8 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  buildModules: [
-    '@vite-pwa/nuxt',
-  ],
   modules: [
+    '@vite-pwa/nuxt',
     '@pinia/nuxt',
     'nuxt-icon',
     'dayjs-nuxt',
@@ -43,49 +48,34 @@ export default defineNuxtConfig({
     }
   },
   pwa: {
-    meta: {
-      "lang": 'fa',
-      "dir": 'rtl',
-      "name": "صبااپ",
-      "short_name": "صبااپ",
-      "start_url": ".",
-      "display": "standalone",
-      "background_color": "#EBF4FB",
-      "mobileApp": true,
-      mobileAppIOS: true,
-      "icons": [
+    registerWebManifestInRouteRules: true,
+    registerType:'autoUpdate',
+    strategies: 'generateSW',
+    manifest: {
+      name: 'صبا اپ',
+      short_name: 'صبا اپ',
+      description: 'نرم افزار مدیریت مطب',
+      lang: 'fa',
+      start_url: '/',
+      background_color: '#ffffff',
+      theme_color: '#4DBA87',
+      registerType:'autoUpdate',
+      orientation:'portrait',
+      icons: [
         {
-          "src": "images/logo.png",
-          "sizes": "48x48",
-          "type": "image/png"
-        },
-        {
-          "src": "images/logo.png",
-          "sizes": "72x72",
-          "type": "image/png"
-        },
-        {
-          "src": "images/logo.png",
-          "sizes": "96x96",
-          "type": "image/png"
-        },
-        {
-          "src": "images/logo.png",
-          "sizes": "144x144",
-          "type": "image/png"
-        },
-        {
-          "src": "images/logo.png",
-          "sizes": "168x168",
-          "type": "image/png"
-        },
-        {
-          "src": "images/logo.png",
-          "sizes": "192x192",
-          "type": "image/png"
+          src: 'icon/icon.png',
+          sizes: '512x512',
+          type: 'image/png'
         }
-      ],
-      "useWebmanifestExtension": true
+      ]
     },
-  },
+    workbox: {
+      globPatterns: [
+        '*/*.*',
+        '*.*',
+         '_nuxt/builds/**/*.json'
+      ],
+      navigateFallback: null,
+    },
+  }
 })
