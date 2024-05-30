@@ -1,6 +1,6 @@
 <template>
     <div class="main-page-modal relative py-0 px-0">
-<!--      <img src="/images/main_bg.svg" alt=""/>-->
+      <img src="/images/main_bg.svg" alt=""/>
       <div class="mt-8">
         <LogoIcon />
       </div>
