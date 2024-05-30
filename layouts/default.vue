@@ -18,6 +18,6 @@ nuxt.hook('page:start', () => {
 nuxt.hook('page:finish', () => {
   setTimeout(() => {
     loading.value = false
-  }, 1000)
+  }, 3000)
 })
 </script>
