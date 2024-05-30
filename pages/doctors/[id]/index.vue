@@ -9,6 +9,7 @@
     <LikeButton
         :liked="doctor.liked"
         @click="onLikeClicked"
+        v-if="auth.user"
     />
     <div class="doctor-profile-top">
       <div class="doctor-image-box">
@@ -230,31 +231,31 @@
       </div>
     </div>
     <div class="doctor-profile-bottom py-8">
-      <nuxt-link :to="`/account/doctors/${id}/samples`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/samples`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
         <DoctorProfileLinkSurgeriesImage />
         <div class="doctor-profile-link-title">
           نمونه جراحی های انجام شده
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/account/doctors/${id}/comments`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/comments`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
         <DoctorProfileLinkCommentsImage />
         <div class="doctor-profile-link-title">
           نظر سایر مراجعه کنندگان
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/account/doctors/${id}/faqs`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/faqs`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
         <DoctorProfileLinkQuestionsImage />
         <div class="doctor-profile-link-title">
           پرسش های متداول
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/account/doctors/${id}/reserves`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link @click="goToOwnReservePage" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
         <DoctorProfileLinkReservesImage />
         <div class="doctor-profile-link-title">
           وقت های رزو شده من از پزشک
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/account/doctors/${id}/insurances`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/insurances`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
         <DoctorProfileLinkBimeImage />
         <div class="doctor-profile-link-title">
           بیمه های طرف قرارداد
@@ -273,13 +274,10 @@ import DoctorProfileLinkSurgeriesImage from "~/components/doctor/DoctorProfileLi
 import DoctorProfileLinkCommentsImage from "~/components/doctor/DoctorProfileLinkCommentsImage.vue";
 import DoctorProfileLinkQuestionsImage from "~/components/doctor/DoctorProfileLinkQuestionsImage.vue";
 const router = useRouter()
+const auth = useAuthStore()
 const route = useRoute()
 const app = useNuxtApp()
 const id = route.params.id
-
-definePageMeta({
-  middleware: 'auth'
-})
 
 const loading = ref(true)
 const showLocation = ref(false)
@@ -323,7 +321,19 @@ const onLikeClicked = async() => {
 }
 
 const goToReservePage = async() => {
-  router.push(`/account/doctors/${doctor.value.id}/reserve`)
+  if (auth.user) {
+    await router.push(`/doctors/${doctor.value.id}/reserve`)
+  } else {
+    auth.openLoginModal()
+  }
+}
+
+const goToOwnReservePage = async() => {
+  if (auth.user) {
+    await router.push(`/doctors/${doctor.value.id}/reserves`)
+  } else {
+    auth.openLoginModal()
+  }
 }
 
 const getDoctor = async () => {
@@ -334,6 +344,10 @@ const getDoctor = async () => {
     ...d,
     logo: d.logo || '/images/doctors/doctor.png'
   }
+  const dC = useCookie('profession_id')
+  const own_id = useCookie('own_id')
+  dC.value = d.organization.profession_id
+  own_id.value = d.organization.id
   loading.value = false
 }
 
@@ -364,8 +378,11 @@ const shareTel = async () => {
 const shareAddress = () => {
   showLocation.value = !showLocation.value
 }
-
-getDoctor()
+onMounted(() => {
+  nextTick(() => {
+    getDoctor()
+  })
+})
 </script>
 
 <style scoped lang="scss">

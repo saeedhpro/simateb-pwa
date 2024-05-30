@@ -26,7 +26,7 @@
       </div>
       <div class="comment-share-box mt-8 px-4 full-width d-flex flex-row align-center justify-space-between">
         <div class="comment-share-title">نظر خود را به اشتراک بگذارید:</div>
-        <nuxt-link :to="`/account/doctors/${id}/comments/create`" class="comment-share-link">
+        <nuxt-link @click="goToCommentPage" class="comment-share-link">
           ثبت نظر
         </nuxt-link>
       </div>
@@ -70,16 +70,11 @@
 
 import CommentItem from "~/components/doctor/CommentItem.vue";
 
-definePageMeta({
-  middleware: 'auth'
-})
-
 import BackButton from "~/components/action/BackButton.vue";
 import CommentRateItem from "~/components/doctor/CommentRateItem.vue";
-import LikeUpComponent from "~/components/images/LikeUpComponent.vue";
-import LikeDownComponent from "~/components/images/LikeDownComponent.vue";
 const router = useRouter()
 const route = useRoute()
+const auth = useAuthStore()
 const id = route.params.id
 
 const commentFilterList = ref(
@@ -179,6 +174,14 @@ const onCommentFilter = (filter) => {
 const loadMoreComments = () => {
   page.value += 1
   getDoctorComments()
+}
+
+const goToCommentPage = () => {
+  if (auth.user) {
+    router.push(`/doctors/${id}/comments/create`)
+  } else {
+    auth.openLoginModal()
+  }
 }
 
 getDoctor()

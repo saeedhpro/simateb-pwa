@@ -43,7 +43,10 @@ const onBackClicked = () => {
 }
 
 const onExitClicked = () => {
+  const auth = useAuthStore()
   token.value = ''
+  auth.user = null
+  auth.token = ''
   router.replace('/')
 }
 

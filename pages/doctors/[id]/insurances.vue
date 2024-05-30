@@ -36,11 +36,6 @@ const route = useRoute()
 const id = ref<number>(parseInt(route.params.id as string))
 const insurances = ref([])
 
-
-definePageMeta({
-  middleware: 'auth'
-})
-
 const loading = ref(true)
 const onBackClicked = () => {
   router.go(-1)

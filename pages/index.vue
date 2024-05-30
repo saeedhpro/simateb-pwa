@@ -1,44 +1,39 @@
 <template>
-  <div class="main-page relative py-0 px-0">
-    <img src="/images/main_bg.svg" alt=""/>
-    <div class="mt-8">
-      <LogoIcon />
-    </div>
-    <p class="mt-8">
-      هرآنچه از <span>سلامتی</span> میخواهید ...
-    </p>
-    <LoadingSpinnerComponent color="#7966FE" class="mt-16"/>
+  <div class="account-page">
+    <HeaderComponent />
+    <SearchBox :time="1000" @search="doSearch"  class="mt-2" />
+    <SliderMainSlider class="mt-6" />
+    <CategoryMainCategoryList class="mt-6" />
+    <DoctorMainDoctorList class="mt-6" />
+    <MainBlogList class="mt-6" />
   </div>
 </template>
 
 <script setup lang="ts">
-import LogoIcon from "~/components/logo/LogoIcon.vue";
-
-definePageMeta({
-  layout: 'login'
-})
+import MainBlogList from "~/components/blog/MainBlogList.vue";
 
 const router = useRouter()
 
-const goToLogin = () => {
-  setTimeout(() => {
-    router.replace('/login')
-  }, 2000)
+const doSearch = (term: string) => {
+  let query = {
+    term: term
+  }
+  const dC = useCookie('profession_id')
+  const own_id = useCookie('own_id')
+  if (dC.value && own_id.value) {
+    query = {
+      ...query,
+      profession_id: dC.value,
+      own: own_id.value,
+    }
+  }
+  router.push({
+    path: '/doctors',
+    query: query
+  })
 }
-goToLogin()
 
 </script>
-<style scoped lang="scss">
-p {
-  font-family: IRANYekanRegular;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0;
-  text-align: center;
-  color: #3E5466 !important;
-}
-.hero {
-  color: #7CA6E7 !important;
-}
+<style scoped>
+
 </style>

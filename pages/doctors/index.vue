@@ -56,7 +56,13 @@ if (route.query.term) {
 const getDoctors = async() => {
   loading.value = true
   const {$getRequest: getRequest}=useNuxtApp()
-  const {data: categories, meta: meta} = await getRequest(`/doctors?professions=${professions.value.join(',')}&page=${page.value}&limit=${limit.value}&q=${q.value}`)
+  const dC = useCookie('profession_id')
+  const own_id = useCookie('own_id')
+  let url = `/doctors?professions=${professions.value.join(',')}&page=${page.value}&limit=${limit.value}&q=${q.value}`
+  if (dC.value && own_id.value) {
+    url += `&profession_id=${dC.value}&own=${own_id.value}`
+  }
+  const {data: categories, meta: meta} = await getRequest(url)
   list.value = categories ?? []
   page.value = meta.current_page
   last_page.value = meta.last_page

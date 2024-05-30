@@ -5,7 +5,7 @@
         دسته بندی
       </div>
       <nuxt-link
-        to="/account/categories"
+        to="/categories"
         class="more-link"
       >
         مشاهده بیشتر

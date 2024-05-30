@@ -38,11 +38,6 @@ const route = useRoute()
 const id = route.params.id
 const faqs = ref([])
 
-
-definePageMeta({
-  middleware: 'auth'
-})
-
 const loading = ref(true)
 const onBackClicked = () => {
   router.go(-1)

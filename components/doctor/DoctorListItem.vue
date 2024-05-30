@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/account/doctors/${doctor.id}`" class="rtl doctor-list-item d-flex flex-column justify-end">
+  <nuxt-link :to="`/doctors/${doctor.id}`" class="rtl doctor-list-item d-flex flex-column justify-end">
     <div class="doctor-list-item-content relative d-flex flex-row align-start justify-start mx-2 mx-sm-2 mx-md-1 mx-lg-0">
       <div class="image-box">
         <img alt="" :src="doctor.logo" />
@@ -48,7 +48,7 @@ const props = defineProps({
 
 const router = useRouter()
 const goToPage = () => {
-  router.push(`/account/doctors/${props.doctor.id}`)
+  router.push(`/doctors/${props.doctor.id}`)
 }
 </script>
 

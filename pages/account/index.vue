@@ -20,11 +20,21 @@ definePageMeta({
 })
 
 const doSearch = (term: string) => {
-  router.push({
-    path: '/account/doctors',
-    query: {
-      term: term,
+  let query = {
+    term: term
+  }
+  const dC = useCookie('profession_id')
+  const own_id = useCookie('own_id')
+  if (dC.value && own_id.value) {
+    query = {
+      ...query,
+      profession_id: dC.value,
+      own: own_id.value,
     }
+  }
+  router.push({
+    path: '/doctors',
+    query: query
   })
 }
 

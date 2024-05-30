@@ -25,10 +25,6 @@ const router = useRouter()
 const route = useRoute()
 const id = route.params.id
 
-definePageMeta({
-  middleware: 'auth'
-})
-
 const loading = ref(true)
 const step = ref(1)
 

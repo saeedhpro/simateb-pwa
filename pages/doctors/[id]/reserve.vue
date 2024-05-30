@@ -416,15 +416,21 @@ const validateStepOne = () => {
   let validated = true
   if (!reserveForm.value.selected_user) {
     validated = false
-    toast.error('تاریخ بیمار را انتخاب کنید')
+    app.$toast.error('تاریخ بیمار را انتخاب کنید', {
+      autoClose: 2000,
+    })
   }
   if (reserveForm.value.selected_user == 'other' && !reserveForm.value.tel) {
     validated = false
-    toast.error('شماره بیمار را وارد کنید')
+    app.$toast.error('شماره بیمار را وارد کنید', {
+      autoClose: 2000,
+    })
   }
   if (!reserveForm.value.case_type) {
     validated = false
-    toast.error('علت مراجعه را وارد کنید')
+    app.$toast.error('علت مراجعه را وارد کنید', {
+      autoClose: 2000,
+    })
   }
   return validated
 }
@@ -433,11 +439,15 @@ const validateStepTwo = () => {
   let validated = true
   if (reserveForm.value.reserve_time_type == 'other' && !reserveForm.value.selected_time) {
     validated = false
-    toast.error('تاریخ رزرو را انتخاب کنید')
+    app.$toast.error('تاریخ رزرو را انتخاب کنید', {
+      autoClose: 2000,
+    })
   }
   if (reserveForm.value.reserve_time_type == 'first' && !reserveForm.value.selected_time) {
     validated = false
-    toast.error('تاریخ رزرو را انتخاب کنید')
+    app.$toast.error('تاریخ رزرو را انتخاب کنید', {
+      autoClose: 2000,
+    })
   }
   return validated
 }
@@ -446,19 +456,27 @@ const validateStepThree = () => {
   let validated = true
   if (!reserveForm.value.first_name) {
     validated = false
-    toast.error('نام بیمار را وارد کنید')
+    app.$toast.error('نام بیمار را وارد کنید', {
+      autoClose: 2000,
+    })
   }
   if (!reserveForm.value.last_name) {
     validated = false
-    toast.error('نام خانوادگی بیمار را وارد کنید')
+    app.$toast.error('نام خانوادگی بیمار را وارد کنید', {
+      autoClose: 2000,
+    })
   }
   if (!reserveForm.value.national_code) {
     validated = false
-    toast.error('کد ملی بیمار را وارد کنید')
+    app.$toast.error('کد ملی بیمار را وارد کنید', {
+      autoClose: 2000,
+    })
   }
   if (!reserveForm.value.gender) {
     validated = false
-    toast.error('جنسیت بیمار را وارد کنید')
+    app.$toast.error('جنسیت بیمار را وارد کنید', {
+      autoClose: 2000,
+    })
   }
   return validated
 }

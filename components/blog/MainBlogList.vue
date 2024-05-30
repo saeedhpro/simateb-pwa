@@ -5,7 +5,7 @@
         وبلاگ
       </div>
       <nuxt-link
-        to="/account/blog"
+        to="/blog"
         class="more-link"
       >
         مشاهده بیشتر
@@ -38,7 +38,7 @@ const {$getRequest: getRequest}=useNuxtApp()
 const {data: articles} = await getRequest('/articles?type=blog&page=1&limit=4')
 const list = articles ?? []
 const goToPage = () => {
-  router.push('/account/blog')
+  router.push('/blog')
 }
 </script>
 

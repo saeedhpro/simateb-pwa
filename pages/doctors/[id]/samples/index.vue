@@ -21,7 +21,7 @@
             <h3 class="mb-2">{{ s.title }}</h3>
             <h5 class="mb-4">{{ s.sub_title }}</h5>
             <div class="d-flex flex-row align-center justify-end">
-              <nuxt-link class="sample-item-link" :to="`/account/doctors/${id}/samples/${s.id}`">مشاهده</nuxt-link>
+              <nuxt-link class="sample-item-link" :to="`/doctors/${id}/samples/${s.id}`">مشاهده</nuxt-link>
             </div>
           </div>
         </div>
@@ -39,10 +39,6 @@ const router = useRouter()
 const route = useRoute()
 const id = route.params.id
 
-definePageMeta({
-  middleware: 'auth'
-})
-
 const loading = ref(true)
 const step = ref(1)
 
@@ -56,9 +52,6 @@ const list = ref({
 
 const getDoctor = async () => {
   loading.value = true
-  // const {$getRequest: getRequest}=useNuxtApp()
-  // const {data: d} = await getRequest(`/doctors/${id}`)
-
   const {data: samples} = await useFetch('/api/samples')
   list.value.data = samples.value?.data ?? []
   loading.value = false

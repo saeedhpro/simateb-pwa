@@ -263,7 +263,7 @@ const saveComment = () => {
         app.$toast.info('نظر شما با موفقیت ثبت شد', {
           autoClose: 2000,
         });
-        router.push(`/account/doctors/${id}`)
+        router.push(`/doctors/${id}`)
       })
       .catch(err => {
         app.$toast.error('متاسفانه خطایی رخ داده است', {

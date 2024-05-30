@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/account/blog/${article.id}`" class="single-blog-item">
+  <nuxt-link :to="`/blog/${article.id}`" class="single-blog-item">
     <img class="article-thumbnail" :alt="article.title" :src="article.thumbnail" />
     <div class="flex flex-col align-start justify-start">
       <div class="title">{{ article?.title }}</div>

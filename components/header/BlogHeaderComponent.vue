@@ -7,7 +7,7 @@
 <script setup lang="ts">
 const router = useRouter()
 const goToHome = () => {
-  router.push('/account')
+  router.push('/')
 }
 </script>
 

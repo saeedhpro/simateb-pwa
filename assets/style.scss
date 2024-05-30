@@ -107,13 +107,48 @@ a {
     }
   }
 }
-.login-page {
+.main-page-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 1000000000000000000000 !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 38px;
+  padding: 20px 45px;
+  &>img {
+    width: 100%;
+  }
+  p {
+    font-family: IRANYekanRegular;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 19.36px !important;
+    text-align: center !important;
+    color: #3E5466 !important;
+    span {
+      font-family: IRANYekanRegular;
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      line-height: 19.36px !important;
+      text-align: center !important;
+      color: #7966FE !important;
+    }
+  }
+}
+.login-page {
+  //min-height: 100vh;
+  //display: flex;
+  //flex-direction: column;
+  //align-items: center;
+  //justify-content: center;
+  //padding: 20px 38px;
+  background-color: white;
   .intro-image {
     width: 100%;
     svg {
@@ -1183,7 +1218,7 @@ figure {
   }
 }
 .v-bottom-navigation {
-  z-index: 99999999999999999 !important;
+  z-index: 999999999 !important;
 }
 @media only screen and (min-width: 768px) {
   .category-logo img {
@@ -1343,4 +1378,7 @@ figure {
       }
     }
   }
+}
+.v-overlay {
+  z-index: 999999!important;
 }

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/account/blog/${blog.id}`" class="blog-list-item d-flex flex-row align-start justify-start">
+  <nuxt-link :to="`/blog/${blog.id}`" class="blog-list-item d-flex flex-row align-start justify-start">
     <div class="image-box">
       <img alt="" :src="blog.thumbnail" />
     </div>
