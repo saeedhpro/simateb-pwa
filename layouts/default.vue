@@ -9,15 +9,16 @@
   </v-app>
 </template>
 <script setup lang="ts">
+
 const nuxt = useNuxtApp()
 const loading = ref(true)
-
+const route = useRoute()
 nuxt.hook('page:start', () => {
   loading.value = true
 })
 nuxt.hook('page:finish', () => {
   setTimeout(() => {
     loading.value = false
-  }, 3000)
+  }, route.path == '/' ? 2000 : 1000)
 })
 </script>

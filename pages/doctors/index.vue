@@ -43,15 +43,12 @@ const professionList = ref([])
 const loading = ref(false)
 const q = ref<string>('')
 const term = ref<string>('')
+const auth = useAuthStore()
 
 const router = useRouter()
 const route = useRoute()
 const onBackClicked = () => {
   router.go(-1)
-}
-
-if (route.query.term) {
-  term.value = route.query.term.toString()
 }
 const getDoctors = async() => {
   loading.value = true
@@ -98,8 +95,21 @@ const doSearch = (term: string) => {
   q.value = term
   getDoctors()
 }
-getDoctors()
-getProfessionList()
+
+onMounted(() => {
+  nextTick(() => {
+    if (route.query.term) {
+      term.value = route.query.term.toString()
+      q.value = route.query.term.toString()
+    }
+    if (!term.value) {
+      term.value = auth.searchTerm
+      q.value = auth.searchTerm
+    }
+    getDoctors()
+    getProfessionList()
+  })
+})
 </script>
 
 <style scoped lang="scss">

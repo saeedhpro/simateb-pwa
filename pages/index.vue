@@ -13,6 +13,7 @@
 import MainBlogList from "~/components/blog/MainBlogList.vue";
 
 const router = useRouter()
+const auth = useAuthStore()
 
 const doSearch = (term: string) => {
   let query = {
@@ -27,6 +28,7 @@ const doSearch = (term: string) => {
       own: own_id.value,
     }
   }
+  auth.searchTerm = term
   router.push({
     path: '/doctors',
     query: query

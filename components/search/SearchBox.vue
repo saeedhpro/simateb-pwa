@@ -34,6 +34,10 @@ const doSearchDebounce = useDebounce(onSearchInput, props.time)
 if (props.term) {
   doSearchDebounce()
 }
+
+watch(() => props.term, () => {
+  form.value.q = props.term
+})
 </script>
 
 <style scoped lang="scss">

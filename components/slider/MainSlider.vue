@@ -4,7 +4,6 @@
     <SplideSlide v-for="(s, i) in slides" :key="i">
       <img alt="" class="main-slider-img" style="max-height: 161px !important;" :src="s.image" @click="goTo(s.link)"/>
     </SplideSlide>
-    <div class="splide__arrows" />
   </Splide>
 </template>
 
@@ -13,11 +12,7 @@ import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css';
 
 const options = ref({
-  rewind: true,
-  type    : 'fade',
-  autoplay: 'pause',
-  perPage : 1,
-  direction: "rtl"
+  direction: "rtl",
 })
 
 const slides = ref([])
