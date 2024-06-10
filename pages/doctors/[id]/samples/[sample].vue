@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="d-flex flex-column align-start justify-start full-width mt-8">
-        <SampleItem />
+        <SampleItem v-for="(s,i) in list.data" :key="i" :sample="s"/>
       </div>
     </div>
   </div>
@@ -64,8 +64,14 @@ const doctor = ref({
 })
 
 const getSamples = async () => {
-  const {data: items} = await useFetch('/api/items')
-  list.value.data = items.value?.data ?? []
+  loading.value = true
+  const id = route.params.id
+  const sample = route.params.sample
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: d} = await getRequest(`/doctors/${id}/samples/${sample}`)
+  list.value.data = d ?? []
+  loading.value = false
+  list.value.data = d ?? []
 }
 
 const getDoctor = async () => {
@@ -78,8 +84,12 @@ const getDoctor = async () => {
   }
   loading.value = false
 }
-getDoctor()
-getSamples()
+onMounted(() => {
+  nextTick(() => {
+    getDoctor()
+    getSamples()
+  })
+})
 </script>
 
 <style scoped lang="scss">

@@ -13,9 +13,12 @@
 
 <script setup lang="ts">
 import LogoIcon from "~/components/logo/LogoIcon.vue";
-const route = useRoute()
-const isMainPage = computed(() => route.path == '/')
-
+const props = defineProps({
+  isMainPage: {
+    type: Boolean,
+    default: false
+  }
+})
 </script>
 
 <style scoped lang="scss">

@@ -10,9 +10,10 @@
     <v-carousel
         hide-delimiters
         height="170px"
+        :show-arrows="sample.image_list.length > 1"
     >
       <v-carousel-item
-          v-for="(item,i) in sample.images"
+          v-for="(item,i) in sample.image_list"
           :key="i"
           :src="item"
           :cover="false"
@@ -31,11 +32,7 @@ const props = defineProps({
     default: {
       id: 1,
       description: '',
-      images: [
-        '/images/samples/sample_1.png',
-        '/images/samples/sample_1.png',
-        '/images/samples/sample_1.png',
-        '/images/samples/sample_1.png',
+      image_list: [
         '/images/samples/sample_1.png',
       ],
     }

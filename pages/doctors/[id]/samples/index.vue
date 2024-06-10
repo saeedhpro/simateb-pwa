@@ -15,10 +15,10 @@
             class="sample-item d-flex flex-row align-center justify-space-between mb-4"
         >
           <div class="sample-image-box d-flex flex-1 full-width full-height">
-            <img :src="s.image" alt="">
+            <img :src="s.logo" alt="">
           </div>
           <div class="sample-details d-flex flex-1 flex-column full-width full-height">
-            <h3 class="mb-2">{{ s.title }}</h3>
+            <h3 class="mb-2">{{ s.name }}</h3>
             <h5 class="mb-4">{{ s.sub_title }}</h5>
             <div class="d-flex flex-row align-center justify-end">
               <nuxt-link class="sample-item-link" :to="`/doctors/${id}/samples/${s.id}`">مشاهده</nuxt-link>
@@ -50,15 +50,24 @@ const list = ref({
   data: [],
 })
 
-const getDoctor = async () => {
+const getSamples = async () => {
   loading.value = true
-  const {data: samples} = await useFetch('/api/samples')
-  list.value.data = samples.value?.data ?? []
+  const id = route.params.id
+  const {$getRequest: getRequest}=useNuxtApp()
+  const {data: d} = await getRequest(`/doctors/${id}/samples`)
+  list.value.data = d ?? []
   loading.value = false
 }
-getDoctor()
+onMounted(() => {
+  nextTick(() => getSamples())
+})
 </script>
 
 <style scoped lang="scss">
-
+.sample-image-box {
+  max-width: 100px;
+  img {
+    width: 100%;
+  }
+}
 </style>
