@@ -3,8 +3,8 @@
     <HeaderComponent />
     <SearchBox :time="1000" @search="doSearch"  class="mt-2" />
     <SliderMainSlider class="mt-6" />
-    <CategoryMainCategoryList class="mt-6" />
     <DoctorMainDoctorList class="mt-6" />
+    <CategoryMainCategoryList class="mt-6" />
     <MainBlogList class="mt-6" />
   </div>
 </template>

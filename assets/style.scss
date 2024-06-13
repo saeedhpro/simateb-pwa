@@ -212,13 +212,13 @@ a {
 .category-list-item {
   &.circular {
     .image-box {
-      border: 1px solid #88DFFF;
+      //border: 1px solid #88DFFF;
       box-shadow: 0 4px 15px 0 #CEFFF0;
-      border-radius: 100% !important;
+      //border-radius: 100% !important;
       padding: 2px;
-      img {
-        border-radius: 100% !important;
-      }
+      //img {
+      //  border-radius: 100% !important;
+      //}
     }
   }
   &.small {
@@ -513,6 +513,7 @@ a {
     padding: 20px;
     margin-top: 30px;
     border-radius: 15px;
+    max-width: 230px;
   }
 }
 .single-blog-item {

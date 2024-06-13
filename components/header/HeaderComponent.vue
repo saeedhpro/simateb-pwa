@@ -14,6 +14,7 @@
         </svg>
       </v-btn>
     </router-link>
+    <LogoIcon class="mx-10"/>
     <v-btn
       icon
       variant="text"
