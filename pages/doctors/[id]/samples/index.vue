@@ -9,10 +9,11 @@
     <div class="pt-8 px-4 md:px-8 full-width d-flex flex-column align-center justify-start" style="z-index: 99">
       <SampleHeroBoxImage />
       <div class="d-flex flex-column align-start justify-start full-width mt-8">
-        <div
+        <nuxt-link
             v-for="(s, i) in list.data"
             :key="i"
             class="sample-item d-flex flex-row align-center justify-space-between mb-4"
+            :to="`/doctors/${id}/samples/${s.id}`"
         >
           <img :src="s.logo" alt="" class="full-width">
 
@@ -26,7 +27,7 @@
 <!--              <nuxt-link class="sample-item-link" :to="`/doctors/${id}/samples/${s.id}`">مشاهده</nuxt-link>-->
 <!--            </div>-->
 <!--          </div>-->
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
