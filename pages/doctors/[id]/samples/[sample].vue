@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="d-flex flex-column align-start justify-start full-width mt-8">
-        <SampleItem v-for="(s,i) in list.data" :key="i" :sample="s"/>
+        <SampleItem v-for="(s,i) in list.data" :key="i" :sample="s" style="margin-bottom: 40px"/>
       </div>
     </div>
   </div>
