@@ -14,7 +14,7 @@
       <template v-slot:prev="{ props }">
         <v-btn
             color="info"
-            variant="outlined"
+            variant="text"
             @click="props.onClick"
             icon="mdi-chevron-right"
             style="position: absolute; bottom: 0; right: 0;"
@@ -24,7 +24,7 @@
       <template v-slot:next="{ props }">
         <v-btn
             color="info"
-            variant="outlined"
+            variant="text"
             @click="props.onClick"
             icon="mdi-chevron-left"
             style="position: absolute; bottom: 0; left: 0;"
@@ -39,7 +39,13 @@
       ></v-carousel-item>
     </v-carousel>
     <v-card-text>
-      {{ sample.description }}
+      <div class="full-width" :style="showMoreClass">{{ sample.description }}</div>
+      <div class="full-width" style="display: flex; flex-direction: row; justify-content: flex-end">
+        <v-btn variant="outlined" color="info" style="margin-top: 10px" @click="onClick(!showMore)">
+          <span v-if="showMore">کمتر</span>
+          <span v-else>بیشتر</span>
+        </v-btn>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -56,6 +62,16 @@ const props = defineProps({
       ],
     }
   }
+})
+const showMore = ref<Boolean>(false)
+const onClick = (show) => {
+  showMore.value = show
+}
+const showMoreClass = computed(() => {
+  if (showMore.value) {
+    return 'height: auto;'
+  }
+  return 'height: 44px; overflow-y: hidden;'
 })
 </script>
 

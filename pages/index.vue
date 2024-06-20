@@ -11,6 +11,11 @@
 
 <script setup lang="ts">
 import MainBlogList from "~/components/blog/MainBlogList.vue";
+import {definePageMeta} from "#imports";
+
+definePageMeta({
+  layout: 'main'
+})
 
 const router = useRouter()
 const auth = useAuthStore()
