@@ -234,7 +234,7 @@
       <nuxt-link :to="`/doctors/${id}/samples`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
         <DoctorProfileLinkSurgeriesImage />
         <div class="doctor-profile-link-title">
-          نمونه جراحی های انجام شده
+          {{ getProfessionCat }}
         </div>
       </nuxt-link>
       <nuxt-link :to="`/doctors/${id}/comments`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
@@ -378,6 +378,14 @@ const shareTel = async () => {
 const shareAddress = () => {
   showLocation.value = !showLocation.value
 }
+
+const getProfessionCat = computed(() => {
+  if (doctor.value.organization.profession.id == 5) {
+    return 'نمونه ارتودنسی های انجام شده'
+  }
+  return 'نمونه جراحی های انجام شده'
+})
+
 onMounted(() => {
   nextTick(() => {
     getDoctor()
