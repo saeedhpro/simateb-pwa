@@ -4,7 +4,7 @@
         @click="onBackClicked"
     />
     <SearchBox :term="term" @search="doSearch" class="mt-16"/>
-    <CustomAutocomplete :items="professionList" @select="onProfessionSelect" class="mt-6" />
+    <CustomAutocomplete :items="professionList" placeholder="تخصص" @select="onProfessionSelect" class="mt-6" />
     <div v-if="loading" class="mt-8 full-width relative d-flex flex-column align-center justify-start">
       <LoadingComponent />
     </div>

@@ -57,7 +57,7 @@
                     :height="'45px'"
                     @click="goToReservePage"
                     title="دریافت نوبت" class="full-width small"
-                    :rounded="true"
+                    :rounded="'md'"
                 />
               </v-col>
               <v-col cols="12" v-if="showTel">
