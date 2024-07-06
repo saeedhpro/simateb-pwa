@@ -12,7 +12,14 @@
         v-if="auth.user"
     />
     <div class="doctor-profile-top">
-      <div class="doctor-image-box">
+      <div class="doctor-image-box relative">
+        <div class="absolute doctor-name-box">
+          <div class="doctor-full-name">
+            <span>دکتر: </span>
+            <span>{{ doctor.full_name }}</span>
+          </div>
+          <div class="doctor-profession">تخصص: {{ doctor.organization.profession.name }}</div>
+        </div>
         <img :src="doctor.logo" alt="" >
       </div>
       <div class="doctor-details-box">

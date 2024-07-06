@@ -564,6 +564,30 @@ a {
     //min-height: 600px;
     width: 100%;
     position: relative;
+    .doctor-name-box {
+      position: absolute;
+      left: 20px;
+      top: 0;
+      font-weight: 400;
+      font-size: 18px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      max-width: calc(48%);
+      z-index: 99999999;
+      .doctor-full-name {
+        font-size: 22px;
+        font-weight: 500;
+        margin-top: 30px;
+        color: #7CA6E7;
+      }
+      .doctor-profession {
+        color: #4B6C88;
+        margin-top: 30px;
+        text-align: left;
+      }
+
+    }
     .bg {
       position: absolute;
       bottom: 0;
@@ -579,9 +603,10 @@ a {
     }
     img {
       height: 100%;
-      max-width: 60%;
+      max-width: 50%;
       z-index: 9999;
       position: relative;
+      min-height: 190px;
     }
   }
   .doctor-details-box {
