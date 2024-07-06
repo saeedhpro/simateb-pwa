@@ -13,6 +13,7 @@ import '@splidejs/vue-splide/css';
 
 const options = ref({
   direction: "rtl",
+  autoplay: true,
 })
 
 const slides = ref([])
