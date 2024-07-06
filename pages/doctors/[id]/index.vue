@@ -351,10 +351,12 @@ const getDoctor = async () => {
     ...d,
     logo: d.logo || '/images/doctors/doctor.png'
   }
-  const dC = useCookie('profession_id')
-  const own_id = useCookie('own_id')
-  dC.value = d.organization.profession_id
-  own_id.value = d.organization.id
+  if (route.query.doctor) {
+    const dC = useCookie('profession_id')
+    const own_id = useCookie('own_id')
+    dC.value = d.organization.profession_id
+    own_id.value = d.organization.id
+  }
   loading.value = false
 }
 
