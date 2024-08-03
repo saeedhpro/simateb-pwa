@@ -13,8 +13,11 @@ import '@splidejs/vue-splide/css';
 
 const options = ref({
   direction: "rtl",
+  type: 'loop',
   autoplay: true,
   loop: true,
+  interval: 2000,
+  speed: 500,
 })
 
 const slides = ref([])
