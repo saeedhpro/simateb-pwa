@@ -1,6 +1,6 @@
 <template>
   <v-app>
-<!--    <LoadingModal v-if="loading" />-->
+    <LoadingModal v-if="loading" />
     <LoginModal/>
     <div class="wrapper mb-8">
       <NuxtPage />

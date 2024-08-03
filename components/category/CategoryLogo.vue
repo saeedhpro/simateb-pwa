@@ -1,7 +1,7 @@
 <template>
   <div class="category-logo" :class="{'has-child': hasChild}">
     <img alt="" :src="logo">
-    <div class="sub-title" v-if="subTitle">{{subTitle}}</div>
+<!--    <div class="sub-title" v-if="subTitle">{{subTitle}}</div>-->
   </div>
 </template>
 

@@ -11,15 +11,17 @@
         <div class="doctor-profession-name mt-2">
           {{ doctor.organization?.profession?.name }}
         </div>
-        <div class="doctor-starts mt-3 ltr">
+        <div style="display: flex" class="doctor-starts mt-3 ltr flex flex-row justify-end items-center">
+          <span style="height: 18px; color: #6A6ED1; margin-top: 2px">(499 نفر)</span>
+          <span style="height: 18px; color: #6A6ED1; margin-top: 2px">4.9</span>
           <v-rating
               half-increments
               :hover="true"
-              :length="5"
+              :length="1"
               :size="20"
               :readonly="true"
               :model-value="doctor?.stars"
-              color="warning"
+              color="blue"
               active-color="warning"
           />
         </div>

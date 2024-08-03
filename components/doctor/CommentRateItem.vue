@@ -5,7 +5,7 @@
       <div class="full-width">
         <v-progress-linear color="#69D7AF" :model-value="rate * 20" :height="5"></v-progress-linear>
       </div>
-      <div class="comments-rate mr-4">{{ rate }}</div>
+      <div class="comments-rate mr-4">{{ rate.toFixed(2) }}</div>
     </div>
   </div>
 </template>

@@ -1,37 +1,57 @@
 <template>
   <div
       class="comment-item mb-8 full-width d-flex flex-column align-start justify-start">
-    <div class="d-flex flex-row align-center justify-start">
-      <v-avatar v-if="comment.user && comment.user.logo" size="x-large">
-        <v-img
-            :src="comment.user.logo"
-        ></v-img>
-      </v-avatar>
+<!--    <div class="d-flex flex-row align-center justify-start">-->
+<!--      <v-avatar v-if="comment.user && comment.user.logo" size="x-large">-->
+<!--        <v-img-->
+<!--            :src="comment.user.logo"-->
+<!--        ></v-img>-->
+<!--      </v-avatar>-->
 
-      <v-avatar v-else color="blue" size="x-large">
-        <span class="text-h5">{{ `${comment.user.fname?.charAt(0)} ${comment.user.lname?.charAt(0)}` }}</span>
-      </v-avatar>
+<!--      <v-avatar v-else color="blue" size="x-large">-->
+<!--        <span class="text-h5">{{ `${comment.user.fname?.charAt(0)} ${comment.user.lname?.charAt(0)}` }}</span>-->
+<!--      </v-avatar>-->
 
-      <div class="comment-user-name mr-4">{{ comment.user?.full_name }}</div>
-    </div>
+<!--      <div class="comment-user-name mr-4">{{ comment.user?.full_name }}</div>-->
+<!--    </div>-->
     <div class="comment-do-share-box mt-4 full-width d-flex flex-row align-center justify-start"  v-if="comment.do_yo_share">
       <span class="green">پزشک را توصیه می کنم</span>
       <LikeUpComponent class="mr-2" />
+      <div class="flex flex-row items-start justify-center mr-2">
+        {{ comment.rate.toFixed(2) }}
+        <v-rating
+            :length="1"
+            :size="20"
+            :readonly="false"
+            color="warning"
+            :model-value="comment.rate.toFixed(2)"
+        />
+      </div>
     </div>
     <div class="comment-do-share-box mt-4 full-width d-flex flex-row align-center justify-start"  v-else>
       <span class="red">پزشک را توصیه نمی کنم</span>
       <LikeDownComponent class="mr-2" />
+      <div class="flex flex-row items-start justify-center mr-2">
+        {{ comment.rate.toFixed(2) }}
+        <v-rating
+            :length="1"
+            :size="20"
+            :readonly="false"
+            color="warning"
+            :model-value="comment.rate.toFixed(2)"
+        />
+      </div>
     </div>
     <div class="comment-body mt-4 full-width">
       <p>{{ comment.description }}</p>
     </div>
     <div class="comment-like-box mt-4 full-width d-flex flex-row align-center justify-end">
-            <span @click="likeComment" v-if="comment.liked">
-              <i  class="pointer fa-solid fa-heart fa-2xl" style="color: #fa0000;"></i>
-            </span>
+      <span @click="likeComment" v-if="comment.liked">
+        <i  class="pointer fa-solid fa-heart fa-2xl" style="color: #fa0000;"></i>
+      </span>
       <span @click="likeComment" v-else>
-            <i class="pointer fa-light fa-heart fa-2xl" style="color: #968B8B;"></i>
-            </span>
+        <i class="pointer fa-light fa-heart fa-2xl" style="color: #968B8B;"></i>
+      </span>
     </div>
     <div class="comment-reply mt-4 full-width">
       <div class="comment-reply-box">

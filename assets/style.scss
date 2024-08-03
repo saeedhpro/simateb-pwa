@@ -103,7 +103,7 @@ a {
       font-weight: 600 !important;
       line-height: 19.36px !important;
       text-align: center !important;
-      color: #7966FE !important;
+      color: #84a9fe !important;
     }
   }
 }
@@ -137,7 +137,7 @@ a {
       font-weight: 600 !important;
       line-height: 19.36px !important;
       text-align: center !important;
-      color: #7966FE !important;
+      color: #84a9fe !important;
     }
   }
 }
@@ -187,7 +187,18 @@ a {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 10px 30px 20px;
+  //padding: 10px 30px 20px;
+  padding-bottom: 20px;
+  .account-page-top {
+    width: 100%;
+    height: 260px;
+    background-color: #F7F9FF;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
+  .profile-links {
+    padding: 10px 30px 20px;
+  }
 }
 .main-category-list-header, .main-doctor-list-header, .main-blog-list-header {
   .title {
@@ -263,10 +274,10 @@ a {
   }
   .doctor-list-item-content {
     position: relative;
-    box-shadow: 0 2px 10px 0 #7CA6E7;
-    background: #DAEDFF;
+    box-shadow: 0 2px 10px 0 d5dcfe;
+    background: #EEF1FF;
     height: 90px;
-    border-radius: 15px;
+    border-radius: 5px;
     .image-box {
       height: 100%;
       display: flex;
@@ -285,7 +296,7 @@ a {
       height: 100%;
       padding-right: 15px;
       .doctor-name {
-        color: #4930E3;
+        color: #1b04a9;
         font-family: IRANYekanRegular;
         font-size: 14px;
         font-weight: 400;
@@ -321,7 +332,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #4930E3;
+  border: 1px solid #1b04a9;
   background: #7CA6E7;
   cursor: pointer;
   max-width: 200px;
@@ -390,14 +401,14 @@ a {
 .profile-link {
   width: 100%;
   height: 52px;
-  border-radius: 20px;
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 5px 15px;
   background: #FFFFFF;
-  box-shadow: 1px 4px 12px 0 #BCDFFF;
+  box-shadow: 1px 2px 4px 0 #cbe2f7;
   margin-bottom: 20px;
   .title {
     font-family: IRANYekanRegular;
@@ -412,7 +423,7 @@ a {
 .exit-button {
   width: 100%;
   height: 52px;
-  border-radius: 20px;
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -420,7 +431,7 @@ a {
   padding: 5px 15px;
   background: #FFFFFF;
   margin-bottom: 20px;
-  box-shadow: 0px 4px 12px 0px #B9353540;
+  box-shadow: 1px 2px 4px 0 #B9353540;
 
   .title {
     font-family: IRANYekanRegular;
@@ -443,8 +454,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #968b8b;
-  padding: 10px;
+  //border: 1px solid #968b8b;
+  //padding: 10px;
   z-index: 99999;
 }
 .like-button {
@@ -453,12 +464,24 @@ a {
   right: 20px;
   cursor: pointer;
 }
+.category-list-top {
+  width: 100%;
+  height: 260px;
+  background-color: #F7F9FF;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .category-list-content {
   background: #FFFFFF;
   min-height: 52vh;
-  background: linear-gradient(169.03deg, #DEF9F0 1.04%, rgba(222, 249, 240, 0) 51.04%),
-  linear-gradient(212.37deg, #E3F7FF 14.73%, rgba(244, 252, 255, 0) 115.73%);
-  border-radius: 45px 45px 0 0;
+  //background: linear-gradient(169.03deg, #DEF9F0 1.04%, rgba(222, 249, 240, 0) 51.04%),
+  //linear-gradient(212.37deg, #E3F7FF 14.73%, rgba(244, 252, 255, 0) 115.73%);
+  //border-radius: 45px 45px 0 0;
   &.has-child {
     background: none !important;
   }
@@ -498,9 +521,18 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 0 0 30px 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 260px;
+
   &.has-child {
-    background: linear-gradient(143.93deg, #DEF9F0 9.25%, rgba(222, 249, 240, 0) 44.54%), linear-gradient(0deg, #F4FCFF, #F4FCFF);
+    //background: linear-gradient(143.93deg, #DEF9F0 9.25%, rgba(222, 249, 240, 0) 44.54%), linear-gradient(0deg, #F4FCFF, #F4FCFF);
+
+    width: 100%;
+    height: 260px;
+    background-color: #F7F9FF;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
   }
   .sub-title {
     margin-top: 10px;
@@ -510,8 +542,6 @@ a {
 
   img {
     width: 100%;
-    padding: 20px;
-    margin-top: 30px;
     border-radius: 15px;
     max-width: 230px;
   }
@@ -839,7 +869,7 @@ a {
     color: #808786;
   }
   .reserve-details {
-    background: #EFF5F5D1;
+    background: #EEF1FF;
     padding: 20px;
     border-radius: 10px;
     display: grid;
@@ -898,6 +928,7 @@ a {
       letter-spacing: 0;
       text-align: right;
       color: #1E27FF;
+      display: flex;
     }
   }
   .reserve-page-top {
@@ -1249,7 +1280,7 @@ figure {
 }
 @media only screen and (min-width: 768px) {
   .category-logo img {
-    max-width: 300px;
+    max-width: 70%;
   }
 }
 

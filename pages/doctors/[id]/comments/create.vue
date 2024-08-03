@@ -13,7 +13,7 @@
               :src="doctor.logo"
           ></v-img>
         </v-avatar>
-        <div class="doctor-full-name">ثبت نظر برای <span>دکتر محمد کریم سلطانی</span></div>
+        <div class="doctor-full-name">ثبت نظر برای <span>{{ doctor.full_name }}</span></div>
       </div>
     </div>
     <div class="comment-form">
@@ -70,6 +70,10 @@
                 placeholder="عنوان بیماری را انتخاب کنید"
                 @update:modelValue="onCaseTypeSelected"
             ></v-autocomplete>
+            <div class="full-width" v-if="showOtherCaseType">
+              <div>علت مراجعه خود را بنویسید</div>
+              <v-textarea style="margin: 10px" v-model="form.other_case_type" variant="solo" bg-color="#fff" />
+            </div>
           </div>
         </template>
 
@@ -194,8 +198,9 @@ const form = ref({
   skill_rate: 0,
   treat_rate: 0,
   explanation_rate: 0,
+  other_case_type: '',
 })
-
+const showOtherCaseType = ref(false)
 const getDoctor = async () => {
   const {$getRequest: getRequest}=app
   const {data: d} = await getRequest(`/doctors/${id}`)
@@ -208,7 +213,13 @@ const getDoctor = async () => {
 const getDoctorCaseTypes = async () => {
   const {$getRequest: getRequest}=app
   const {data: cases} = await getRequest(`/doctors/${id}/cases`)
-  caseTypes.value = cases
+  caseTypes.value = [
+      ...cases,
+    {
+      id: 0,
+      name: 'سایر موارد'
+    }
+  ]
 }
 
 const onBackClicked = () => {
@@ -238,7 +249,12 @@ const doLike = (like: boolean) => {
 }
 
 const onCaseTypeSelected = (caseType) => {
-  form.value.case_type = caseType
+  if (caseType == 'سایر موارد') {
+    showOtherCaseType.value = true
+
+  } else {
+    form.value.case_type = caseType
+  }
 }
 
 const setResult = (index, result) => {
@@ -250,7 +266,7 @@ const saveComment = () => {
   const {$postRequest: postRequest}=app
   postRequest(`/doctors/${id}/comments`, {
     do_yo_share: form.value.do_yo_share,
-    case_type: form.value.case_type,
+    case_type: showOtherCaseType.value ? form.value.other_case_type : form.value.case_type,
     result: form.value.result,
     result_index: form.value.result_index,
     result_desc: form.value.result_desc,

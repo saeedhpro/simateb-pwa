@@ -52,8 +52,8 @@ export default defineNuxtConfig({
     registerType:'autoUpdate',
     strategies: 'generateSW',
     manifest: {
-      name: 'صبا اپ',
-      short_name: 'صبا اپ',
+      name: 'اپ دکتر',
+      short_name: 'اپ دکتر',
       description: 'نرم افزار مدیریت مطب',
       lang: 'fa',
       start_url: '/',

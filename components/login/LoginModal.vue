@@ -36,7 +36,7 @@
                         :disabled="form.tel.length != 11"
                         @click="sendCode"
                         class="login-button"
-                        color="#7966FE"
+                        color="#84a9fe"
                         rounded="sm"
                         width="50%"
                     />
@@ -52,7 +52,7 @@
               <v-otp-input
                   v-model="form.code"
                   class="ltr mt-2"
-                  bg-color="#7966FE"
+                  bg-color="#84a9fe"
                   color="#fff"
                   rounded-xl
                   :length="5"
@@ -66,23 +66,28 @@
               <p class="text-center code-title mt-2">
                 {{ timer }}
               </p>
-              <MainActionButton
-                  v-if="timer == 0"
-                  class="login-button mt-2"
-                  title="ارسال دوباره کد"
-                  @click="sendCode"
-                  color="#7966FE"
-                  :width="'100%'"
-              />
-              <MainActionButton
-                  v-else
-                  class="login-button mt-2"
-                  title="ورود"
-                  :width="'100%'"
-                  :disabled="form.code.length != 5"
-                  color="#7966FE"
-                  @click="doLogin"
-              />
+              <div class="full-width d-flex flex-row gap-[10px] justify-center align-center">
+                <v-btn class="main-action-button mx-auto" rounded="sm" @click="authStore.closeLoginModal()" variant="flat" text="#fff" height="48px" width="50%">
+                  بستن
+                </v-btn>
+                <MainActionButton
+                    v-if="timer == 0"
+                    class="login-button mt-2"
+                    title="ارسال دوباره کد"
+                    @click="sendCode"
+                    color="#84a9fe"
+                    :width="'50%'"
+                />
+                <MainActionButton
+                    v-else
+                    class="login-button mt-2"
+                    title="ورود"
+                    :width="'50%'"
+                    :disabled="form.code.length != 5"
+                    color="#84a9fe"
+                    @click="doLogin"
+                />
+              </div>
             </div>
           </div>
         </v-card-text>

@@ -9,12 +9,20 @@
     <CategoryLogo :has-child="category.has_child" :sub-title="category.sub_title" :logo="category.has_child ? category.icon : category.logo" />
     <div class="category-list-content py-2 px-2 full-height full-width" :class="{'has-child': category.has_child}">
       <v-container :fluid="true" v-if="category.has_child">
-        <BannerCategoryListItem
-            :category="c"
-            class=" circular"
+        <v-row>
+          <v-col
+            cols="4"
+            sm="4"
+            md="4"
             v-for="(c, i) in list"
             :key="i"
-        />
+          >
+            <BannerCategoryListItem
+                :category="c"
+                class=" circular"
+            />
+          </v-col>
+        </v-row>
       </v-container>
       <v-container :fluid="true" v-else>
         <BlogSingleBlogItem

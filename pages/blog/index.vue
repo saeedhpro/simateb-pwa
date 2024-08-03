@@ -1,5 +1,8 @@
 <template>
-  <div class="blog-page px-4 py-4">
+  <div class="blog-page px-4 py-4 relative">
+    <BackButton
+        @click="onBackClicked"
+    />
     <BlogTitle />
     <BlogTagListSmall
         @select="selectTag"
@@ -17,6 +20,7 @@
 import {definePageMeta} from "#imports";
 import BlogTitle from "~/components/blog/BlogTitle.vue";
 import BlogTagListSmall from "~/components/blog/BlogTagListSmall.vue";
+import BackButton from "~/components/action/BackButton.vue";
 
 definePageMeta({
   layout: 'blog'
@@ -71,6 +75,10 @@ const paginate = async(page = 1) => {
   loading.value = false
 }
 paginate()
+
+const onBackClicked = () => {
+  router.go(-1);
+};
 </script>
 
 <style scoped lang="scss">

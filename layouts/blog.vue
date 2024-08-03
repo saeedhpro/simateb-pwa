@@ -1,8 +1,8 @@
 <template>
   <v-app>
-<!--    <LoadingModal v-if="loading" />-->
+    <LoadingModal v-if="loading" />
     <div class="wrapper mb-8">
-      <BlogHeaderComponent />
+<!--      <BlogHeaderComponent />-->
       <NuxtPage />
     </div>
     <FooterComponent />

@@ -12,12 +12,13 @@
       </nuxt-link>
     </div>
     <div class="main-blog-list-content full-width py-2 mt-6">
-      <v-container :fluid="true">
+      <v-container :fluid="true" style="padding: 0!important;">
         <v-row>
           <v-col
               cols="12"
               v-for="(b, i) in list"
               :key="i"
+              style="padding: 6px !important;"
           >
             <BlogListItem
                 :blog="b"

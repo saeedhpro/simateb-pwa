@@ -6,7 +6,9 @@
     <BackButton
       @click="onBackClicked"
     />
-    <CategoryLogo logo="/images/categories/logo.png" />
+    <div class="category-list-top">
+      <img src="/category.png" style="width: 100%; margin-top: 25px;"/>
+    </div>
     <div class="category-list-content py-8 px-4 full-height full-width">
       <v-container :fluid="true">
         <v-row>

@@ -46,7 +46,8 @@ watch(() => props.term, () => {
   border-radius: 15px;
   padding: 12px;
   background-color: #ffffff;
-  box-shadow: 0 2px 12px 0 #BCDFFF;
+  box-shadow: 0 1px 5px 0 #BCDFFF;
+  //box-shadow: 0 2px 12px 0 #BCDFFF;
   position: relative;
 }
 .search-input {
