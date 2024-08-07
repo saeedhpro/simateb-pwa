@@ -188,7 +188,8 @@ a {
   align-items: flex-start;
   justify-content: flex-start;
   //padding: 10px 30px 20px;
-  padding-bottom: 20px;
+  padding: 20px;
+
   .account-page-top {
     width: 100%;
     height: 260px;
@@ -224,7 +225,7 @@ a {
   &.circular {
     .image-box {
       //border: 1px solid #88DFFF;
-      box-shadow: 0 4px 15px 0 #CEFFF0;
+      //box-shadow: 0 4px 15px 0 #CEFFF0;
       //border-radius: 100% !important;
       padding: 2px;
       //img {
@@ -524,6 +525,7 @@ a {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   height: 260px;
+  background-color: #F7F9FF;
 
   &.has-child {
     //background: linear-gradient(143.93deg, #DEF9F0 9.25%, rgba(222, 249, 240, 0) 44.54%), linear-gradient(0deg, #F4FCFF, #F4FCFF);
@@ -548,8 +550,9 @@ a {
 }
 .single-blog-item {
   width: 100%;
-  border-radius: 30px 0 30px 30px;
-  box-shadow: 1px 2px 12px 0 #BCDFFF;
+  border-radius: 15px;
+  border: 1px solid #D3D3D3;
+  //box-shadow: 1px 2px 12px 0 #BCDFFF;
   background: #FFFFFF;
   display: flex;
   flex-direction: row;
@@ -716,14 +719,10 @@ a {
   width: 100%;
   padding: 40px 20px;
   .doctor-profile-link {
-    box-shadow: 0 2px 12px 0 #BCDFFF;
-    border-radius: 25px 0 25px 25px;
-    padding: 2px 8px;
-    border: 1px solid transparent;
-    &:hover {
-      box-shadow: 0 4px 12px 0 #BCDFFF;
-      border: 1px solid #BCDFFF;
-    }
+    border-radius: 6px;
+    padding: 5px 10px;
+    background: #F7F9FF;
+    box-shadow: 0 4px 4px 0 #F1F8FF;
   }
   .doctor-profile-link-title {
     font-family: IRANYekanRegular;
@@ -909,10 +908,27 @@ a {
     margin-bottom: 10px;
   }
 }
+.doctor-details-box {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #84A9FE;
+  border-radius: 8px;
+  padding: 0 10px;
+  width: 100%;
+  .doctor-name-box {
+    //border: 1px solid #0000006E;
+    height: 90px;
+    margin-right: 40px;
+  }
+}
+
 .reserve-page {
   &.own {
+    padding: 0 0 40px 0 !important;
     min-height: 100vh;
-    padding-bottom: 40px;
+    //padding-bottom: 40px;
     .user-full-name {
       color: #717374;
       font-size: 1rem;
@@ -938,27 +954,24 @@ a {
     border-radius: 0 0 30px 30px;
   }
   .reserve-page-bottom {
-    height: 100%;
-    padding: 25px;
-    min-height: calc(100vh - 320px);
-    .doctor-details-box {
-      position: relative;
-      .doctor-avatar-box {
-        height: 120px;
-        width: 120px;
+    min-height: 230px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: 260px;
+    background: #F7F9FF;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-        position: absolute;
-        right: 0;
-        top: -18px;
-      }
-      .doctor-name-box {
-        border: 1px solid #0000006E;
-        border-radius: 15px;
-        height: 90px;
-        margin-right: 40px;
-        padding: 15px 100px 15px 15px;
-      }
-    }
+
+    //height: 100%;
+    //padding: 25px;
+    //min-height: calc(100vh - 320px);
+
+
+    //doctor-details-box
     .doctor-reserve-form {
       .v-stepper {
         border: 1px solid #B1BEC9;
@@ -1294,23 +1307,23 @@ figure {
 }
 
 .comment-create-page {
-  background: #EBF4FB;
+  //background: #EBF4FB;
   .comment-create-page-top {
     width: 100%;
     padding: 10px;
     margin-top: 100px;
     margin-bottom: 60px;
     .comment-create-page-doctor-box {
-      box-shadow: 0 2px 12px 0 #BCDFFF;
-      padding: 5px 8px;
-      border-radius: 24px;
+      padding: 10px;
+      border-radius: 8px;
       width: 100%;
-      height: 48px;
+      height: 72px;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
       background: #fff;
+      border: 1px solid #84A9FE;
       .doctor-full-name {
         text-overflow: ellipsis;
         margin-right: 13px;
@@ -1324,10 +1337,10 @@ figure {
     }
   }
   .comment-form {
-    border: 1px solid #91D5FB;
+    //border: 1px solid #91D5FB;
     padding: 20px 20px;
-    box-shadow: 0 2px 12px 0 #BCDFFF;
-    background: #FAFAFA;
+    //box-shadow: 0 2px 12px 0 #BCDFFF;
+    //background: #FAFAFA;
     width: 100%;
     height: 100%;
     border-radius: 45px 45px 0 0;
@@ -1439,4 +1452,85 @@ figure {
 }
 .v-overlay {
   z-index: 999999!important;
+}
+
+.profile-own {
+  background-color: #F7F9FF;
+  width: 100%;
+  height: 260px;
+  border-bottom-left-radius: 45px;
+  border-bottom-right-radius: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 34px;
+  .user-full-name {
+    color: #124B7C !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    line-height: 23.05px !important;
+    letter-spacing: -0.06em !important;
+    text-align: center !important;
+    margin-top: 10px;
+  }
+  .phone-number {
+    color: #7B7C81 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    line-height: 15.73px !important;
+    text-align: center !important;
+    margin-top: 10px;
+  }
+}
+.search-page {
+  padding: 0 0 20px !important;
+}
+.search-header {
+  width: 100%;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 260px;
+  background: #F7F9FF;
+  padding: 20px;
+}
+.doctor-tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #84A9FE;
+  width: 100%;
+  border-radius: 4px;
+  margin-top: 32px;
+  padding: 10px 15px;
+  .doctor-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    span {
+      margin-right: 5px;
+    }
+  }
+}
+
+.doctor-search-item {
+  border: 1px solid #84A9FE;
+  border-radius: 8px;
+  padding: 5px 10px;
+  width: 100%;
+  color: black;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: right;
+  .title {
+    color: blue;
+  }
 }

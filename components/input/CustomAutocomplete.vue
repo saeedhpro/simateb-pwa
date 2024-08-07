@@ -103,11 +103,11 @@ setSelectedValue()
 <style scoped lang="scss">
 .custom-autocomplete-box {
   width: 100%;
-  border-radius: 15px;
   padding: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 12px 0 #BCDFFF;
   position: relative;
+  border-radius: 8px;
+  background-color: #FDFDFD;
+  border: 1px solid #84A9FE;
 }
 .custom-autocomplete-input {
   width: 100%;

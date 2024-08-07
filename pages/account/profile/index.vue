@@ -4,8 +4,8 @@
       @click="onBackClicked"
     />
     <div class="d-flex flex-column align-center justify-start account-page-top">
-      <div class="profile-title">صفحه کاربری</div>
-      <ProfileImage class="mt-6"/>
+      <div class="profile-title">پروفایل</div>
+      <ProfileImage class="mt-4"/>
       <div class="profile-full-name mt-2">{{ user.full_name }}</div>
     </div>
     <div class="profile-links full-width mt-6">

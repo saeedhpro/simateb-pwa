@@ -1,14 +1,16 @@
 <template>
   <div class="account-page search-page relative d-flex flex-column align-center justify-start">
-    <BackButton
-        @click="onBackClicked"
-    />
-    <SearchBox :term="term" @search="doSearch" class="mt-16"/>
-    <CustomAutocomplete :items="professionList" placeholder="تخصص" @select="onProfessionSelect" class="mt-6" />
+    <div class="search-header">
+      <BackButton
+          @click="onBackClicked"
+      />
+      <SearchBox :term="term" @search="doSearch" class="mt-8"/>
+      <CustomAutocomplete :items="professionList" placeholder="تخصص" @select="onProfessionSelect" class="mt-4" />
+    </div>
     <div v-if="loading" class="mt-8 full-width relative d-flex flex-column align-center justify-start">
       <LoadingComponent />
     </div>
-    <div v-else class="mt-4 full-width">
+    <div v-else class="mt-4 full-width px-4">
       <v-row>
         <v-col
           cols="12"

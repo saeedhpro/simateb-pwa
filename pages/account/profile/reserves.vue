@@ -3,12 +3,14 @@
     <BackButton
         @click="onBackClicked"
     />
-    <div class="reserve-page-content px-8 pt-4 full-width">
-      <div class="d-flex flex-row align-center justify-start">
-        <v-avatar :image="user.logo ? user.logo : '/user_profile.png'" size="40"></v-avatar>
-        <div class="mr-4 user-full-name">{{ user.full_name }}</div>
+    <div class="reserve-page-content full-width">
+      <div class="profile-own">
+        <div class="profile-title">پروفایل</div>
+        <ProfileImage class="mt-4"/>
+        <div class="profile-full-name">{{ user.full_name }}</div>
+        <div class=" phone-number">{{ user.tel }}</div>
       </div>
-      <div class="full-width my-8">
+      <div class="full-width my-8 px-4">
         <div class="reserve-header mb-8 flex flex-row justify-start items-center">
           <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <circle cx="17.5" cy="17.5" r="17.5" fill="#EEF1FF"/>

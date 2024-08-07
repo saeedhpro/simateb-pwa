@@ -35,7 +35,7 @@ const doSearch = (term: string) => {
   }
   auth.searchTerm = term
   router.push({
-    path: '/doctors',
+    path: '/search',
     query: query
   })
 }

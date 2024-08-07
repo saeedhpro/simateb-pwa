@@ -4,10 +4,19 @@
   </div>
   <div v-else class="sample-page relative d-flex flex-column align-center justify-start">
     <div class="pt-8 px-4 md:px-8 full-width d-flex flex-column align-center justify-start">
-      <div class="full-width doctor-detail d-flex flex-row align-center justify-start mt-8">
-        <img class="doctor-logo" :src="doctor.logo" alt="">
-        <div class="doctor-name">
-          {{ doctor.full_name }}
+      <div class="doctor-details-box mt-12">
+        <div class="doctor-avatar-box">
+          <v-avatar
+              color="grey"
+              size="65"
+              :rounded-full="true"
+          >
+            <v-img height="65px" width="65px" :src="doctor.logo"></v-img>
+          </v-avatar>
+        </div>
+        <div class="doctor-name-box d-flex flex-column justify-center align-start">
+          <div class="font-weight-bold">{{ doctor.full_name }}</div>
+          <div class="mt-2">{{ doctor.organization?.profession?.name }}</div>
         </div>
       </div>
       <div class="d-flex flex-column align-start justify-start full-width mt-8">

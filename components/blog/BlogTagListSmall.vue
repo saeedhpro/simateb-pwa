@@ -1,7 +1,7 @@
 <template>
   <v-sheet
     elevation="0"
-    class="px-0"
+    class="px-8"
   >
     <v-slide-group
       :multiple="true"

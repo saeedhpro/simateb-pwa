@@ -27,7 +27,7 @@
       <v-container :fluid="true" v-else>
         <BlogSingleBlogItem
             v-for="(a,i) in articles"
-            class="mb-1"
+            class="mb-2"
             :key="i"
             :article="a"
         />

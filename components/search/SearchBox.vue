@@ -43,11 +43,10 @@ watch(() => props.term, () => {
 <style scoped lang="scss">
 .search-box {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 8px;
   padding: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 1px 5px 0 #BCDFFF;
-  //box-shadow: 0 2px 12px 0 #BCDFFF;
+  background-color: #FDFDFD;
+  border: 1px solid #84A9FE;
   position: relative;
 }
 .search-input {

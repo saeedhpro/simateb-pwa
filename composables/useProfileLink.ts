@@ -10,10 +10,12 @@ export default () => {
             icon: '/images/links/2.png',
             title: 'نوبت های من',
         },
-        {
-            link: '/account/profile/comments',
-            icon: '/images/links/2.png',
-            title: 'نظرات من',
-        },
     ])
 }
+
+
+// {
+//     link: '/account/profile/comments',
+//         icon: '/images/links/2.png',
+//     title: 'نظرات من',
+// },
