@@ -14,7 +14,7 @@
     <div class="custom-autocomplete-items-box" :class="{'show': onFocus}">
       <v-virtual-scroll
           :items="items"
-          height="120"
+          height="140"
           item-height="36"
       >
         <template v-slot:default="{ item }">
@@ -129,7 +129,7 @@ setSelectedValue()
   bottom: -124px;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 140px;
   background-color: #FFF;
   transition: transform 0.5s;
   transform: scaleY(0);

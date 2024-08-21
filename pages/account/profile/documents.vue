@@ -3,13 +3,18 @@
     <BackButton
         @click="onBackClicked"
     />
-    <div class="document-page-content px-8 pt-4 full-width">
-      <div class="d-flex flex-row align-center justify-start">
-        <v-avatar :image="user.logo ? user.logo : '/user_profile.png'" size="40"></v-avatar>
-        <div class="mr-4 user-full-name">{{ user.full_name ? user.full_name : user.tel }}</div>
+    <div class="document-page-content full-width">
+      <div class="d-flex flex-column align-center justify-start account-page-top">
+        <div class="profile-title">پروفایل</div>
+        <ProfileImage class="mt-4"/>
+        <div class="profile-full-name mt-2">{{ user.full_name }}</div>
+        <div class="profile-full-name mt-2">{{ user.tel }}</div>
       </div>
-      <div class="full-width my-8">
-        <div class="document-header mb-8">اسناد من</div>
+      <div class="full-width my-8 px-8">
+        <div class="document-header mb-8">
+          <v-img height="35" width="35" max-width="35" class="ml-2" src="/images/doc-header.png" alt=""/>
+          <div>اسناد پزشکی من</div>
+        </div>
         <div
             v-for="(d, i) in list.data"
             :key="i"
