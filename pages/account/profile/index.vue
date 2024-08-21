@@ -6,6 +6,7 @@
     <div class="d-flex flex-column align-center justify-start account-page-top">
       <div class="profile-title">پروفایل</div>
       <ProfileImage class="mt-4"/>
+      <div class="profile-full-name mt-2">{{ user.full_name }}</div>
       <div class="profile-full-name mt-2">{{ user.tel }}</div>
     </div>
     <div class="profile-links full-width mt-6">
@@ -31,7 +32,6 @@
 
 import BackButton from "~/components/action/BackButton.vue";
 import ExitButton from "~/components/action/ExitButton.vue";
-import {d as useNuxtApp} from "~/.output/server/chunks/app/server.mjs";
 
 const router = useRouter()
 const token = useCookie("token")
@@ -54,8 +54,8 @@ const onExitClicked = () => {
 }
 
 const user = ref({
-  full_name: 'سعید حیدری',
-  phone_number: '09381412419',
+  full_name: '',
+  tel: '',
   tel: ''
 })
 
@@ -74,13 +74,15 @@ const shareText = async (text: string) => {
 
 const links = useProfileLink()
 
-// const getUser = async () => {
-//   const { $getRequest: getRequest } = useNuxtApp();
-//   const res = await getRequest(`/own`);
-//   console.log(res, "res")
-// }
-//
-// getUser()
+const getUser = async () => {
+  const { $getRequest: getRequest } = useNuxtApp();
+  const res = await getRequest(`/me`);
+  user.value = {
+    ...res.data,
+  }
+}
+
+getUser()
 </script>
 
 <style scoped lang="scss">
