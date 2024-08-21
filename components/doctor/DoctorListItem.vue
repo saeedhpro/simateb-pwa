@@ -11,9 +11,11 @@
         <div class="doctor-profession-name mt-2">
           {{ doctor.organization?.profession?.name }}
         </div>
-        <div style="display: flex" class="doctor-starts mt-3 ltr flex flex-row justify-end items-center">
-          <span style="height: 18px; color: #6A6ED1; margin-top: 2px">(499 نفر)</span>
-          <span style="height: 18px; color: #6A6ED1; margin-top: 2px">4.9</span>
+        <div style="display: flex" class="mr-1 doctor-starts mt-3 ltr flex flex-row justify-end items-center">
+          <div style="height: 18px; color: #6A6ED1; margin-top: 2px">
+            رضایت (<span>{{ doctor.rate_count ?? 0 }}</span> نظر)
+          </div>
+          <span style="height: 18px; color: #6A6ED1; margin-top: 2px">{{ doctor.rate.toFixed(1) ?? 0  }}</span>
           <v-rating
               half-increments
               :hover="true"

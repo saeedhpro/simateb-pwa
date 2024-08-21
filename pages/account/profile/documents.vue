@@ -21,7 +21,7 @@
             class="own-document-item mt-8 d-flex flex-column align-start justify-start"
         >
           <div class="own-document-item-header mb-4">
-            <span>{{ d.organization ? d.organization.name : 'مطب دکتر نجفیان' }}</span>
+            <span>{{ d.organization ? d.organization.name : '' }}</span>
             <span class="own-document-item-date">{{ d.created_at_fa ? d.created_at_fa : '' }}</span>
           </div>
           <div class="own-document-item-content full-width d-flex flex-row align-start justify-start">

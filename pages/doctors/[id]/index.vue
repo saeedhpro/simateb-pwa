@@ -24,9 +24,9 @@
               </div>
               <div class="mt-3 full-width d-flex flex-row justify-start items-center">
                 <span>
-                {{ 6 }}
+                {{ doctor.work_experience ?? 0}}
                 </span>
-                تجربه
+                سال تجربه
               </div>
               <div class="mt-3 full-width">
                 {{ doctor.organization?.profession?.name }}
