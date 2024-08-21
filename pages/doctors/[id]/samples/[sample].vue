@@ -3,8 +3,11 @@
     <LoadingComponent color="#9AC8EA"/>
   </div>
   <div v-else class="sample-page relative d-flex flex-column align-center justify-start">
+    <BackButton
+        @click="onBackClicked"
+    />
     <div class="pt-8 px-4 md:px-8 full-width d-flex flex-column align-center justify-start">
-      <div class="doctor-details-box mt-12">
+      <div class="doctor-details-box mt-8">
         <div class="doctor-avatar-box">
           <v-avatar
               color="grey"
@@ -29,6 +32,7 @@
 <script setup lang="ts">
 
 import SampleItem from "~/components/doctor/SampleItem.vue";
+import BackButton from "~/components/action/BackButton.vue";
 
 const router = useRouter()
 const route = useRoute()

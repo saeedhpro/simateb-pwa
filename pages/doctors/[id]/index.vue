@@ -39,12 +39,12 @@
             <div class="justify-center align-center d-flex flex-row">
             <span style="background: #0DAD25; padding: 7px 10px; color: white; border-radius: 7px; margin: 0 10px; min-width: 65px; display: flex; justify-content: center; align-items: center;">
               <span style="margin: 0 4px;">
-                {{ doctor.rate ?? 0 }}
+                {{ doctor.rate.toFixed(1) ?? 0 }}
               </span>
               از 5
             </span>
               <span>
-              رضایت (<span>{{ doctor.rate ?? 0 }}</span> نظر)
+              رضایت (<span>{{ doctor.comments ?? 0 }}</span> نظر)
             </span>
             </div>
           </v-col>
@@ -105,32 +105,32 @@
         </div>
       </div>
     </div>
-    <div class="doctor-profile-bottom py-8">
-      <nuxt-link :to="`/doctors/${id}/samples`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+    <div class="doctor-profile-bottom pb-8">
+      <nuxt-link :to="`/doctors/${id}/samples`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-4">
         <DoctorProfileLinkSurgeriesImage />
         <div class="doctor-profile-link-title">
           {{ getProfessionCat }}
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/doctors/${id}/comments`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/comments`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-4">
         <DoctorProfileLinkCommentsImage />
         <div class="doctor-profile-link-title">
           نظر سایر مراجعه کنندگان
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/doctors/${id}/faqs`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/faqs`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-4">
         <DoctorProfileLinkQuestionsImage />
         <div class="doctor-profile-link-title">
           پرسش های متداول
         </div>
       </nuxt-link>
-      <nuxt-link @click="goToOwnReservePage" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link @click="goToOwnReservePage" class="doctor-profile-link d-flex flex-row align-center justify-start mb-4">
         <DoctorProfileLinkReservesImage />
         <div class="doctor-profile-link-title">
           وقت های رزو شده من از پزشک
         </div>
       </nuxt-link>
-      <nuxt-link :to="`/doctors/${id}/insurances`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-8">
+      <nuxt-link :to="`/doctors/${id}/insurances`" class="doctor-profile-link d-flex flex-row align-center justify-start mb-4">
         <DoctorProfileLinkBimeImage />
         <div class="doctor-profile-link-title">
           بیمه های طرف قرارداد

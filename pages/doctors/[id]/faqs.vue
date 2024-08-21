@@ -10,12 +10,16 @@
       <h3 class="text-center mt-8">پرسش های متداول</h3>
     </div>
     <div class="fags-list full-width d-flex flex-column align-center justify-start px-4 mt-8">
-      <v-expansion-panels v-if="faqs.length > 0">
+      <v-expansion-panels
+          color="#F7F9FF"
+          v-if="faqs.length > 0">
         <v-expansion-panel
             v-for="(f,i) in faqs"
             :key="i"
             :title="f.question"
-            elevation="1"
+            elevation="0"
+            color="#F7F9FF"
+            bg-color="#F7F9FF"
             :ripple="false"
             :readonly="true"
             :text="f.answer"

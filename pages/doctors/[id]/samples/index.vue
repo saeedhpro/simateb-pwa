@@ -7,7 +7,7 @@
         @click="onBackClicked"
     />
     <div class="pt-8 px-4 md:px-8 full-width d-flex flex-column align-center justify-start" style="z-index: 99">
-      <div class="doctor-details-box mt-12">
+      <div class="doctor-details-box mt-8">
         <div class="doctor-avatar-box">
           <v-avatar
               color="grey"

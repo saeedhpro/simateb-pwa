@@ -6,7 +6,7 @@
     <BackButton
         @click="onBackClicked"
     />
-    <CategoryLogo :has-child="category.has_child" :sub-title="category.sub_title" :logo="category.has_child ? category.icon : category.logo" />
+    <CategoryLogo :has-child="category.has_child" :sub-title="category.sub_title" :logo="category.has_child ? category.icon : category.banner" />
     <div class="category-list-content py-2 px-2 full-height full-width" :class="{'has-child': category.has_child}">
       <v-container :fluid="true" v-if="category.has_child">
         <v-row>
