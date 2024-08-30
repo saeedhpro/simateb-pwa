@@ -61,8 +61,8 @@
                 </div>
               </v-expansion-panel-text>
             </v-expansion-panel>
-            <div v-if="!loading && photographies.length == 0">
-              <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
+            <div class="full-width" v-if="!loading && photographies.length == 0">
+              <v-img src="/images/not_found.png" alt="" width="75%" class="mx-auto"/>
             </div>
           </v-expansion-panels>
           </v-expansion-panel-text>
@@ -110,19 +110,13 @@
                 </div>
               </v-expansion-panel-text>
             </v-expansion-panel>
-            <div v-if="!loading && photographies.length == 0">
-              <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
+            <div  class="full-width" v-if="!loading && photographies.length == 0">
+              <v-img src="/images/not_found.png" alt="" width="75%" class="mx-auto"/>
             </div>
           </v-expansion-panels>
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
-      </div>
-      <div v-if="loading" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
-        <LoadingComponent color="#9AC8EA"/>
-      </div>
-      <div v-if="!loading && photographies.length == 0 && radiologies.length == 0">
-        <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
       </div>
     </div>
   </div>
