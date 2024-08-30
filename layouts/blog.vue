@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <LoginModal/>
-    <div class="wrapper mb-8">
+    <div class="wrapper mb-12">
       <BlogHeaderComponent />
       <NuxtPage />
     </div>

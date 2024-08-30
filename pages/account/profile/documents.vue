@@ -15,34 +15,113 @@
           <v-img height="35" width="35" max-width="35" class="ml-2" src="/images/doc-header.png" alt=""/>
           <div>اسناد پزشکی من</div>
         </div>
-        <div
-            v-for="(d, i) in list.data"
-            :key="i"
-            class="own-document-item mt-8 d-flex flex-column align-start justify-start"
+        <v-expansion-panels
+          color="#F7F9FF"
         >
-          <div class="own-document-item-header mb-4">
-            <span>{{ d.organization ? d.organization.name : '' }}</span>
-            <span class="own-document-item-date">{{ d.created_at_fa ? d.created_at_fa : '' }}</span>
-          </div>
-          <div class="own-document-item-content full-width d-flex flex-row align-start justify-start">
-            <div class="">
-              <a v-if="d.ext === 'pdf'" class="file-image" :href="d.url" target="_blank">
-                <img src="/images/pdf.svg" alt="" style="max-height: 160px">
-              </a>
-              <img v-else :src="d.url" alt="" style="height: 160px; width: 160px;">
+        <v-expansion-panel
+            :title="'فتوگرافی'"
+            elevation="0"
+            color="#F7F9FF"
+            bg-color="#F7F9FF"
+            :ripple="false"
+            :readonly="true"
+        >
+          <v-expansion-panel-text>
+          <v-expansion-panels
+              color="#F7F9FF"
+          >
+            <v-expansion-panel
+                elevation="0"
+                color="#F7F9FF"
+                bg-color="#F7F9FF"
+                :ripple="false"
+                :readonly="true"
+                v-for="(p,i) in photographies"
+                :key="i"
+            >
+              <v-expansion-panel-title>{{ p.name }}</v-expansion-panel-title>
+              <v-expansion-panel-text>
+                <div
+                  v-for="(l, n) in photosList"
+                  :key="n"
+                  class="full-width"
+                >
+                  <div class="doc-item-header">
+                    <div>کد پذیرش: {{ l.app.code }}</div>
+                  </div>
+                  <div class="doc-item-body">
+                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j"/>
+                  </div>
+                </div>
+                <div v-if="loadingPhoto" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
+                  <LoadingComponent color="#9AC8EA"/>
+                </div>
+                <div v-if="!loadingPhoto && photosList.length == 0">
+                  <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
+                </div>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+            <div v-if="!loading && photographies.length == 0">
+              <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
             </div>
-            <div class="full-width mr-4">
-              <span class="border-b-md">نظر پزشک:</span>
-              <div class="font-weight-bold full-width mt-4">{{ d.comment }}</div>
+          </v-expansion-panels>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+        <v-expansion-panel
+            :title="'رادیولوژی'"
+            elevation="0"
+            color="#F7F9FF"
+            bg-color="#F7F9FF"
+            :ripple="false"
+            :readonly="true"
+        >
+          <v-expansion-panel-text>
+          <v-expansion-panels
+              color="#F7F9FF"
+          >
+            <v-expansion-panel
+                elevation="0"
+                color="#F7F9FF"
+                bg-color="#F7F9FF"
+                :ripple="false"
+                :readonly="true"
+                v-for="(p,i) in radiologies"
+                :key="i"
+            >
+              <v-expansion-panel-title>{{ p.name }}</v-expansion-panel-title>
+              <v-expansion-panel-text>
+                <div
+                  v-for="(l, n) in radiosList"
+                  :key="n"
+                  class="full-width"
+                >
+                  <div class="doc-item-header">
+                    <div>کد پذیرش: {{ l.app.code }}</div>
+                  </div>
+                  <div class="doc-item-body">
+                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j"/>
+                  </div>
+                </div>
+                <div v-if="loadingRadio" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
+                  <LoadingComponent color="#9AC8EA"/>
+                </div>
+                <div v-if="!loadingRadio && radiosList.length == 0">
+                  <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
+                </div>
+              </v-expansion-panel-text>
+            </v-expansion-panel>
+            <div v-if="!loading && photographies.length == 0">
+              <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
             </div>
-          </div>
-        </div>
+          </v-expansion-panels>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
       </div>
       <div v-if="loading" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
         <LoadingComponent color="#9AC8EA"/>
       </div>
-      <div v-if="!loading && list.meta.last_page > page" @click="paginate(page + 1)" class="more-button mt-6">مشاهده بیشتر</div>
-      <div v-if="!loading && list.data.length == 0">
+      <div v-if="!loading && photographies.length == 0 && radiologies.length == 0">
         <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto mt-16"/>
       </div>
     </div>
@@ -64,27 +143,46 @@ const route = useRoute()
 const page = ref(1)
 const limit = ref(6)
 const loading = ref(true)
-const list = ref({
-  data: [],
-  meta: {
-    current_page: 1,
-    last_page: 1
-  }
-})
+const photographies = ref([])
+const radiologies = ref([])
+const loadingPhoto = ref(true)
+const photoClicked = ref(false)
+const photosList = ref([])
+const loadingRadio = ref(true)
+const radioClicked = ref(false)
+const radiosList = ref([])
 
 const getDocuments = async () => {
   loading.value = true
   const {$getRequest: getRequest}=useNuxtApp()
-  const {data: data, meta: meta} = await getRequest(`/documents?page=${page.value}&limit=${limit.value}`)
-  // list.value.data = [
-  //     ...list.value.data,
-  //     ...data,
-  // ]
-  list.value.meta = {
-    ...meta
-  }
+  const res = await getRequest(`/documents?page=${page.value}&limit=${limit.value}`)
+  photographies.value = res.photographies
+  radiologies.value = res.radiologies
   loading.value = false
+  for (let i = 0; i < photographies.value.length; i++) {
+    await getPhotosList(photographies.value[i].id)
+  }
+  for (let i = 0; i < radiologies.value.length; i++) {
+    await getRadioList(radiologies.value[i].id)
+  }
 }
+
+const getPhotosList = async (id) => {
+  loadingPhoto.value = true
+  const {$getRequest: getRequest}=useNuxtApp()
+  const res = await getRequest(`/documents/${id}/photos?page=${page.value}&limit=${limit.value}`)
+  photosList.value = res
+  loadingPhoto.value = false
+}
+
+const getRadioList = async (id) => {
+  loadingRadio.value = true
+  const {$getRequest: getRequest}=useNuxtApp()
+  const res = await getRequest(`/documents/${id}/radios?page=${page.value}&limit=${limit.value}`)
+  radiosList.value = res
+  loadingRadio.value = false
+}
+
 const onBackClicked = () => {
   router.go(-1)
 }

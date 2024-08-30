@@ -30,18 +30,11 @@
             :to="`/doctors/${id}/samples/${s.id}`"
         >
           <img :src="s.logo" alt="" class="full-width">
-
-<!--          <div class="sample-image-box d-flex flex-1 full-width full-height">-->
-<!--            <img :src="s.logo"s.logo alt="">-->
-<!--          </div>-->
-<!--          <div class="sample-details d-flex flex-1 flex-column full-width full-height">-->
-<!--            <h3 class="mb-2">{{ s.name }}</h3>-->
-<!--            <h5 class="mb-4">{{ s.sub_title }}</h5>-->
-<!--            <div class="d-flex flex-row align-center justify-end">-->
-<!--              <nuxt-link class="sample-item-link" :to="`/doctors/${id}/samples/${s.id}`">مشاهده</nuxt-link>-->
-<!--            </div>-->
-<!--          </div>-->
         </nuxt-link>
+
+        <div v-if="list.data.length == 0" class="full-width" style="margin-top: -48px">
+          <v-img src="/images/not_found.png" alt="" width="80%" class="mx-auto"/>
+        </div>
       </div>
     </div>
   </div>

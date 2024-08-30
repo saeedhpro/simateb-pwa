@@ -44,7 +44,7 @@
               از 5
             </span>
               <span>
-              رضایت (<span>{{ doctor.comments ?? 0 }}</span> نظر)
+              رضایت (<span>{{ doctor.rate_count ?? 0 }}</span> نظر)
             </span>
             </div>
           </v-col>
