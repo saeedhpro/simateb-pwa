@@ -50,7 +50,7 @@
                     <div>کد پذیرش: {{ l.app.code }}</div>
                   </div>
                   <div class="doc-item-body">
-                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j"/>
+                    <v-img width="48%" style="margin: 1%" :src="s" v-for="(s, j) in l.photos" :key="j"/>
                   </div>
                 </div>
                 <div v-if="loadingPhoto" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
