@@ -100,7 +100,7 @@
     <div class="doctor-tabs" v-if="showTel">
       <div @click="showLocation" class="doctor-tab full-width px-4">
         <div class="full-width d-flex" style="flex-direction: column; justify-content: flex-start; align-items: flex-start">
-          <span class="full-width  mb-4">آدرس: {{ doctor.address ?? '-' }}</span>
+          <span class="full-width  mb-4">آدرس: {{ doctor.organization.address ?? '-' }}</span>
           <a :href="`tel:${doctor.tel}`" class="full-width" style="font-size: 15px;display: flex; color: black">تلفن: {{ doctor.tel ?? '-' }}</a>
         </div>
       </div>
