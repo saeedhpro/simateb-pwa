@@ -56,12 +56,11 @@ const onExitClicked = () => {
 const user = ref({
   full_name: '',
   tel: '',
-  tel: ''
 })
 
 const referral = async ($event) => {
   $event.preventDefault()
-  await shareText(`https://pwa.sabaapp.ir?ref=${user.value.phone_number}`)
+  await shareText(`https://pwa.sabaapp.ir?ref=${user.value.tel}`)
 }
 const shareText = async (text: string) => {
   try {

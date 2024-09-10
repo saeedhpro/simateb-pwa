@@ -69,6 +69,11 @@ export default defineNuxtConfig({
         }
       ]
     },
+    devOptions: { enabled: true, type: 'module', navigateFallbackAllowlist: [/^\/$/] },
+    client: {
+      installPrompt: true,
+      showInstallPrompt: true,
+    },
     workbox: {
       skipWaiting: true,
       clientsClaim: true,
