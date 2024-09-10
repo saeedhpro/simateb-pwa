@@ -269,9 +269,9 @@ a {
 
 }
 .doctor-list-item {
-  height: 120px;
+  //height: 120px;
   width: 270px;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
   &.desktop {
     margin-left: 10px;
   }
@@ -293,6 +293,7 @@ a {
         bottom: 0;
         border-radius: 100%;
         margin-right: 10px;
+        aspect-ratio: 1;
       }
     }
     .doctor-list-item-details {
