@@ -64,7 +64,7 @@ export default defineNuxtConfig({
       icons: [
         {
           src: 'icon/icon.png',
-          sizes: '512x512',
+          sizes: '80x80',
           type: 'image/png'
         }
       ]
@@ -77,7 +77,7 @@ export default defineNuxtConfig({
         '*.*',
          '_nuxt/builds/**/*.json'
       ],
-      navigateFallback: null,
+      navigateFallback: '/',
     },
   }
 })
