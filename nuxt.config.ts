@@ -70,6 +70,8 @@ export default defineNuxtConfig({
       ]
     },
     workbox: {
+      skipWaiting: true,
+      clientsClaim: true,
       globPatterns: [
         '*/*.*',
         '*.*',

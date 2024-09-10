@@ -268,10 +268,16 @@ a {
 .main-category-list {
 
 }
+.search-page {
+  .doctor-list-item {
+    min-height: auto !important;
+    margin-bottom: auto !important;
+  }
+}
 .doctor-list-item {
-  //height: 120px;
+  min-height: 120px;
   width: 270px;
-  //margin-bottom: 20px;
+  margin-bottom: 20px;
   &.desktop {
     margin-left: 10px;
   }
