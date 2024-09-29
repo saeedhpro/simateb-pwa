@@ -50,7 +50,7 @@
                     <div>کد پذیرش: {{ l.app.code }}</div>
                   </div>
                   <div class="doc-item-body">
-                    <v-img width="48%" style="margin: 1%" :src="s" v-for="(s, j) in l.photos" :key="j"/>
+                    <v-img width="48%" style="margin: 1%" :src="s" v-for="(s, j) in l.photos" :key="j" @click="openImageModal(l.photos, j)"/>
                   </div>
                 </div>
                 <div v-if="loadingPhoto" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
@@ -99,7 +99,7 @@
                     <div>کد پذیرش: {{ l.app.code }}</div>
                   </div>
                   <div class="doc-item-body">
-                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j"/>
+                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j" @click="openImageModal(l.photos, j)/>
                   </div>
                 </div>
                 <div v-if="loadingRadio" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">
@@ -125,6 +125,8 @@
 <script setup lang="ts">
 
 import BackButton from "~/components/action/BackButton.vue";
+import { Fancybox } from '@fancyapps/ui';
+import "@fancyapps/ui/dist/fancybox/fancybox.css"
 
 definePageMeta({
   middleware: 'auth'
@@ -180,6 +182,17 @@ const getRadioList = async (id) => {
 const onBackClicked = () => {
   router.go(-1)
 }
+
+const openImageModal = (images: [], n:number) => {
+  Fancybox.show(images?.map(i => ({
+    src: i,
+    type: 'image'
+  })),{
+    animated: true,
+    startIndex: n,
+  });
+}
+
 const paginate = (p = 1) => {
   page.value = p
   getDocuments()
