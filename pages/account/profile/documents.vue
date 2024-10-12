@@ -99,7 +99,7 @@
                     <div>کد پذیرش: {{ l.app.code }}</div>
                   </div>
                   <div class="doc-item-body">
-                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j" @click="openImageModal(l.photos, j)/>
+                    <v-img width="48%" :src="s" v-for="(s, j) in l.photos" :key="j" @click="openImageModal(l.photos, j)"/>
                   </div>
                 </div>
                 <div v-if="loadingRadio" class="profile-page mt-4 h-100vh relative d-flex flex-column align-center justify-center">

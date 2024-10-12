@@ -101,7 +101,7 @@
       <div @click="showLocation" class="doctor-tab full-width px-4">
         <div class="full-width d-flex" style="flex-direction: column; justify-content: flex-start; align-items: flex-start">
           <span class="full-width  mb-4">آدرس: {{ doctor.organization.address ?? '-' }}</span>
-          <a :href="`tel:${doctor.tel}`" class="full-width" style="font-size: 15px;display: flex; color: black">تلفن: {{ doctor.tel ?? '-' }}</a>
+          <a :href="`tel:${doctor.organization?.phone}`" class="full-width" style="font-size: 15px;display: flex; color: black">تلفن: {{ doctor.organization?.phone ?? '-' }}</a>
         </div>
       </div>
     </div>

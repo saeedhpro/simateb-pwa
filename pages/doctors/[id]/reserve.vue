@@ -353,7 +353,7 @@ const getDoctor = async () => {
 
 const getCaseTypes = async () => {
   const {$getRequest: getRequest}=app
-  const {data: cases} = await getRequest(`/doctors/${id}/cases`)
+  const {data: cases} = await getRequest(`/doctors/${id}/schedules`)
   caseTypes.value = cases
 }
 
