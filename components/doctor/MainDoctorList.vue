@@ -31,12 +31,16 @@ import '@splidejs/vue-splide/css';
 const {$getRequest: getRequest}=useNuxtApp()
 const dC = useCookie('profession_id')
 const own_id = useCookie('own_id')
-let url = '/doctors?page=1&limit=6'
-if (dC.value && own_id.value) {
-  url = `${url}&profession_id=${dC.value}&own=${own_id.value}`
+const list = ref([])
+try {
+  let url = '/doctors?page=1&limit=6'
+  if (dC.value && own_id.value) {
+    url = `${url}&profession_id=${dC.value}&own=${own_id.value}`
+  }
+  const {data: doctors} = await getRequest(url)
+  list.value = doctors ?? []
+} catch (e) {
 }
-const {data: doctors} = await getRequest(url)
-const list = doctors ?? []
 const {$isMobile: isMobile} = useNuxtApp()
 const onMobile = computed(() => isMobile())
 const options = ref({
