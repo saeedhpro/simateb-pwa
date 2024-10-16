@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@vite-pwa/nuxt": "^0.3.4",
     "dayjs-nuxt": "^2.1.9",
     "nuxt": "^3.8.2",
     "nuxt-icon": "^0.6.7",

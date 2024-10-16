@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <v-app>
-      <VitePwaManifest />
+<!--      <VitePwaManifest />-->
       <NuxtPage />
     </v-app>
   </NuxtLayout>
@@ -13,13 +13,18 @@ const deferredPrompt = ref(null)
 const showInstallPrompt = ref(false)
 
 onMounted(() => {
-  window.addEventListener('beforeinstallprompt', (e) => {
-    console.log('before install')
-    // جلوگیری از نمایش پیش‌فرض باکس نصب
-    e.preventDefault()
-    deferredPrompt.value = e
-    // نمایش باکس نصب به کاربر
-    showInstallPrompt.value = true
-  })
+  if (process.client) {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(err => {
+              console.error('Service Worker registration failed:', err);
+            });
+      });
+    }
+  }
 })
 </script>

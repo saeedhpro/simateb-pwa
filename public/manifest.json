@@ -1,0 +1,16 @@
+{
+  "name": "App Doctor",
+  "short_name": "AppDoctor",
+  "description": "Reservation app",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4DBA87",
+  "icons": [
+    {
+      "src": "/icons/icon.png",
+      "sizes": "80x80",
+      "type": "image/png"
+    }
+  ]
+}

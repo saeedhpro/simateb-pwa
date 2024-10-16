@@ -9,7 +9,22 @@ export default defineNuxtConfig({
       charset: "utf-8",
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
       link: [
-        {rel: 'manifest', href: '/manifest.webmanifest'}
+        {
+          rel: 'manifest',
+          href: '/manifest.json'
+        },
+        {
+          rel: 'icon',
+          href: '/icons/icon.png',
+          sizes: '80x80',
+          type: 'image/png'
+        },
+      ],
+      meta: [
+        {
+          name: 'theme-color',
+          content: '#4DBA87'
+        }
       ]
     }
   },
@@ -19,7 +34,6 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   modules: [
-    '@vite-pwa/nuxt',
     '@pinia/nuxt',
     'nuxt-icon',
     'dayjs-nuxt',
@@ -47,42 +61,4 @@ export default defineNuxtConfig({
       chunkSize: 1000
     }
   },
-  pwa: {
-    registerWebManifestInRouteRules: true,
-    registerType:'autoUpdate',
-    strategies: 'generateSW',
-    manifest: {
-      name: 'اپ دکتر',
-      short_name: 'اپ دکتر',
-      description: 'نرم افزار مدیریت مطب',
-      lang: 'fa',
-      start_url: '/',
-      background_color: '#ffffff',
-      theme_color: '#4DBA87',
-      registerType:'autoUpdate',
-      orientation:'portrait',
-      icons: [
-        {
-          src: 'icon/icon.png',
-          sizes: '80x80',
-          type: 'image/png'
-        }
-      ]
-    },
-    devOptions: { enabled: true, type: 'module', navigateFallbackAllowlist: [/^\/$/] },
-    client: {
-      installPrompt: true,
-      showInstallPrompt: true,
-    },
-    workbox: {
-      skipWaiting: true,
-      clientsClaim: true,
-      globPatterns: [
-        '*/*.*',
-        '*.*',
-         '_nuxt/builds/**/*.json'
-      ],
-      navigateFallback: '/',
-    },
-  }
 })

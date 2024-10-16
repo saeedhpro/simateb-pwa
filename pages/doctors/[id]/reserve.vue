@@ -218,14 +218,14 @@
                     density="compact"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
-                <div class="doctor-reserve-form-title my-4">
-                  تاریخ تولد :
-                </div>
-              </v-col>
+<!--              <v-col cols="12">-->
+<!--                <div class="doctor-reserve-form-title my-4">-->
+<!--                  تاریخ تولد : -->
+<!--                </div>-->
+<!--              </v-col>-->
             </v-row>
             <v-row>
-              <v-col sm="3" class="hidden d-sm-flex"></v-col>
+<!--              <v-col sm="3" class="hidden d-sm-flex"></v-col>-->
               <v-col cols="6" sm="3">
                 <div class="form-select"
                      :class="{'selected': reserveForm.gender == 'male'}"
@@ -269,14 +269,14 @@
 
 <script setup lang="ts">
 import BackButton from "~/components/action/BackButton.vue";
-
-const router = useRouter()
-const route = useRoute()
-import { useDayjs } from '#dayjs' // not need if you are using auto import
-const dayjs = useDayjs()
+import {useDayjs} from '#dayjs' // not need if you are using auto import
 import 'dayjs/locale/fa'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import jalaliday from 'jalaliday'
+
+const router = useRouter()
+const route = useRoute()
+const dayjs = useDayjs()
 dayjs.locale('fa')
 dayjs.extend(localizedFormat)
 dayjs.extend(jalaliday)
@@ -353,8 +353,7 @@ const getDoctor = async () => {
 
 const getCaseTypes = async () => {
   const {$getRequest: getRequest}=app
-  const {data: cases} = await getRequest(`/doctors/${id}/schedules`)
-  caseTypes.value = cases
+  caseTypes.value = await getRequest(`/doctors/${id}/schedules/all`)
 }
 
 const getSliders = async () => {
