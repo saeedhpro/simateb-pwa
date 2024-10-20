@@ -370,12 +370,12 @@ const getSchedules = async (c) => {
   }
 }
 
-const getFirstTime = () => {
+const getFirstTime = computed(() => {
   if (schedules.value.length > 0) {
     return schedules.value[0]
   }
   return null;
-}
+})
 
 const getOtherTimes = () => {
   if (schedules.value.length > 1) {
@@ -502,12 +502,12 @@ const reserve = async () => {
   }
   const {$postRequest: postRequest}=app
   const res = await postRequest(`/reserve`, form)
-  app.$toast.error('درخواست رزرو وقت با موفقیت برای دکتر ارسال شد. درصورت تایید توسط دکتر از طریق پیامک اطلاع رسانی خواهید شد!', {
+  app.$toast.info('درخواست رزرو وقت با موفقیت برای دکتر ارسال شد. درصورت تایید توسط دکتر از طریق پیامک اطلاع رسانی خواهید شد!', {
     autoClose: 2000,
   });
   setTimeout(() => {
     router.back()
-  }, 500)
+  }, 1000)
 }
 
 const changeSelectedUser = (type) => {
