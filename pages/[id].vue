@@ -220,12 +220,10 @@ const getDoctor = async () => {
     ...d,
     logo: d.logo || '/images/doctors/doctor.png'
   }
-  // if (route.query.doctor) {
-  //   const dC = useCookie('profession_id')
-  //   const own_id = useCookie('own_id')
-  //   dC.value = d.organization.profession_id
-  //   own_id.value = d.organization.id
-  // }
+  const dC = useCookie('profession_id')
+  const own_id = useCookie('own_id')
+  dC.value = d.organization.profession_id
+  own_id.value = d.organization.id
   loading.value = false
 }
 
@@ -234,7 +232,8 @@ const copyText = (text: string = '') => {
 }
 
 const shareLink = async () => {
-  const url = `${window.location.origin}/${id}`
+  const url = window.location.href
+
   const shareData = {
     title: doctor.value.full_name,
     text: 'اشتراک گذاری با دوستان',

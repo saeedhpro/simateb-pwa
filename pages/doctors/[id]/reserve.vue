@@ -507,7 +507,7 @@ const reserve = async () => {
   });
   setTimeout(() => {
     router.back()
-  }, 1000)
+  }, 1500)
 }
 
 const changeSelectedUser = (type) => {
