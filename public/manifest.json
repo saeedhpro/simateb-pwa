@@ -1,7 +1,7 @@
 {
-  "name": "App Doctor",
+  "name": "صبااپ",
   "short_name": "AppDoctor",
-  "description": "Reservation app",
+  "description": "صبااپ",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
