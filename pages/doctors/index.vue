@@ -1,5 +1,5 @@
 <template>
-  <div class="account-page search-page relative d-flex flex-column align-center justify-start pb-12">
+  <div class="account-page search-page relative d-flex flex-column align-center justify-start pb-16">
     <div class="search-header">
       <BackButton
           @click="onBackClicked"
