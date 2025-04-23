@@ -11,12 +11,17 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icons/icon.png",
+      "src": "/icons/icon-48-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-72-72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon.png",
+      "src": "/icons/icon-96-96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
@@ -26,27 +31,17 @@
       "type": "image/png"
     },
     {
-      "src": "/icons/icon.png",
+      "src": "/icons/icon-144-144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon.png",
+      "src": "/icons/icon-192-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon.png",
+      "src": "/icons/icon-512-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -55,17 +50,21 @@
   "screenshots": [
     {
       "src": "/screenshots/screenshot1.jpg",
-      "sizes": "1080x1920",
-      "type": "image/png",
+      "sizes": "591x1280",
+      "type": "image/jpeg",
       "description": "صفحه اصلی اپلیکیشن صبااپ"
+    },
+    {
+      "src": "/screenshots/screenshot1.jpg",
+      "sizes": "591x1280",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "صفحه اصلی",
+      "platform": "wide"
     }
   ],
   "categories": ["medical", "health"],
   "related_applications": [
-    {
-      "platform": "play",
-      "url": "https://play.google.com/store/apps/details?id=com.example.appdoctor"
-    }
   ],
   "prefer_related_applications": false,
   "shortcuts": [
@@ -73,8 +72,8 @@
       "name": "نوبت جدید",
       "short_name": "نوبت",
       "description": "دریافت نوبت پزشکی جدید",
-      "url": "/new-appointment",
-      "icons": [{ "src": "/icons/shortcut.png", "sizes": "96x96" }]
+      "url": "/",
+      "icons": [{ "src": "/icons/icon-96-96.png", "sizes": "96x96" }]
     }
   ]
 }

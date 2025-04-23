@@ -1,5 +1,6 @@
 <template>
   <v-app>
+
     <LoginModal/>
     <div class="wrapper mb-8">
       <NuxtPage />

@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           href: '/icons/icon.png',
-          sizes: '80x80',
+          sizes: '192x192',
           type: 'image/png'
         },
       ],
