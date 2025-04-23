@@ -2,7 +2,7 @@
   <div v-if="loading"></div>
   <Splide :options="options" aria-label="" v-else>
     <SplideSlide v-for="(s, i) in slides" :key="i">
-      <img alt="" class="main-slider-img" style="max-height: 161px !important;" :src="s.image" @click="goTo(s.link)"/>
+      <img alt="" class="main-slider-img"  :src="s.image" @click="goTo(s.link)"/>
     </SplideSlide>
   </Splide>
 </template>
