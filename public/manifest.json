@@ -1,16 +1,80 @@
 {
   "name": "صبااپ",
   "short_name": "AppDoctor",
-  "description": "صبااپ",
+  "description": "اپلیکیشن صبااپ - ارائه خدمات پزشکی",
+  "lang": "fa-IR",
+  "dir": "rtl",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4DBA87",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/icons/icon.png",
-      "sizes": "80x80",
+      "sizes": "72x72",
       "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot1.jpg",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "description": "صفحه اصلی اپلیکیشن صبااپ"
+    }
+  ],
+  "categories": ["medical", "health"],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.example.appdoctor"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "نوبت جدید",
+      "short_name": "نوبت",
+      "description": "دریافت نوبت پزشکی جدید",
+      "url": "/new-appointment",
+      "icons": [{ "src": "/icons/shortcut.png", "sizes": "96x96" }]
     }
   ]
 }
