@@ -14,14 +14,15 @@
         <v-row>
           <v-col
             cols="4"
-            sm="3"
-            md="2"
+            sm="4"
+            md="3"
             v-for="(c, i) in list"
             :key="i"
           >
             <CategoryListItem
                 :category="c"
-                class="mb-4 circular small"
+                class="mb-4 circular"
+                :class="isSmall ? 'small': ''"
             />
           </v-col>
         </v-row>
@@ -34,6 +35,9 @@
 
 import BackButton from "~/components/action/BackButton.vue";
 import CategoryLogo from "~/components/category/CategoryLogo.vue";
+import { useDisplay } from 'vuetify'
+
+const { mobile } = useDisplay()
 const router = useRouter()
 const onBackClicked = () => {
   router.go(-1)
@@ -49,6 +53,10 @@ const getCategories = async () => {
   loading.value = false
 }
 getCategories()
+
+const isSmall = computed(() => {
+  return mobile.value
+})
 </script>
 
 <style scoped lang="scss">

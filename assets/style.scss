@@ -252,8 +252,8 @@ a {
     width: 130px !important;
   }
   .image-box {
-    height: 150px;
-    width: 150px;
+    height: 150px !important;
+    width: 150px !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1309,7 +1309,8 @@ figure {
 }
 @media only screen and (min-width: 768px) {
   .category-logo img {
-    max-width: 70%;
+    //max-width: 70%;
+    max-width: 230px;
   }
 }
 

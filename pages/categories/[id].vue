@@ -12,8 +12,9 @@
         <v-row>
           <v-col
             cols="4"
-            sm="4"
-            md="4"
+            sm="3"
+            md="3"
+            lg="3"
             v-for="(c, i) in list"
             :key="i"
           >
