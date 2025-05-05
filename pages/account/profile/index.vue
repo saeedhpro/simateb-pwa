@@ -34,7 +34,9 @@ import BackButton from "~/components/action/BackButton.vue";
 import ExitButton from "~/components/action/ExitButton.vue";
 
 const router = useRouter()
-const token = useCookie("token")
+const token = useCookie("token", {
+  maxAge: 259200,
+})
 
 definePageMeta({
   middleware: 'auth'

@@ -106,7 +106,9 @@ const form = ref({
   tel: '',
   code: ''
 })
-const token = useCookie("token")
+const token = useCookie("token", {
+  maxAge: 259200,
+})
 const codeSent = ref(false)
 let timer = ref(60)
 let interval = ref('')

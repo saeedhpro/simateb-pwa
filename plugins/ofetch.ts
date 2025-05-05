@@ -1,7 +1,9 @@
 import {ofetch} from "ofetch";
 
 export default defineNuxtPlugin((app) => {
-    const token = useCookie("token")
+    const token = useCookie("token", {
+        maxAge: 259200,
+    })
     const baseUrl = 'https://api.sabaapp.ir/api/app'
     // const baseUrl = 'http://127.0.0.1:8000/api/app'
 
