@@ -61,8 +61,11 @@ const getDoctors = async() => {
   if (dC.value && own_id.value) {
     url += `&profession_id=${dC.value}&own=${own_id.value}`
   }
-  const {data: categories, meta: meta} = await getRequest(url)
-  list.value = categories ?? []
+  const {data: doctors, meta: meta} = await getRequest(url)
+  list.value = [
+      ...list.value,
+      ...(doctors ?? [])
+  ]
   page.value = meta.current_page
   last_page.value = meta.last_page
   setTimeout(() => {
