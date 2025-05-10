@@ -15,7 +15,7 @@
       <v-container class="mt-8">
         <v-row>
           <v-col cols="4" md="3" sm="5">
-            <v-img height="84" width="84" :src="doctor.logo" />
+            <v-img height="84" width="84" class="rounded-circle	" :src="doctor.logo" />
           </v-col>
           <v-col cols="8" md="9" sm="7">
             <div class="d-flex" style="flex-direction: column; align-items: flex-start; justify-content: flex-start;">
